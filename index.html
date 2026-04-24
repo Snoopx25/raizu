@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#4F46E5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Sanraizu">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Sanraizu — Controle de Ponto</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --accent:#4F46E5;--accent-light:#EEF2FF;
+  --green:#16a34a;--green-bg:#f0fdf4;--green-text:#14532d;
+  --red:#dc2626;--red-bg:#fef2f2;--red-text:#7f1d1d;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-text:#78350f;
+  --blue-bg:#eff6ff;--blue-text:#1e3a5f;
+  --bg:#f8fafc;--bg2:#ffffff;--bg3:#f1f5f9;
+  --text:#0f172a;--text2:#64748b;--text3:#94a3b8;
+  --border:rgba(15,23,42,0.1);--border2:rgba(15,23,42,0.18);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f172a;--bg2:#1e293b;--bg3:#334155;
+    --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+    --border:rgba(255,255,255,.1);--border2:rgba(255,255,255,.18);
+    --accent-light:#1e1b4b;
+    --green-bg:#052e16;--green-text:#86efac;
+    --red-bg:#450a0a;--red-text:#fca5a5;
+    --amber-bg:#431407;--amber-text:#fcd34d;
+    --blue-bg:#0c1a2e;--blue-text:#93c5fd;
+  }
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;font-size:15px;overscroll-behavior:none}
+.app{max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:68px}
+
+.topbar{background:var(--bg2);border-bottom:0.5px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:50;box-shadow:var(--shadow)}
+.app-logo{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700;flex-shrink:0}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.topbar-name{font-size:16px;font-weight:600;color:var(--text)}
+.topbar-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.topbar-earn{text-align:right}
+.topbar-earn-val{font-size:17px;font-weight:600;color:var(--accent);line-height:1}
+.topbar-earn-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+
+.lang-bar{background:var(--bg2);border-bottom:0.5px solid var(--border);display:flex;overflow-x:auto;padding:0 10px;gap:0;-webkit-overflow-scrolling:touch}
+.lang-bar::-webkit-scrollbar{display:none}
+.lang-pill{padding:9px 11px;font-size:12px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s;user-select:none}
+.lang-pill.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+.month-tabs{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;background:var(--bg3);-webkit-overflow-scrolling:touch}
+.month-tabs::-webkit-scrollbar{display:none}
+.mtab{padding:6px 14px;border-radius:20px;border:0.5px solid var(--border2);font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--bg2);user-select:none}
+.mtab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.kpi-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px 6px}
+.kpi{background:var(--bg2);border-radius:var(--radius);border:0.5px solid var(--border);padding:13px 14px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow)}
+.kpi-icon{font-size:18px;line-height:1}
+.kpi-val{font-size:23px;font-weight:600;line-height:1;color:var(--accent)}
+.kpi-val.amber{color:var(--amber)}
+.kpi-val.red{color:var(--red)}
+.kpi-val.green{color:var(--green)}
+.kpi-lbl{font-size:11px;color:var(--text2)}
+
+.sec-hd{padding:14px 16px 6px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.07em}
+
+.day-card{background:var(--bg2);border-radius:var(--radius-lg);border:0.5px solid var(--border);overflow:hidden;margin:0 14px 10px;box-shadow:var(--shadow)}
+.day-row{display:grid;grid-template-columns:28px 28px 42px 1fr 50px 50px;align-items:center;gap:5px;padding:10px 12px;border-bottom:0.5px solid var(--border);cursor:pointer;user-select:none;transition:background .1s}
+.day-row:last-child{border-bottom:none}
+.day-row:active{filter:brightness(.97)}
+.day-row.r-work{background:var(--green-bg)}
+.day-row.r-abs{background:var(--red-bg)}
+.day-row.r-inc{background:var(--amber-bg)}
+.day-row.r-sun{opacity:.5}
+.day-row.r-folga{background:var(--blue-bg)}
+.dnum{font-size:13px;font-weight:600;text-align:center;color:var(--text)}
+.dwk{font-size:10px;color:var(--text2);text-align:center}
+.dwk.sun{color:var(--red);font-weight:600}
+.sbadge{font-size:10px;padding:2px 6px;border-radius:20px;text-align:center;white-space:nowrap;font-weight:500}
+.sb-work{background:#dcfce7;color:var(--green-text)}
+.sb-abs{background:#fee2e2;color:var(--red-text)}
+.sb-inc{background:#fef9c3;color:var(--amber-text)}
+.sb-sun{background:#fee2e2;color:var(--red-text)}
+.sb-folga{background:#dbeafe;color:var(--blue-text)}
+.sb-none{color:var(--text3)}
+.tcell{font-size:11px;color:var(--text2);text-align:center}
+.totcell{font-size:12px;font-weight:600;color:var(--accent);text-align:right}
+
+.chart-card{background:var(--bg2);border-radius:var(--radius-lg);border:0.5px solid var(--border);margin:0 14px 12px;padding:14px;box-shadow:var(--shadow)}
+.chart-hd{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:10px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.bar-lbl{font-size:10px;color:var(--text3);width:20px;text-align:right;flex-shrink:0}
+.bar-bg{flex:1;height:13px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:var(--accent)}
+.bar-val{font-size:10px;color:var(--text2);min-width:54px;text-align:right;flex-shrink:0}
+
+.sum-card{background:var(--bg2);border-radius:var(--radius-lg);border:0.5px solid var(--border);margin:0 14px 8px;overflow:hidden;box-shadow:var(--shadow)}
+.sum-mhd{padding:11px 14px;background:var(--bg3);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center}
+.sum-mhd-val{color:var(--accent);font-size:13px;font-weight:600}
+.sum-row{display:flex;justify-content:space-between;padding:8px 14px;border-top:0.5px solid var(--border);font-size:13px;color:var(--text)}
+.sum-row.total{font-weight:600;color:var(--accent)}
+
+.grand-card{background:var(--accent);border-radius:var(--radius-lg);margin:0 14px 16px;padding:18px;box-shadow:0 4px 14px rgba(79,70,229,.3)}
+.grand-lbl{font-size:11px;color:rgba(255,255,255,.75);margin-bottom:5px;font-weight:500}
+.grand-val{font-size:30px;font-weight:700;color:#fff;letter-spacing:-.5px}
+
+.cfg-card{background:var(--bg2);border-radius:var(--radius-lg);border:0.5px solid var(--border);margin:0 14px 10px;padding:16px;box-shadow:var(--shadow)}
+.cfg-hd{font-size:14px;font-weight:600;margin-bottom:14px;color:var(--text)}
+.cfg-f{margin-bottom:13px}
+.cfg-f label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;font-weight:500}
+.cfg-f input{width:100%;padding:10px 12px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:15px}
+.cfg-f input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.btn-primary{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.01em}
+.btn-primary:active{opacity:.88}
+.btn-ghost{width:100%;padding:11px;background:var(--bg3);color:var(--text2);border:0.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;cursor:pointer;margin-top:8px}
+.btn-ghost:active{opacity:.8}
+.cfg-tip{padding:0 16px 20px;font-size:11px;color:var(--text3);line-height:1.8}
+
+.bottomnav{background:var(--bg2);border-top:0.5px solid var(--border);display:flex;height:60px;position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;box-shadow:0 -1px 6px rgba(0,0,0,.06)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;font-size:10px;font-weight:500;color:var(--text3);border:none;background:none;user-select:none;transition:color .15s}
+.nav-btn.active{color:var(--accent)}
+.nav-ico{font-size:22px;line-height:1}
+
+.view{display:none}
+.view.active{display:block}
+
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:flex-end;justify-content:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.modal{background:var(--bg2);border-radius:22px 22px 0 0;width:100%;max-width:430px;padding:20px 18px 40px;max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 16px}
+.modal-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.modal-title{font-size:16px;font-weight:600;color:var(--text)}
+.modal-date{font-size:12px;color:var(--text2);margin-top:3px}
+.modal-x{width:30px;height:30px;border-radius:50%;background:var(--bg3);border:none;cursor:pointer;font-size:17px;color:var(--text2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.field{margin-bottom:13px}
+.field label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;font-weight:500}
+.field select{width:100%;padding:10px 12px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:15px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+.field select:focus{outline:none;border-color:var(--accent)}
+.calc-box{background:var(--bg3);border-radius:var(--radius-sm);padding:12px;margin:12px 0}
+.cbox-hd{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:9px;text-transform:uppercase;letter-spacing:.07em}
+.rrow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text)}
+.rrow:last-child{border-bottom:none;font-weight:600;font-size:14px}
+.debug-pill{background:var(--accent-light);border-radius:var(--radius-sm);padding:9px 11px;margin-top:10px;font-size:11px;color:#3730a3;line-height:1.7;word-break:break-word}
+@media(prefers-color-scheme:dark){.debug-pill{color:#a5b4fc}}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--text3)}
+.empty-ico{font-size:40px;margin-bottom:12px}
+.empty-txt{font-size:14px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="app-logo">S</div>
+      <div>
+        <div class="topbar-name">Sanraizu</div>
+        <div class="topbar-sub" id="t-sub"></div>
+      </div>
+    </div>
+    <div class="topbar-earn">
+      <div class="topbar-earn-val" id="t-earn"></div>
+      <div class="topbar-earn-lbl" id="t-earn-lbl"></div>
+    </div>
+  </div>
+
+  <div class="lang-bar" id="lang-bar"></div>
+
+  <div class="view active" id="view-ponto">
+    <div class="month-tabs" id="mtabs"></div>
+    <div class="kpi-strip" id="kpis"></div>
+    <div class="sec-hd" id="sec-days-hd"></div>
+    <div class="day-card"><div id="days-list"></div></div>
+    <div id="chart-wrap"></div>
+  </div>
+
+  <div class="view" id="view-resumo">
+    <div class="sec-hd" id="sec-sum-hd"></div>
+    <div id="resumo-list"></div>
+  </div>
+
+  <div class="view" id="view-config">
+    <div class="sec-hd" id="sec-cfg-hd"></div>
+    <div class="cfg-card">
+      <div class="cfg-hd" id="cfg-title"></div>
+      <div class="cfg-f"><label id="lbl-hora"></label><input type="number" id="c-hora" value="1049" inputmode="numeric"></div>
+      <div class="cfg-f"><label id="lbl-horas"></label><input type="number" id="c-horas" value="4" step="0.5" inputmode="decimal"></div>
+      <div class="cfg-f"><label id="lbl-mult"></label><input type="number" id="c-mult" value="1.5" step="0.05" inputmode="decimal"></div>
+      <div class="cfg-f"><label id="lbl-alm"></label><input type="number" id="c-almoco" value="40" inputmode="numeric"></div>
+      <div class="cfg-f"><label id="lbl-des"></label><input type="number" id="c-descanso" value="20" inputmode="numeric"></div>
+      <button class="btn-primary" onclick="saveConfig()" id="btn-save-cfg"></button>
+    </div>
+    <p class="cfg-tip" id="cfg-tip"></p>
+  </div>
+</div>
+
+<div class="bottomnav">
+  <button class="nav-btn active" id="nav-ponto" onclick="showView('ponto')"><span class="nav-ico">📅</span><span id="nav-lbl-ponto"></span></button>
+  <button class="nav-btn" id="nav-resumo" onclick="showView('resumo')"><span class="nav-ico">📊</span><span id="nav-lbl-resumo"></span></button>
+  <button class="nav-btn" id="nav-config" onclick="showView('config')"><span class="nav-ico">⚙️</span><span id="nav-lbl-cfg"></span></button>
+</div>
+
+<script>
+const LANGS={
+  'pt-BR':{name:'Português (BR)',flag:'🇧🇷',months:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],wdays:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],nav:['Ponto','Resumo','Config'],kpi:['Dias trab.','Total ganho','H. extras','Faltas'],secDays:'Registro diário',secSum:'Todos os meses',secCfg:'Configurações',cfgTitle:'Parâmetros do sistema',cfgLabels:['Salário por hora (¥)','Horas normais/dia','Multiplicador h. extra','Desconto almoço (min, se ≥6h)','Desconto descanso (min, se ≥4h)'],cfgSave:'Salvar configurações',cfgTip:'Dados salvos localmente neste navegador.\nPara instalar no iPhone: Safari → Compartilhar → "Adicionar à Tela de Início".\nPara instalar no Android: Chrome → menu ⋮ → "Adicionar à tela inicial".',status:['— Automático','✅ Trabalhado','❌ Falta','🌿 Folga','🎌 Feriado'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Status','Entrada','Saída','H. extra manual'],calcHd:'Cálculo',calcRows:['Horas brutas','Horas líquidas','H. extras','Normal (¥)','Extra (¥)','Total'],save:'Salvar',clear:'Limpar dia',thisMonth:'este mês',totalMonths:'Total 6 meses',sumRows:['Dias trab.','H. normais','H. extras','Total'],chartHd:'Ganhos diários (¥)',debugPfx:'Cálculo: ',almocoInfo:'− {n}min almoço (≥6h)',desInfo:'− {n}min descanso (≥4h)',noAlmoco:'sem desc. almoço (<6h)',noDes:'sem desc. descanso (<4h)',bruto:'Bruto: ',liquid:'= ',extra:'+ {n}min extra'},
+  'en-US':{name:'English (US)',flag:'🇺🇸',months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],monthsFull:['January','February','March','April','May','June','July','August','September','October','November','December'],wdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],nav:['Clock','Summary','Settings'],kpi:['Days worked','Total earned','Overtime hrs','Absences'],secDays:'Daily log',secSum:'All months',secCfg:'Settings',cfgTitle:'System parameters',cfgLabels:['Hourly wage (¥)','Normal hrs/day','Overtime multiplier','Lunch break (min, if ≥6h)','Rest break (min, if ≥4h)'],cfgSave:'Save settings',cfgTip:'Data saved locally in this browser.\nTo install on iPhone: Safari → Share → "Add to Home Screen".\nTo install on Android: Chrome → menu ⋮ → "Add to Home Screen".',status:['— Auto','✅ Worked','❌ Absent','🌿 Day off','🎌 Holiday'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Status','Clock in','Clock out','Manual overtime'],calcHd:'Calculation',calcRows:['Gross hours','Net hours','Overtime','Normal (¥)','Overtime (¥)','Total'],save:'Save',clear:'Clear day',thisMonth:'this month',totalMonths:'Total 6 months',sumRows:['Days worked','Normal hrs','Overtime hrs','Total'],chartHd:'Daily earnings (¥)',debugPfx:'Calc: ',almocoInfo:'− {n}min lunch (≥6h)',desInfo:'− {n}min rest (≥4h)',noAlmoco:'no lunch deduct (<6h)',noDes:'no rest deduct (<4h)',bruto:'Gross: ',liquid:'= ',extra:'+ {n}min OT'},
+  'en-GB':{name:'English (UK)',flag:'🇬🇧',months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],monthsFull:['January','February','March','April','May','June','July','August','September','October','November','December'],wdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],nav:['Timesheet','Summary','Settings'],kpi:['Days worked','Total earned','Overtime hrs','Absences'],secDays:'Daily record',secSum:'All months',secCfg:'Settings',cfgTitle:'System parameters',cfgLabels:['Hourly rate (¥)','Normal hrs/day','Overtime multiplier','Lunch break (min, if ≥6h)','Rest break (min, if ≥4h)'],cfgSave:'Save settings',cfgTip:'Data saved locally in this browser.\nTo install on iPhone: Safari → Share → "Add to Home Screen".\nTo install on Android: Chrome → menu ⋮ → "Add to Home Screen".',status:['— Auto','✅ Worked','❌ Absent','🌿 Day off','🎌 Bank holiday'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Status','Start time','Finish time','Manual overtime'],calcHd:'Breakdown',calcRows:['Gross hours','Net hours','Overtime','Normal (¥)','Overtime (¥)','Total'],save:'Save',clear:'Clear day',thisMonth:'this month',totalMonths:'Total 6 months',sumRows:['Days worked','Normal hrs','Overtime hrs','Total'],chartHd:'Daily earnings (¥)',debugPfx:'Calc: ',almocoInfo:'− {n}min lunch (≥6h)',desInfo:'− {n}min rest (≥4h)',noAlmoco:'no lunch deduct (<6h)',noDes:'no rest deduct (<4h)',bruto:'Gross: ',liquid:'= ',extra:'+ {n}min OT'},
+  'es':{name:'Español',flag:'🇪🇸',months:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],monthsFull:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],wdays:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],nav:['Registro','Resumen','Config'],kpi:['Días trab.','Total ganado','H. extra','Faltas'],secDays:'Registro diario',secSum:'Todos los meses',secCfg:'Configuración',cfgTitle:'Parámetros del sistema',cfgLabels:['Salario por hora (¥)','Horas normales/día','Multiplicador h. extra','Descanso almuerzo (min, si ≥6h)','Descanso (min, si ≥4h)'],cfgSave:'Guardar configuración',cfgTip:'Datos guardados localmente en este navegador.\nPara instalar en iPhone: Safari → Compartir → "Agregar a pantalla de inicio".\nPara instalar en Android: Chrome → menú ⋮ → "Agregar a pantalla de inicio".',status:['— Automático','✅ Trabajado','❌ Falta','🌿 Descanso','🎌 Festivo'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Estado','Entrada','Salida','H. extra manual'],calcHd:'Cálculo',calcRows:['Horas brutas','Horas netas','H. extras','Normal (¥)','Extra (¥)','Total'],save:'Guardar',clear:'Limpiar día',thisMonth:'este mes',totalMonths:'Total 6 meses',sumRows:['Días trab.','H. normales','H. extras','Total'],chartHd:'Ganancias diarias (¥)',debugPfx:'Cálculo: ',almocoInfo:'− {n}min almuerzo (≥6h)',desInfo:'− {n}min descanso (≥4h)',noAlmoco:'sin desc. almuerzo (<6h)',noDes:'sin desc. descanso (<4h)',bruto:'Bruto: ',liquid:'= ',extra:'+ {n}min extra'},
+  'fr':{name:'Français',flag:'🇫🇷',months:['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],monthsFull:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],wdays:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],nav:['Pointage','Résumé','Paramètres'],kpi:['Jours trav.','Total gagné','H. supp.','Absences'],secDays:'Registre journalier',secSum:'Tous les mois',secCfg:'Paramètres',cfgTitle:'Paramètres du système',cfgLabels:['Taux horaire (¥)','Heures normales/jour','Multiplicateur h. supp.','Pause déjeuner (min, si ≥6h)','Pause repos (min, si ≥4h)'],cfgSave:'Enregistrer',cfgTip:"Données sauvegardées localement.\nPour installer sur iPhone: Safari → Partager → \"Ajouter à l'écran d'accueil\".\nPour installer sur Android: Chrome → menu ⋮ → \"Ajouter à l'écran d'accueil\".",status:['— Auto','✅ Travaillé','❌ Absent','🌿 Congé','🎌 Férié'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Statut','Arrivée','Départ','H. supp. manuelle'],calcHd:'Calcul',calcRows:['Heures brutes','Heures nettes','H. supp.','Normal (¥)','Supp. (¥)','Total'],save:'Enregistrer',clear:'Effacer',thisMonth:'ce mois',totalMonths:'Total 6 mois',sumRows:['Jours trav.','H. normales','H. supp.','Total'],chartHd:'Gains journaliers (¥)',debugPfx:'Calcul: ',almocoInfo:'− {n}min déjeuner (≥6h)',desInfo:'− {n}min repos (≥4h)',noAlmoco:'sans déd. déjeuner (<6h)',noDes:'sans déd. repos (<4h)',bruto:'Brut: ',liquid:'= ',extra:'+ {n}min supp.'},
+  'de':{name:'Deutsch',flag:'🇩🇪',months:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],monthsFull:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],wdays:['So','Mo','Di','Mi','Do','Fr','Sa'],nav:['Zeiterfassung','Übersicht','Einstellungen'],kpi:['Arbeitstage','Gesamtverdienst','Überstunden','Fehltage'],secDays:'Tagesprotokoll',secSum:'Alle Monate',secCfg:'Einstellungen',cfgTitle:'Systemparameter',cfgLabels:['Stundenlohn (¥)','Normale Std./Tag','Überstunden-Faktor','Mittagspause (Min, bei ≥6h)','Pause (Min, bei ≥4h)'],cfgSave:'Einstellungen speichern',cfgTip:'Daten werden lokal gespeichert.\nInstallation auf iPhone: Safari → Teilen → "Zum Home-Bildschirm".\nInstallation auf Android: Chrome → Menü ⋮ → "Zum Startbildschirm hinzufügen".',status:['— Automatisch','✅ Gearbeitet','❌ Fehlend','🌿 Frei','🎌 Feiertag'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Status','Kommen','Gehen','Manuelle Überstunden'],calcHd:'Berechnung',calcRows:['Bruttozeit','Nettozeit','Überstunden','Normal (¥)','Überstd. (¥)','Gesamt'],save:'Speichern',clear:'Löschen',thisMonth:'diesen Monat',totalMonths:'Gesamt 6 Monate',sumRows:['Arbeitstage','Normalstd.','Überstunden','Gesamt'],chartHd:'Tagesverdienst (¥)',debugPfx:'Berechnung: ',almocoInfo:'− {n}Min Mittagsp. (≥6h)',desInfo:'− {n}Min Pause (≥4h)',noAlmoco:'keine Mittagspause (<6h)',noDes:'keine Pause (<4h)',bruto:'Brutto: ',liquid:'= ',extra:'+ {n}Min extra'},
+  'ja':{name:'日本語',flag:'🇯🇵',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],wdays:['日','月','火','水','木','金','土'],nav:['勤怠','集計','設定'],kpi:['出勤日数','合計収入','残業時間','欠勤'],secDays:'日次記録',secSum:'全月集計',secCfg:'設定',cfgTitle:'システム設定',cfgLabels:['時給 (¥)','通常勤務時間/日','残業割増率','昼休み (分、≥6h)','休憩 (分、≥4h)'],cfgSave:'保存',cfgTip:'データはブラウザに保存されます。\nインストール (iPhone): Safari → 共有 → "ホーム画面に追加"。\nインストール (Android): Chrome → メニュー ⋮ → "ホーム画面に追加"。',status:['— 自動','✅ 出勤','❌ 欠勤','🌿 休暇','🎌 祝日'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['状態','出勤時刻','退勤時刻','手動残業'],calcHd:'計算内容',calcRows:['総労働時間','実労働時間','残業時間','通常賃金 (¥)','残業代 (¥)','合計'],save:'保存',clear:'クリア',thisMonth:'今月',totalMonths:'6ヶ月合計',sumRows:['出勤日数','通常時間','残業時間','合計'],chartHd:'日別収入 (¥)',debugPfx:'計算: ',almocoInfo:'− {n}分 昼休み (≥6h)',desInfo:'− {n}分 休憩 (≥4h)',noAlmoco:'昼休みなし (<6h)',noDes:'休憩なし (<4h)',bruto:'総時間: ',liquid:'= ',extra:'+ {n}分 追加'},
+  'zh':{name:'中文',flag:'🇨🇳',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],wdays:['日','一','二','三','四','五','六'],nav:['考勤','汇总','设置'],kpi:['工作天数','总收入','加班时间','缺勤'],secDays:'每日记录',secSum:'全部月份',secCfg:'系统设置',cfgTitle:'参数设置',cfgLabels:['时薪 (¥)','每日正常工时','加班倍率','午餐时间 (分钟, ≥6h)','休息时间 (分钟, ≥4h)'],cfgSave:'保存设置',cfgTip:'数据保存在本地浏览器中。\n安装方法 (iPhone): Safari → 分享 → "添加到主屏幕"。\n安装方法 (Android): Chrome → 菜单 ⋮ → "添加到主屏幕"。',status:['— 自动','✅ 已上班','❌ 缺勤','🌿 假期','🎌 节假日'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['状态','上班时间','下班时间','手动加班'],calcHd:'计算详情',calcRows:['总工时','实际工时','加班时间','正常工资 (¥)','加班工资 (¥)','合计'],save:'保存',clear:'清除',thisMonth:'本月',totalMonths:'6个月合计',sumRows:['工作天数','正常工时','加班工时','合计'],chartHd:'每日收入 (¥)',debugPfx:'计算: ',almocoInfo:'− {n}分午餐 (≥6h)',desInfo:'− {n}分休息 (≥4h)',noAlmoco:'无午餐扣除 (<6h)',noDes:'无休息扣除 (<4h)',bruto:'总计: ',liquid:'= ',extra:'+ {n}分加班'},
+  'ko':{name:'한국어',flag:'🇰🇷',months:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],monthsFull:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],wdays:['일','월','화','수','목','금','토'],nav:['근태','요약','설정'],kpi:['근무일수','총수입','초과근무','결근'],secDays:'일별 기록',secSum:'전체 월',secCfg:'설정',cfgTitle:'시스템 설정',cfgLabels:['시급 (¥)','일반 근무시간/일','초과근무 배수','점심시간 (분, ≥6h)','휴식시간 (분, ≥4h)'],cfgSave:'설정 저장',cfgTip:'데이터는 로컬에 저장됩니다.\n설치 (iPhone): Safari → 공유 → "홈 화면에 추가".\n설치 (Android): Chrome → 메뉴 ⋮ → "홈 화면에 추가".',status:['— 자동','✅ 근무','❌ 결근','🌿 휴가','🎌 공휴일'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['상태','출근시간','퇴근시간','수동 초과근무'],calcHd:'계산 내역',calcRows:['총 근무시간','실 근무시간','초과근무','일반 급여 (¥)','초과 급여 (¥)','합계'],save:'저장',clear:'삭제',thisMonth:'이번 달',totalMonths:'6개월 합계',sumRows:['근무일수','일반시간','초과시간','합계'],chartHd:'일별 수입 (¥)',debugPfx:'계산: ',almocoInfo:'− {n}분 점심 (≥6h)',desInfo:'− {n}분 휴식 (≥4h)',noAlmoco:'점심 공제 없음 (<6h)',noDes:'휴식 공제 없음 (<4h)',bruto:'총시간: ',liquid:'= ',extra:'+ {n}분 추가'},
+  'vi':{name:'Tiếng Việt',flag:'🇻🇳',months:['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'],monthsFull:['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],wdays:['CN','T2','T3','T4','T5','T6','T7'],nav:['Chấm công','Tổng kết','Cài đặt'],kpi:['Ngày làm','Tổng thu','G. tăng ca','Vắng mặt'],secDays:'Nhật ký hàng ngày',secSum:'Tất cả các tháng',secCfg:'Cài đặt',cfgTitle:'Tham số hệ thống',cfgLabels:['Lương mỗi giờ (¥)','Giờ làm bình thường/ngày','Hệ số tăng ca','Nghỉ trưa (phút, nếu ≥6h)','Nghỉ giải lao (phút, nếu ≥4h)'],cfgSave:'Lưu cài đặt',cfgTip:'Dữ liệu được lưu cục bộ.\nCài đặt (iPhone): Safari → Chia sẻ → "Thêm vào màn hình chính".\nCài đặt (Android): Chrome → menu ⋮ → "Thêm vào màn hình chính".',status:['— Tự động','✅ Đã làm','❌ Vắng','🌿 Nghỉ phép','🎌 Lễ'],statusVals:['','trabalhado','falta','folga','feriado'],entryLabel:['Trạng thái','Vào ca','Ra ca','Tăng ca thủ công'],calcHd:'Chi tiết tính toán',calcRows:['Giờ thô','Giờ thực','Tăng ca','Lương thường (¥)','Lương tăng ca (¥)','Tổng cộng'],save:'Lưu',clear:'Xóa',thisMonth:'tháng này',totalMonths:'Tổng 6 tháng',sumRows:['Ngày làm','Giờ thường','Giờ tăng ca','Tổng'],chartHd:'Thu nhập hàng ngày (¥)',debugPfx:'Tính toán: ',almocoInfo:'− {n}phút trưa (≥6h)',desInfo:'− {n}phút nghỉ (≥4h)',noAlmoco:'không trừ trưa (<6h)',noDes:'không trừ nghỉ (<4h)',bruto:'Thô: ',liquid:'= ',extra:'+ {n}phút thêm'},
+};
+const MONTHS_DATA=[{mo:4,yr:2026,days:30},{mo:5,yr:2026,days:31},{mo:6,yr:2026,days:30},{mo:7,yr:2026,days:31},{mo:8,yr:2026,days:31},{mo:9,yr:2026,days:30}];
+const TIME_OPTS=['06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30'];
+const EXT_OPTS=['00:00','00:30','01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30'];
+let lang='pt-BR',cfg={hora:1049,horas:4,mult:1.5,almoco:40,descanso:20},activeMonth=0,modalEl=null;
+const sk=k=>'sz_'+k;
+const ld=(k,d)=>{try{const v=localStorage.getItem(sk(k));return v!=null?JSON.parse(v):d}catch{return d}};
+const sv=(k,v)=>{try{localStorage.setItem(sk(k),JSON.stringify(v))}catch{}};
+const t2m=t=>{if(!t||!t.includes(':'))return 0;const[h,m]=t.split(':').map(Number);return h*60+m;};
+const fmtH=m=>{const t=Math.round(m);if(t<=0)return'—';return`${Math.floor(t/60)}h${String(t%60).padStart(2,'0')}m`;};
+const fmtY=v=>v>0?'¥'+Math.round(v).toLocaleString():'—';
+function calc(data){
+  const{e,s,x,st}=data;
+  const zero={brutMin:0,liqMin:0,normMin:0,extMin:0,salN:0,salE:0,total:0,descA:0,descD:0};
+  if(st==='folga'||st==='feriado'||!e||!s)return zero;
+  const em=t2m(e),sm=t2m(s);
+  if(sm<=em)return zero;
+  const brutMin=sm-em;
+  const descA=brutMin>=360?cfg.almoco:0,descD=brutMin>=240?cfg.descanso:0;
+  const xm=t2m(x||'00:00');
+  const liqMin=Math.max(0,brutMin-descA-descD+xm);
+  const normMin=Math.min(liqMin,cfg.horas*60),extMin=Math.max(0,liqMin-normMin);
+  const salN=(normMin/60)*cfg.hora,salE=(extMin/60)*cfg.hora*cfg.mult;
+  return{brutMin,liqMin,normMin,extMin,salN,salE,total:salN+salE,descA,descD};
+}
+function statusOf(data,wday){
+  const L=LANGS[lang];
+  if(wday===L.wdays[0])return'sun';
+  const{e,s,st}=data;
+  if(st==='folga'||st==='feriado')return'folga';
+  if(st==='trabalhado')return'worked';
+  if(st==='falta')return'absent';
+  if(e&&s)return'worked';
+  if(!e&&!s)return'absent';
+  return'incomplete';
+}
+const getDd=(mi,d)=>{const a=ld('d_'+mi,{});return a[d]||{e:'',s:'',x:'00:00',st:''};};
+const setDd=(mi,d,data)=>{const a=ld('d_'+mi,{});a[d]=data;sv('d_'+mi,a);};
+function getStats(mi){
+  const m=MONTHS_DATA[mi],L=LANGS[lang];
+  let dias=0,totalY=0,normMin=0,extMin=0,faltas=0;
+  for(let d=1;d<=m.days;d++){
+    const dt=new Date(m.yr,m.mo-1,d),wday=L.wdays[dt.getDay()];
+    if(dt.getDay()===0)continue;
+    const data=getDd(mi,d),st=statusOf(data,wday);
+    if(st==='folga')continue;
+    if(st==='worked'){dias++;const c=calc(data);totalY+=c.total;normMin+=c.normMin;extMin+=c.extMin;}
+    else if(st==='absent')faltas++;
+  }
+  return{dias,totalY,normMin,extMin,faltas};
+}
+function loadCfg(){
+  const c=ld('cfg',null);if(c)cfg=c;
+  document.getElementById('c-hora').value=cfg.hora;
+  document.getElementById('c-horas').value=cfg.horas;
+  document.getElementById('c-mult').value=cfg.mult;
+  document.getElementById('c-almoco').value=cfg.almoco;
+  document.getElementById('c-descanso').value=cfg.descanso;
+}
+function saveConfig(){
+  cfg={hora:+document.getElementById('c-hora').value||1049,horas:+document.getElementById('c-horas').value||4,mult:+document.getElementById('c-mult').value||1.5,almoco:+document.getElementById('c-almoco').value||40,descanso:+document.getElementById('c-descanso').value||20};
+  sv('cfg',cfg);renderAll();alert(LANGS[lang].cfgSave+'!');
+}
+function buildLangBar(){
+  document.getElementById('lang-bar').innerHTML=Object.entries(LANGS).map(([k,v])=>`<div class="lang-pill${k===lang?' active':''}" onclick="setLang('${k}')">${v.flag} ${v.name}</div>`).join('');
+}
+function setLang(l){lang=l;sv('lang',l);renderAll();}
+function applyI18n(){
+  const L=LANGS[lang];
+  document.getElementById('sec-days-hd').textContent=L.secDays;
+  document.getElementById('sec-sum-hd').textContent=L.secSum;
+  document.getElementById('sec-cfg-hd').textContent=L.secCfg;
+  document.getElementById('cfg-title').textContent=L.cfgTitle;
+  ['lbl-hora','lbl-horas','lbl-mult','lbl-alm','lbl-des'].forEach((id,i)=>document.getElementById(id).textContent=L.cfgLabels[i]);
+  document.getElementById('btn-save-cfg').textContent=L.cfgSave;
+  document.getElementById('cfg-tip').innerHTML=L.cfgTip.replace(/\n/g,'<br>');
+  L.nav.forEach((t,i)=>document.getElementById(['nav-lbl-ponto','nav-lbl-resumo','nav-lbl-cfg'][i]).textContent=t);
+}
+const monthLabel=mi=>{const L=LANGS[lang],m=MONTHS_DATA[mi];return L.months[m.mo-1]+' '+m.yr;};
+const monthFull=mi=>{const L=LANGS[lang],m=MONTHS_DATA[mi];return L.monthsFull[m.mo-1]+' '+m.yr;};
+function renderTabs(){
+  document.getElementById('mtabs').innerHTML=MONTHS_DATA.map((_,i)=>`<div class="mtab${i===activeMonth?' active':''}" onclick="switchMonth(${i})">${monthLabel(i)}</div>`).join('');
+}
+function switchMonth(i){activeMonth=i;renderTabs();renderPonto();}
+function renderKPIs(){
+  const s=getStats(activeMonth),L=LANGS[lang];
+  document.getElementById('t-sub').textContent=monthFull(activeMonth);
+  if(s.totalY>0){document.getElementById('t-earn').textContent='¥'+Math.round(s.totalY).toLocaleString();document.getElementById('t-earn-lbl').textContent=L.thisMonth;}
+  else{document.getElementById('t-earn').textContent='';document.getElementById('t-earn-lbl').textContent='';}
+  const kL=L.kpi;
+  document.getElementById('kpis').innerHTML=`
+    <div class="kpi"><span class="kpi-icon">📅</span><div class="kpi-val">${s.dias}</div><div class="kpi-lbl">${kL[0]}</div></div>
+    <div class="kpi"><span class="kpi-icon">💴</span><div class="kpi-val">¥${Math.round(s.totalY).toLocaleString()}</div><div class="kpi-lbl">${kL[1]}</div></div>
+    <div class="kpi"><span class="kpi-icon">⚡</span><div class="kpi-val amber">${fmtH(s.extMin)}</div><div class="kpi-lbl">${kL[2]}</div></div>
+    <div class="kpi"><span class="kpi-icon">📋</span><div class="kpi-val${s.faltas>0?' red':''}">${s.faltas}</div><div class="kpi-lbl">${kL[3]}</div></div>`;
+}
+function renderDays(){
+  const L=LANGS[lang],mi=activeMonth,m=MONTHS_DATA[mi];
+  let html='';
+  for(let d=1;d<=m.days;d++){
+    const dt=new Date(m.yr,m.mo-1,d),wday=L.wdays[dt.getDay()],isSun=dt.getDay()===0;
+    const data=getDd(mi,d),st=statusOf(data,wday),c=calc(data);
+    const rc={worked:'r-work',absent:'r-abs',incomplete:'r-inc',sun:'r-sun',folga:'r-folga'}[st]||'';
+    const badge={worked:'<span class="sbadge sb-work">✅</span>',absent:'<span class="sbadge sb-abs">❌</span>',incomplete:'<span class="sbadge sb-inc">⚠️</span>',sun:`<span class="sbadge sb-sun">${wday}</span>`,folga:'<span class="sbadge sb-folga">🌿</span>'}[st]||'<span class="sbadge sb-none">—</span>';
+    html+=`<div class="day-row ${rc}" onclick="openDay(${d})"><span class="dnum">${d}</span><span class="dwk${isSun?' sun':''}">${wday}</span>${badge}<span class="tcell">${data.e||'--:--'}</span><span class="tcell">${data.s||'--:--'}</span><span class="totcell">${c.total>0?'¥'+Math.round(c.total).toLocaleString():'—'}</span></div>`;
+  }
+  document.getElementById('days-list').innerHTML=html;
+}
+function renderChart(){
+  const L=LANGS[lang],mi=activeMonth,m=MONTHS_DATA[mi],vals=[];
+  for(let d=1;d<=m.days;d++){const c=calc(getDd(mi,d));if(c.total>0)vals.push({d,v:c.total});}
+  const wrap=document.getElementById('chart-wrap');
+  if(!vals.length){wrap.innerHTML='';return;}
+  const mx=Math.max(...vals.map(x=>x.v));
+  wrap.innerHTML=`<div class="chart-card"><div class="chart-hd">${L.chartHd}</div>${vals.map(({d,v})=>`<div class="bar-row"><span class="bar-lbl">${d}</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((v/mx)*100)}%"></div></div><span class="bar-val">¥${Math.round(v).toLocaleString()}</span></div>`).join('')}</div>`;
+}
+function renderPonto(){renderKPIs();renderDays();renderChart();}
+function renderResumo(){
+  const L=LANGS[lang];let html='',grand=0;
+  MONTHS_DATA.forEach((_,i)=>{
+    const s=getStats(i);grand+=s.totalY;
+    html+=`<div class="sum-card"><div class="sum-mhd"><span>${monthFull(i)}</span><span class="sum-mhd-val">¥${Math.round(s.totalY).toLocaleString()}</span></div><div class="sum-row"><span style="color:var(--text2)">${L.sumRows[0]}</span><span>${s.dias}</span></div><div class="sum-row"><span style="color:var(--text2)">${L.sumRows[1]}</span><span>${fmtH(s.normMin)}</span></div><div class="sum-row"><span style="color:var(--text2)">${L.sumRows[2]}</span><span style="color:var(--amber)">${fmtH(s.extMin)}</span></div><div class="sum-row total"><span>${L.sumRows[3]}</span><span>¥${Math.round(s.totalY).toLocaleString()}</span></div></div>`;
+  });
+  html+=`<div class="grand-card"><div class="grand-lbl">${L.totalMonths}</div><div class="grand-val">¥${Math.round(grand).toLocaleString()}</div></div>`;
+  document.getElementById('resumo-list').innerHTML=html;
+}
+function buildDebug(data){
+  const L=LANGS[lang],{e,s,x,st}=data;
+  if(!e||!s||st==='folga'||st==='feriado')return'';
+  const em=t2m(e),sm=t2m(s);if(sm<=em)return'';
+  const brut=sm-em,descA=brut>=360?cfg.almoco:0,descD=brut>=240?cfg.descanso:0,xm=t2m(x||'00:00');
+  const liq=Math.max(0,brut-descA-descD+xm);
+  const parts=[L.bruto+`${Math.floor(brut/60)}h${String(brut%60).padStart(2,'0')}m`];
+  parts.push(descA>0?L.almocoInfo.replace('{n}',descA):L.noAlmoco);
+  parts.push(descD>0?L.desInfo.replace('{n}',descD):L.noDes);
+  if(xm>0)parts.push(L.extra.replace('{n}',xm));
+  parts.push(L.liquid+`${Math.floor(liq/60)}h${String(liq%60).padStart(2,'0')}m`);
+  return L.debugPfx+parts.join(' → ');
+}
+function openDay(day){
+  if(modalEl){modalEl.remove();modalEl=null;}
+  const L=LANGS[lang],mi=activeMonth,m=MONTHS_DATA[mi];
+  const dt=new Date(m.yr,m.mo-1,day),wday=L.wdays[dt.getDay()];
+  const data=getDd(mi,day),c=calc(data);
+  const mkT=sel=>'<option value="">--:--</option>'+TIME_OPTS.map(t=>`<option value="${t}"${t===sel?' selected':''}>${t}</option>`).join('');
+  const mkE=sel=>EXT_OPTS.map(t=>`<option value="${t}"${(sel||'00:00')===t?' selected':''}>${t}</option>`).join('');
+  const mkSt=sel=>L.statusVals.map((v,i)=>`<option value="${v}"${v===sel?' selected':''}>${L.status[i]}</option>`).join('');
+  const bd=document.createElement('div');
+  bd.className='backdrop';bd.onclick=e=>{if(e.target===bd)closeDay();};
+  bd.innerHTML=`<div class="modal"><div class="modal-handle"></div><div class="modal-hd"><div><div class="modal-title">${monthFull(mi)} — ${L.entryLabel[0]} ${day}</div><div class="modal-date">${wday}</div></div><button class="modal-x" onclick="closeDay()">✕</button></div><div class="field"><label>${L.entryLabel[0]}</label><select id="m-st">${mkSt(data.st||'')}</select></div><div class="field"><label>${L.entryLabel[1]}</label><select id="m-e">${mkT(data.e)}</select></div><div class="field"><label>${L.entryLabel[2]}</label><select id="m-s">${mkT(data.s)}</select></div><div class="field"><label>${L.entryLabel[3]}</label><select id="m-x">${mkE(data.x)}</select></div><div class="calc-box"><div class="cbox-hd">${L.calcHd}</div><div class="rrow"><span style="color:var(--text2)">${L.calcRows[0]}</span><span id="r-brut">${fmtH(c.brutMin)}</span></div><div class="rrow"><span style="color:var(--text2)">${L.calcRows[1]}</span><span id="r-liq">${fmtH(c.liqMin)}</span></div><div class="rrow"><span style="color:var(--text2)">${L.calcRows[2]}</span><span id="r-ext" style="color:var(--amber)">${fmtH(c.extMin)}</span></div><div class="rrow"><span style="color:var(--text2)">${L.calcRows[3]}</span><span id="r-n">${fmtY(c.salN)}</span></div><div class="rrow"><span style="color:var(--text2)">${L.calcRows[4]}</span><span id="r-e">${fmtY(c.salE)}</span></div><div class="rrow"><span>${L.calcRows[5]}</span><span id="r-t" style="color:var(--accent)">${fmtY(c.total)}</span></div></div><div class="debug-pill" id="r-dbg">${buildDebug(data)||'...'}</div><button class="btn-primary" style="margin-top:14px" onclick="saveDay(${day})">${L.save}</button><button class="btn-ghost" onclick="clearDay(${day})">${L.clear}</button></div>`;
+  document.body.appendChild(bd);modalEl=bd;
+  ['m-st','m-e','m-s','m-x'].forEach(id=>document.getElementById(id).addEventListener('change',updateCalc));
+}
+function updateCalc(){
+  const data={e:document.getElementById('m-e').value,s:document.getElementById('m-s').value,x:document.getElementById('m-x').value,st:document.getElementById('m-st').value};
+  const c=calc(data);
+  document.getElementById('r-brut').textContent=fmtH(c.brutMin);
+  document.getElementById('r-liq').textContent=fmtH(c.liqMin);
+  document.getElementById('r-ext').textContent=fmtH(c.extMin);
+  document.getElementById('r-n').textContent=fmtY(c.salN);
+  document.getElementById('r-e').textContent=fmtY(c.salE);
+  document.getElementById('r-t').textContent=fmtY(c.total);
+  document.getElementById('r-dbg').textContent=buildDebug(data)||'...';
+}
+function saveDay(day){
+  const data={e:document.getElementById('m-e').value,s:document.getElementById('m-s').value,x:document.getElementById('m-x').value,st:document.getElementById('m-st').value};
+  setDd(activeMonth,day,data);closeDay();renderAll();
+}
+function clearDay(day){setDd(activeMonth,day,{e:'',s:'',x:'00:00',st:''});closeDay();renderAll();}
+function closeDay(){if(modalEl){modalEl.remove();modalEl=null;}}
+function showView(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.getElementById('nav-'+v).classList.add('active');
+  if(v==='resumo')renderResumo();
+}
+function renderAll(){buildLangBar();applyI18n();renderTabs();renderPonto();}
+lang=ld('lang','pt-BR');loadCfg();renderAll();
+</script>
+</body>
+</html>
