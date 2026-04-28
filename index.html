@@ -14,9 +14,9 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#070B14;--bg2:#0F1623;--bg3:#161E2E;--bg4:#1E2A3D;
+  --bg:#070B14;--bg2:rgba(15,22,35,0.85);--bg3:rgba(22,30,46,0.9);--bg4:#1E2A3D;
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);
-  --text:#F0F4FF;--text2:rgba(255,255,255,0.5);--text3:rgba(255,255,255,0.25);
+  --text:#F0F4FF;--text2:rgba(255,255,255,0.52);--text3:rgba(255,255,255,0.25);
   --accent:#22C55E;--accent-dim:rgba(34,197,94,0.15);--accent2:#16A34A;
   --glow:rgba(34,197,94,0.3);--glow2:rgba(34,197,94,0.55);
   --green:#22C55E;--blue:#3B82F6;--red:#EF4444;--amber:#F59E0B;--purple:#A855F7;
@@ -24,67 +24,98 @@
   --nenkin:#F472B6;--nenkin-dim:rgba(244,114,182,0.15);
   --radius:14px;--radius-lg:20px;--radius-xl:26px;
   --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+  --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.09);
+  --glass-shine:rgba(255,255,255,0.06);
 }
-[data-theme="purple"]{--bg:#F5F0FF;--bg2:#EDE5FF;--bg3:#E0D4FF;--bg4:#D0BFFF;--border:rgba(100,60,200,0.12);--border2:rgba(100,60,200,0.22);--text:#1A0D3A;--text2:rgba(26,13,58,0.55);--text3:rgba(26,13,58,0.28);--accent:#7C3AED;--accent-dim:rgba(124,58,237,0.15);--accent2:#6D28D9;--glow:rgba(124,58,237,0.3);--glow2:rgba(124,58,237,0.55)}
-[data-theme="orange"]{--bg:#0A0600;--bg2:#120C00;--bg3:#1C1200;--bg4:#251800;--border:rgba(255,140,0,0.1);--border2:rgba(255,140,0,0.2);--text:#FFF3E0;--text2:rgba(255,243,224,0.5);--text3:rgba(255,243,224,0.25);--accent:#F97316;--accent-dim:rgba(249,115,22,0.15);--accent2:#EA580C;--glow:rgba(249,115,22,0.3);--glow2:rgba(249,115,22,0.55)}
-[data-theme="cyan"]{--bg:#010A14;--bg2:#041422;--bg3:#071E30;--bg4:#0C2840;--border:rgba(34,211,238,0.08);--border2:rgba(34,211,238,0.18);--text:#E0FFFE;--text2:rgba(224,255,254,0.5);--text3:rgba(224,255,254,0.25);--accent:#22D3EE;--accent-dim:rgba(34,211,238,0.15);--accent2:#0EA5E9;--glow:rgba(34,211,238,0.3);--glow2:rgba(34,211,238,0.6)}
-[data-theme="red"]{--bg:#0C0000;--bg2:#150000;--bg3:#1E0000;--bg4:#280000;--border:rgba(239,68,68,0.1);--border2:rgba(239,68,68,0.2);--text:#FFF0F0;--text2:rgba(255,240,240,0.5);--text3:rgba(255,240,240,0.25);--accent:#EF4444;--accent-dim:rgba(239,68,68,0.15);--accent2:#DC2626;--glow:rgba(239,68,68,0.3);--glow2:rgba(239,68,68,0.55)}
-[data-theme="teal"]{--bg:#00100E;--bg2:#001C19;--bg3:#002823;--bg4:#00362F;--border:rgba(20,184,166,0.09);--border2:rgba(20,184,166,0.18);--text:#E0FFF9;--text2:rgba(224,255,249,0.5);--text3:rgba(224,255,249,0.25);--accent:#14B8A6;--accent-dim:rgba(20,184,166,0.15);--accent2:#0D9488;--glow:rgba(20,184,166,0.3);--glow2:rgba(20,184,166,0.55)}
-[data-theme="pink"]{--bg:#0E0009;--bg2:#180012;--bg3:#22001A;--bg4:#2E0023;--border:rgba(236,72,153,0.09);--border2:rgba(236,72,153,0.18);--text:#FFF0FA;--text2:rgba(255,240,250,0.5);--text3:rgba(255,240,250,0.25);--accent:#EC4899;--accent-dim:rgba(236,72,153,0.15);--accent2:#DB2777;--glow:rgba(236,72,153,0.3);--glow2:rgba(236,72,153,0.55)}
+[data-theme="purple"]{--bg:#F5F0FF;--bg2:rgba(237,229,255,0.85);--bg3:rgba(224,212,255,0.9);--bg4:#D0BFFF;--border:rgba(100,60,200,0.12);--border2:rgba(100,60,200,0.22);--text:#1A0D3A;--text2:rgba(26,13,58,0.55);--text3:rgba(26,13,58,0.28);--accent:#7C3AED;--accent-dim:rgba(124,58,237,0.15);--accent2:#6D28D9;--glow:rgba(124,58,237,0.3);--glow2:rgba(124,58,237,0.55);--glass-bg:rgba(255,255,255,0.12);--glass-border:rgba(100,60,200,0.15);--glass-shine:rgba(255,255,255,0.2)}
+[data-theme="orange"]{--bg:#0A0600;--bg2:rgba(18,12,0,0.85);--bg3:rgba(28,18,0,0.9);--bg4:#251800;--border:rgba(255,140,0,0.1);--border2:rgba(255,140,0,0.2);--text:#FFF3E0;--text2:rgba(255,243,224,0.5);--text3:rgba(255,243,224,0.25);--accent:#F97316;--accent-dim:rgba(249,115,22,0.15);--accent2:#EA580C;--glow:rgba(249,115,22,0.3);--glow2:rgba(249,115,22,0.55);--glass-bg:rgba(249,115,22,0.06);--glass-border:rgba(249,115,22,0.12);--glass-shine:rgba(255,255,255,0.04)}
+[data-theme="cyan"]{--bg:#010A14;--bg2:rgba(4,20,34,0.85);--bg3:rgba(7,30,48,0.9);--bg4:#0C2840;--border:rgba(34,211,238,0.08);--border2:rgba(34,211,238,0.18);--text:#E0FFFE;--text2:rgba(224,255,254,0.5);--text3:rgba(224,255,254,0.25);--accent:#22D3EE;--accent-dim:rgba(34,211,238,0.15);--accent2:#0EA5E9;--glow:rgba(34,211,238,0.3);--glow2:rgba(34,211,238,0.6);--glass-bg:rgba(34,211,238,0.05);--glass-border:rgba(34,211,238,0.12);--glass-shine:rgba(255,255,255,0.04)}
+[data-theme="red"]{--bg:#0C0000;--bg2:rgba(21,0,0,0.85);--bg3:rgba(30,0,0,0.9);--bg4:#280000;--border:rgba(239,68,68,0.1);--border2:rgba(239,68,68,0.2);--text:#FFF0F0;--text2:rgba(255,240,240,0.5);--text3:rgba(255,240,240,0.25);--accent:#EF4444;--accent-dim:rgba(239,68,68,0.15);--accent2:#DC2626;--glow:rgba(239,68,68,0.3);--glow2:rgba(239,68,68,0.55);--glass-bg:rgba(239,68,68,0.05);--glass-border:rgba(239,68,68,0.12);--glass-shine:rgba(255,255,255,0.04)}
+[data-theme="teal"]{--bg:#00100E;--bg2:rgba(0,28,25,0.85);--bg3:rgba(0,40,35,0.9);--bg4:#00362F;--border:rgba(20,184,166,0.09);--border2:rgba(20,184,166,0.18);--text:#E0FFF9;--text2:rgba(224,255,249,0.5);--text3:rgba(224,255,249,0.25);--accent:#14B8A6;--accent-dim:rgba(20,184,166,0.15);--accent2:#0D9488;--glow:rgba(20,184,166,0.3);--glow2:rgba(20,184,166,0.55);--glass-bg:rgba(20,184,166,0.05);--glass-border:rgba(20,184,166,0.12);--glass-shine:rgba(255,255,255,0.04)}
+[data-theme="pink"]{--bg:#0E0009;--bg2:rgba(24,0,18,0.85);--bg3:rgba(34,0,26,0.9);--bg4:#2E0023;--border:rgba(236,72,153,0.09);--border2:rgba(236,72,153,0.18);--text:#FFF0FA;--text2:rgba(255,240,250,0.5);--text3:rgba(255,240,250,0.25);--accent:#EC4899;--accent-dim:rgba(236,72,153,0.15);--accent2:#DB2777;--glow:rgba(236,72,153,0.3);--glow2:rgba(236,72,153,0.55);--glass-bg:rgba(236,72,153,0.05);--glass-border:rgba(236,72,153,0.12);--glass-shine:rgba(255,255,255,0.04)}
+
+/* ── GLASS KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmerBar{to{left:200%}}
+@keyframes btnShimmer{to{left:200%}}
+@keyframes glowPulse{0%,100%{opacity:.18}50%{opacity:.28}}
+@keyframes insSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── GLASS MIXIN ── */
+.glass{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);position:relative}
+.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
+
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;overscroll-behavior:none;-webkit-font-smoothing:antialiased;transition:background .35s,color .25s}
-.app{max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:72px}
-.topbar{background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:50;transition:background .35s,border-color .25s}
-[data-theme="purple"] .topbar{background:rgba(245,240,255,0.95)}
-[data-theme="orange"] .topbar{background:rgba(10,6,0,0.95)}
-[data-theme="cyan"] .topbar{background:rgba(1,10,20,0.95)}
-[data-theme="red"] .topbar{background:rgba(12,0,0,0.95)}
-[data-theme="teal"] .topbar{background:rgba(0,16,14,0.95)}
-[data-theme="pink"] .topbar{background:rgba(14,0,9,0.95)}
+
+/* ambient glow orbs */
+body::before,body::after{content:'';position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:glowPulse 4s ease-in-out infinite}
+body::before{width:300px;height:300px;top:-80px;right:-80px;background:radial-gradient(circle,var(--glow),transparent)}
+body::after{width:250px;height:250px;bottom:80px;left:-60px;background:radial-gradient(circle,rgba(59,130,246,0.12),transparent)}
+
+.app{max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:72px;position:relative;z-index:1}
+
+/* ── TOPBAR ── */
+.topbar{background:rgba(7,11,20,0.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:50;transition:background .35s,border-color .25s}
+[data-theme="purple"] .topbar{background:rgba(245,240,255,0.8)}
+[data-theme="orange"] .topbar{background:rgba(10,6,0,0.8)}
+[data-theme="cyan"] .topbar{background:rgba(1,10,20,0.8)}
+[data-theme="red"] .topbar{background:rgba(12,0,0,0.8)}
+[data-theme="teal"] .topbar{background:rgba(0,16,14,0.8)}
+[data-theme="pink"] .topbar{background:rgba(14,0,9,0.8)}
 .topbar-logo{height:44px;width:auto;display:block;object-fit:contain}
 .topbar-right{text-align:right}
-.topbar-earn{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-0.5px;transition:color .25s}
+.topbar-earn{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-0.5px;transition:color .25s;text-shadow:0 0 20px var(--glow)}
 .topbar-lbl{font-size:10px;color:var(--text3);margin-top:1px;font-weight:500}
+
+/* ── MONTH TABS ── */
 .month-tabs{display:flex;gap:6px;padding:14px 16px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .month-tabs::-webkit-scrollbar{display:none}
-.mtab{padding:7px 16px;border-radius:40px;border:1px solid var(--border2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--bg3);transition:all .2s;font-family:var(--font-display)}
-.mtab.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.mtab{padding:7px 16px;border-radius:40px;border:1px solid var(--glass-border);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all .2s;font-family:var(--font-display)}
+.mtab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border-color:transparent;box-shadow:0 4px 16px var(--glow)}
+
+/* ── KPI STRIP ── */
 .kpi-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 16px 14px}
-.kpi{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:5px;transition:background .25s,border-color .25s}
+.kpi{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);padding:14px;display:flex;flex-direction:column;gap:5px;transition:all .25s;position:relative;overflow:hidden;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.kpi::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
+.kpi:nth-child(1){animation-delay:.05s}.kpi:nth-child(2){animation-delay:.10s}.kpi:nth-child(3){animation-delay:.15s}.kpi:nth-child(4){animation-delay:.20s}
 .kpi-icon{font-size:18px;line-height:1}
 .kpi-val{font-family:var(--font-display);font-size:22px;font-weight:700;line-height:1;color:var(--text);letter-spacing:-0.5px}
-.kpi-val.green{color:var(--accent)}.kpi-val.amber{color:var(--amber)}.kpi-val.red{color:var(--red)}.kpi-val.blue{color:var(--blue)}
+.kpi-val.green{color:var(--accent);text-shadow:0 0 16px var(--glow)}.kpi-val.amber{color:var(--amber)}.kpi-val.red{color:var(--red)}.kpi-val.blue{color:var(--blue)}
 .kpi-lbl{font-size:10px;color:var(--text2);font-weight:500}
+
+/* ── CALENDAR ── */
 .cal-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 20px 10px}
 .cal-title{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text)}
 .cal-nav{display:flex;gap:6px}
-.cal-arr{width:30px;height:30px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:14px;user-select:none;transition:background .2s}
-.cal-arr:active{opacity:.7}
+.cal-arr{width:30px;height:30px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:14px;user-select:none;transition:all .2s;backdrop-filter:blur(8px)}
+.cal-arr:active{opacity:.7;transform:scale(.95)}
 .wdays-row{display:grid;grid-template-columns:repeat(7,1fr);padding:0 12px;margin-bottom:3px}
 .wday{font-size:10px;font-weight:700;color:var(--text3);text-align:center;padding:3px 0;letter-spacing:.3px}
 .wday:first-child{color:rgba(239,68,68,0.45)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:0 12px 10px}
-.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;gap:1px;padding:2px 0}
-.cal-cell:active{opacity:.7}
+.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;gap:1px;padding:2px 0;position:relative;overflow:hidden}
+.cal-cell::before{content:'';position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none}
+.cal-cell:active{opacity:.7;transform:scale(.95)}
 .cal-cell.empty{pointer-events:none}
 .cal-d{font-size:12px;font-weight:600;color:rgba(255,255,255,0.65)}
 [data-theme="purple"] .cal-d{color:rgba(26,13,58,0.6)}
-[data-theme="orange"] .cal-d,.cal-d{color:rgba(255,243,224,0.6)}
-[data-theme="cyan"] .cal-d{color:rgba(224,247,255,0.6)}
-[data-theme="red"] .cal-d{color:rgba(255,240,240,0.6)}
 :root .cal-d{color:rgba(255,255,255,0.65)}
 .cal-cell.sun .cal-d{color:rgba(239,68,68,0.55)}
 .cal-pip{width:5px;height:5px;border-radius:50%}
-.cal-cell.work{background:rgba(34,197,94,0.11)}.cal-cell.work .cal-d{color:#4ADE80;font-weight:700}.cal-cell.work .cal-pip{background:var(--green)}
-.cal-cell.absent{background:rgba(239,68,68,0.11)}.cal-cell.absent .cal-d{color:#F87171;font-weight:700}.cal-cell.absent .cal-pip{background:var(--red)}
-.cal-cell.folga{background:rgba(59,130,246,0.11)}.cal-cell.folga .cal-d{color:#60A5FA;font-weight:700}.cal-cell.folga .cal-pip{background:var(--blue)}
-.cal-cell.meio{background:rgba(168,85,247,0.11)}.cal-cell.meio .cal-d{color:#C084FC;font-weight:700}.cal-cell.meio .cal-pip{background:var(--purple)}
-.cal-cell.inc{background:rgba(245,158,11,0.1)}.cal-cell.inc .cal-d{color:#FCD34D;font-weight:700}.cal-cell.inc .cal-pip{background:var(--amber)}
-.cal-selected{outline:2px solid var(--glow2)!important;outline-offset:-2px}
+.cal-cell.work{background:rgba(34,197,94,0.14);border:1px solid rgba(34,197,94,0.22)}.cal-cell.work .cal-d{color:#4ADE80;font-weight:700}.cal-cell.work .cal-pip{background:var(--green)}
+.cal-cell.absent{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.2)}.cal-cell.absent .cal-d{color:#F87171;font-weight:700}.cal-cell.absent .cal-pip{background:var(--red)}
+.cal-cell.folga{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.2)}.cal-cell.folga .cal-d{color:#60A5FA;font-weight:700}.cal-cell.folga .cal-pip{background:var(--blue)}
+.cal-cell.meio{background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.2)}.cal-cell.meio .cal-d{color:#C084FC;font-weight:700}.cal-cell.meio .cal-pip{background:var(--purple)}
+.cal-cell.inc{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.18)}.cal-cell.inc .cal-d{color:#FCD34D;font-weight:700}.cal-cell.inc .cal-pip{background:var(--amber)}
+.cal-selected{outline:2px solid var(--glow2)!important;outline-offset:-2px;box-shadow:0 0 14px var(--glow)}
 .cal-legend{display:flex;gap:12px;padding:2px 16px 12px;flex-wrap:wrap}
 .leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);font-weight:600}
 .leg-dot{width:7px;height:7px;border-radius:50%}
-.day-panel{margin:0 14px 14px;background:var(--bg2);border-radius:var(--radius-xl);border:1px solid var(--border);overflow:hidden;transition:background .25s,border-color .25s}
-.dp-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--border)}
+
+/* ── DAY PANEL ── */
+.day-panel{margin:0 14px 14px;background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--radius-xl);border:1px solid var(--glass-border);overflow:hidden;position:relative}
+.day-panel::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 50%);pointer-events:none;z-index:0}
+.dp-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--glass-border);position:relative;z-index:1}
 .dp-date{font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text)}
 .dp-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
 .dp-badge.work{background:rgba(34,197,94,0.18);color:#4ADE80;border:1px solid rgba(34,197,94,0.3)}
@@ -92,206 +123,272 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .dp-badge.folga{background:rgba(59,130,246,0.18);color:#60A5FA;border:1px solid rgba(59,130,246,0.3)}
 .dp-badge.meio{background:rgba(168,85,247,0.18);color:#C084FC;border:1px solid rgba(168,85,247,0.3)}
 .dp-badge.inc{background:rgba(245,158,11,0.18);color:#FCD34D;border:1px solid rgba(245,158,11,0.3)}
-.dp-badge.none{background:rgba(255,255,255,0.06);color:var(--text3);border:1px solid var(--border)}
-.dp-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 14px}
+.dp-badge.none{background:rgba(255,255,255,0.06);color:var(--text3);border:1px solid var(--glass-border)}
+.dp-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 14px;position:relative;z-index:1}
 .dp-field label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
-.dp-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:background .25s,border-color .25s}
-.dp-sel:focus{outline:none;border-color:var(--accent)}
-.dp-sel option{background:var(--bg3);color:var(--text)}
-.dp-st-wrap{padding:0 14px 10px}
-.dp-st{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:10px 12px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;transition:background .25s,border-color .25s}
-.dp-st:focus{outline:none;border-color:var(--accent)}
-.dp-st option{background:var(--bg3);color:var(--text)}
-.block-divider{display:flex;align-items:center;gap:10px;padding:10px 14px 2px}
-.block-divider-line{flex:1;height:1px;background:var(--border)}
+.dp-sel{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:11px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
+.dp-sel:focus{outline:none;border-color:var(--accent);background:rgba(34,197,94,0.08);box-shadow:0 0 0 3px var(--accent-dim)}
+.dp-sel option{background:#0F1623;color:var(--text)}
+.dp-st-wrap{padding:0 14px 10px;position:relative;z-index:1}
+.dp-st{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:11px;color:var(--text);font-size:13px;font-weight:600;padding:10px 12px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;transition:all .2s;backdrop-filter:blur(8px)}
+.dp-st:focus{outline:none;border-color:var(--accent);background-color:rgba(34,197,94,0.08)}
+.dp-st option{background:#0F1623;color:var(--text)}
+.block-divider{display:flex;align-items:center;gap:10px;padding:10px 14px 2px;position:relative;z-index:1}
+.block-divider-line{flex:1;height:1px;background:var(--glass-border)}
 .block-divider-label{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;font-family:var(--font-display);white-space:nowrap;opacity:.8}
-.block2-inner{border-top:1px solid var(--border)}
-.wage-wrap{padding:10px 14px 4px}
+.block2-inner{border-top:1px solid var(--glass-border)}
+.wage-wrap{padding:10px 14px 4px;position:relative;z-index:1}
 .wage-label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px}
-.wage-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--accent);font-size:14px;font-weight:700;padding:10px 14px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2322C55E' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;letter-spacing:-0.5px;transition:background .25s,border-color .25s,color .25s}
+.wage-sel{width:100%;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:11px;color:var(--accent);font-size:14px;font-weight:700;padding:10px 14px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2322C55E' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;letter-spacing:-0.5px;transition:all .25s}
 .wage-sel:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.wage-sel option{background:var(--bg3);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
-.dp-breakdown{padding:2px 16px 10px;display:none;flex-direction:column;gap:3px}
+.wage-sel option{background:#0F1623;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
+.dp-breakdown{padding:2px 16px 10px;display:none;flex-direction:column;gap:3px;position:relative;z-index:1}
 .dp-br-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)}
 .dp-br-row span:last-child{font-weight:700;color:var(--text2);font-family:var(--font-display)}
-.dp-br-row.total-row{color:var(--accent);border-top:1px solid var(--border);padding-top:6px;margin-top:3px;font-size:12px;font-weight:700}
-.dp-br-row.total-row span:last-child{color:var(--accent);font-size:16px}
-.dp-total{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 14px;border-top:1px solid var(--border)}
+.dp-br-row.total-row{color:var(--accent);border-top:1px solid var(--glass-border);padding-top:6px;margin-top:3px;font-size:12px;font-weight:700}
+.dp-br-row.total-row span:last-child{color:var(--accent);font-size:16px;text-shadow:0 0 12px var(--glow)}
+.dp-total{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 14px;border-top:1px solid var(--glass-border);position:relative;z-index:1}
 .dp-total-lbl{font-size:11px;color:var(--text3);font-weight:600}
-.dp-total-val{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-1px;transition:color .25s}
-.dp-save{width:calc(100% - 28px);margin:0 14px 10px;height:46px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:14px;border:none;color:#fff;font-size:15px;font-weight:700;font-family:var(--font-display);cursor:pointer;transition:opacity .15s,box-shadow .25s;box-shadow:0 4px 16px var(--glow)}
-.dp-save:active{opacity:.85}
-.dp-clear{width:calc(100% - 28px);margin:0 14px 14px;height:40px;background:transparent;border:1px solid var(--border2);border-radius:12px;color:var(--text2);font-size:13px;font-family:var(--font-body);cursor:pointer;transition:background .15s,border-color .25s}
-.dp-clear:active{background:var(--bg3)}
+.dp-total-val{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-1px;text-shadow:0 0 16px var(--glow)}
+.dp-save{width:calc(100% - 28px);margin:0 14px 10px;height:46px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);border:none;color:#000;font-size:15px;font-weight:700;font-family:var(--font-display);cursor:pointer;transition:all .2s;box-shadow:0 6px 24px var(--glow);position:relative;overflow:hidden}
+.dp-save::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:btnShimmer 2.5s infinite}
+.dp-save:active{opacity:.85;transform:scale(.98)}
+.dp-clear{width:calc(100% - 28px);margin:0 14px 14px;height:40px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:12px;color:var(--text2);font-size:13px;font-family:var(--font-body);cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
+.dp-clear:active{background:rgba(255,255,255,0.08)}
 .dp-hint{font-size:10px;color:var(--text3);padding:0 16px 12px;line-height:1.7}
+
+/* ── SEC HEADERS ── */
 .sec-hd{padding:10px 18px 6px;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-display)}
-.sum-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);margin:0 14px 10px;overflow:hidden;transition:background .25s,border-color .25s}
-.sum-mhd{padding:14px 16px;background:var(--bg3);font-size:13px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display)}
-.sum-mhd-val{color:var(--accent);font-size:15px}
-.sum-row{display:flex;justify-content:space-between;padding:9px 16px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
+
+/* ── SUMMARY CARDS ── */
+.sum-card{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);margin:0 14px 10px;overflow:hidden;position:relative;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.sum-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
+.sum-mhd{padding:14px 16px;background:rgba(255,255,255,0.03);font-size:13px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display);border-bottom:1px solid var(--glass-border)}
+.sum-mhd-val{color:var(--accent);font-size:15px;text-shadow:0 0 12px var(--glow)}
+.sum-row{display:flex;justify-content:space-between;padding:9px 16px;border-top:1px solid var(--glass-border);font-size:13px;color:var(--text2)}
 .sum-row span:last-child{color:var(--text);font-weight:600}
-.sum-row.total{font-weight:700}.sum-row.total span{color:var(--accent)}.sum-row-exp{border-top:1px solid var(--border);background:rgba(239,68,68,0.04)}.sum-row-saldo{border-top:1px solid rgba(255,255,255,0.1);margin-top:2px}
-.grand-card{background:linear-gradient(135deg,var(--accent-dim),transparent);border:1px solid var(--glow);border-radius:var(--radius-xl);margin:0 14px 20px;padding:24px;transition:border-color .25s}
-.grand-lbl{font-size:11px;color:var(--accent);opacity:.7;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.grand-val{font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--accent);letter-spacing:-1px}
-.cfg-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);margin:0 14px 12px;padding:20px;transition:background .25s,border-color .25s}
+.sum-row.total{font-weight:700}.sum-row.total span{color:var(--accent)}.sum-row-exp{border-top:1px solid var(--glass-border);background:rgba(239,68,68,0.04)}.sum-row-saldo{border-top:1px solid rgba(255,255,255,0.1);margin-top:2px}
+
+/* ── GRAND CARD ── */
+.grand-card{background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.04));border:1px solid rgba(34,197,94,0.22);border-radius:var(--radius-xl);margin:0 14px 20px;padding:24px;position:relative;overflow:hidden;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.grand-card::before{content:'';position:absolute;top:-40px;right:-30px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,0.22),transparent);pointer-events:none}
+.grand-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 50%);pointer-events:none}
+.grand-lbl{font-size:11px;color:rgba(34,197,94,0.65);opacity:.85;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.grand-val{font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--accent);letter-spacing:-1px;text-shadow:0 0 24px var(--glow)}
+
+/* ── CONFIG CARDS ── */
+.cfg-card{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);margin:0 14px 12px;padding:20px;position:relative;overflow:hidden;animation:fadeUp .35s cubic-bezier(.23,1,.32,1) both}
+.cfg-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
 .cfg-hd{font-size:15px;font-weight:700;margin-bottom:18px;color:var(--text);font-family:var(--font-display)}
-.cfg-lang-select{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:15px;font-family:var(--font-body);font-weight:600;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:border-color .2s}
+.cfg-lang-select{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--glass-border);background:rgba(255,255,255,0.06);color:var(--text);font-size:15px;font-family:var(--font-body);font-weight:600;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:all .2s;backdrop-filter:blur(8px)}
 .cfg-lang-select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.cfg-lang-select option{background:var(--bg3);color:var(--text)}
+.cfg-lang-select option{background:#0F1623;color:var(--text)}
 .cfg-f{margin-bottom:16px}
 .cfg-f label{font-size:11.5px;color:var(--text2);display:block;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-.cfg-f input{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:16px;font-family:var(--font-display);font-weight:600;transition:border-color .2s}
-.cfg-f input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.btn-primary{width:100%;padding:15px;background:var(--accent);color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:all .2s;box-shadow:0 4px 20px var(--glow)}
-.btn-primary:active{transform:scale(0.98);opacity:.9}
+.cfg-f input{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--glass-border);background:rgba(255,255,255,0.06);color:var(--text);font-size:16px;font-family:var(--font-display);font-weight:600;transition:all .2s;backdrop-filter:blur(8px)}
+.cfg-f input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);background:rgba(34,197,94,0.06)}
+.btn-primary{width:100%;padding:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:all .2s;box-shadow:0 6px 24px var(--glow);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:btnShimmer 2.5s infinite}
+.btn-primary:active{transform:scale(.98);opacity:.9}
 .cfg-tip{padding:0 18px 24px;font-size:11px;color:var(--text3);line-height:1.9}
 .theme-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:4px}
 .theme-btn{height:48px;border-radius:10px;border:2px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;font-family:var(--font-display);text-transform:uppercase;letter-spacing:.05em;transition:all .2s;flex-direction:column;gap:3px;color:rgba(255,255,255,0.9);padding:4px 2px}
-.theme-btn.active{border-color:white;transform:scale(1.06);box-shadow:0 0 14px rgba(255,255,255,0.3)}
+.theme-btn.active{border-color:rgba(255,255,255,.8);transform:scale(1.06);box-shadow:0 0 18px rgba(255,255,255,.3)}
 .theme-btn span{font-size:18px;line-height:1}
-.bottomnav{background:rgba(10,14,22,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;height:72px;position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;transition:background .35s,border-color .25s}
-[data-theme="purple"] .bottomnav{background:rgba(245,240,255,0.95)}
-[data-theme="orange"] .bottomnav{background:rgba(10,6,0,0.95)}
-[data-theme="cyan"] .bottomnav{background:rgba(1,10,20,0.95)}
-[data-theme="red"] .bottomnav{background:rgba(12,0,0,0.95)}
-[data-theme="teal"] .bottomnav{background:rgba(0,16,14,0.95)}
-[data-theme="pink"] .bottomnav{background:rgba(14,0,9,0.95)}
+
+/* ── BOTTOM NAV ── */
+.bottomnav{background:rgba(7,11,20,0.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--glass-border);display:flex;height:72px;position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;transition:background .35s,border-color .25s;z-index:50}
+[data-theme="purple"] .bottomnav{background:rgba(245,240,255,0.85)}
+[data-theme="orange"] .bottomnav{background:rgba(10,6,0,0.85)}
+[data-theme="cyan"] .bottomnav{background:rgba(1,10,20,0.85)}
+[data-theme="red"] .bottomnav{background:rgba(12,0,0,0.85)}
+[data-theme="teal"] .bottomnav{background:rgba(0,16,14,0.85)}
+[data-theme="pink"] .bottomnav{background:rgba(14,0,9,0.85)}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;font-size:10px;font-weight:600;color:var(--text3);border:none;background:none;user-select:none;transition:color .2s;font-family:var(--font-display);letter-spacing:.03em}
 .nav-btn.active{color:var(--accent)}
+.nav-btn.active .nav-ico{text-shadow:0 0 16px var(--glow)}
 .nav-ico{font-size:22px;line-height:1}
 .view{display:none}
 .view.active{display:block;animation:fadeUp .22s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.chart-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);margin:0 14px 14px;padding:18px;transition:background .25s,border-color .25s}
+
+/* ── CHART CARD ── */
+.chart-card{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);margin:0 14px 14px;padding:18px;position:relative;overflow:hidden;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.chart-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
 .chart-hd{font-size:12px;font-weight:700;color:var(--text2);margin-bottom:14px;font-family:var(--font-display);text-transform:uppercase;letter-spacing:.06em}
 .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .bar-lbl{font-size:10px;color:var(--text3);width:20px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums}
-.bar-bg{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s ease}
+.bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s ease;position:relative;overflow:hidden}
+.bar-fill::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);animation:shimmerBar 2s infinite}
 .bar-val{font-size:10px;color:var(--text2);min-width:58px;text-align:right;flex-shrink:0;font-family:var(--font-display);font-weight:600}
-/* NENKIN */
-.nenkin-wrap{margin:0 14px 10px;background:var(--bg2);border:1px solid rgba(244,114,182,0.2);border-radius:var(--radius-lg);overflow:hidden;transition:background .25s,border-color .25s}
-.nenkin-hd{display:flex;align-items:center;gap:10px;padding:10px 14px 8px;border-bottom:1px solid var(--border)}
+
+/* ── NENKIN ── */
+.nenkin-wrap{margin:0 14px 10px;background:rgba(244,114,182,0.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(244,114,182,0.18);border-radius:var(--radius-lg);overflow:hidden;position:relative;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.nenkin-wrap::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(244,114,182,0.08) 0%,transparent 55%);pointer-events:none}
+.nenkin-hd{display:flex;align-items:center;gap:10px;padding:10px 14px 8px;border-bottom:1px solid rgba(244,114,182,0.14)}
 .nenkin-hd-icon{font-size:16px}
 .nenkin-hd-title{font-family:var(--font-display);font-size:11px;font-weight:700;color:#F472B6;text-transform:uppercase;letter-spacing:.08em;flex:1}
 .nenkin-type-wrap{display:flex;align-items:center;gap:8px;padding:10px 14px 6px}
 .nenkin-type-lbl{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
-.nenkin-type-sel{flex:1;background:var(--bg3);border:1px solid rgba(244,114,182,0.25);border-radius:10px;color:#F472B6;font-size:13px;font-weight:700;padding:8px 12px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;transition:background .2s}
-.nenkin-type-sel:focus{outline:none;border-color:#F472B6}
-.nenkin-type-sel option{background:var(--bg3);color:var(--text)}
+.nenkin-type-sel{flex:1;background:rgba(244,114,182,0.08);border:1px solid rgba(244,114,182,0.22);border-radius:10px;color:#F472B6;font-size:13px;font-weight:700;padding:8px 12px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;transition:all .2s}
+.nenkin-type-sel:focus{outline:none;border-color:#F472B6;box-shadow:0 0 0 3px rgba(244,114,182,0.15)}
+.nenkin-type-sel option{background:#0F1623;color:var(--text)}
 .nenkin-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:6px 14px 8px}
 .nenkin-field label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
-.nenkin-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:background .25s,border-color .25s}
+.nenkin-sel{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
 .nenkin-sel:focus{outline:none;border-color:#F472B6}
-.nenkin-sel option{background:var(--bg3);color:var(--text)}
-.nenkin-total-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 10px;border-top:1px solid var(--border)}
+.nenkin-sel option{background:#0F1623;color:var(--text)}
+.nenkin-total-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 10px;border-top:1px solid rgba(244,114,182,0.14)}
 .nenkin-total-lbl{font-size:10px;color:rgba(244,114,182,0.65);font-weight:600}
 .nenkin-total-val{font-family:var(--font-display);font-size:15px;font-weight:700;color:#F472B6;letter-spacing:-0.5px}
 .nenkin-mode-toggle{display:flex;gap:0;padding:8px 14px 4px}
-.nenkin-mode-btn{flex:1;padding:7px 0;font-size:11px;font-weight:700;font-family:var(--font-display);border:1px solid rgba(244,114,182,0.3);background:transparent;color:rgba(244,114,182,0.45);cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.nenkin-mode-btn{flex:1;padding:7px 0;font-size:11px;font-weight:700;font-family:var(--font-display);border:1px solid rgba(244,114,182,0.28);background:transparent;color:rgba(244,114,182,0.45);cursor:pointer;transition:all .2s;letter-spacing:.03em}
 .nenkin-mode-btn:first-child{border-radius:10px 0 0 10px}
 .nenkin-mode-btn:last-child{border-radius:0 10px 10px 0;border-left:none}
-.nenkin-mode-btn.active{background:rgba(244,114,182,0.15);color:#F472B6;border-color:rgba(244,114,182,0.6)}
+.nenkin-mode-btn.active{background:rgba(244,114,182,0.15);color:#F472B6;border-color:rgba(244,114,182,0.55)}
 .nenkin-manual-wrap{padding:6px 14px 8px;display:none}
 .nenkin-manual-wrap label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
-.nenkin-manual-input{width:100%;background:var(--bg3);border:1px solid rgba(244,114,182,0.3);border-radius:10px;color:#F472B6;font-size:16px;font-weight:700;padding:10px 14px;font-family:var(--font-display);letter-spacing:-0.5px;transition:border-color .2s}
+.nenkin-manual-input{width:100%;background:rgba(244,114,182,0.08);border:1px solid rgba(244,114,182,0.28);border-radius:10px;color:#F472B6;font-size:16px;font-weight:700;padding:10px 14px;font-family:var(--font-display);letter-spacing:-0.5px;transition:all .2s}
 .nenkin-manual-input:focus{outline:none;border-color:#F472B6;box-shadow:0 0 0 3px rgba(244,114,182,0.12)}
 .nenkin-manual-input::placeholder{color:rgba(244,114,182,0.3);font-size:14px;font-weight:600}
-/* TURNO2 MODE TOGGLE */
+
+/* ── TURNO 2 ── */
 .t2-mode-toggle{display:flex;gap:0;padding:8px 14px 4px}
-.t2-mode-btn{flex:1;padding:7px 0;font-size:11px;font-weight:700;font-family:var(--font-display);border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.t2-mode-btn{flex:1;padding:7px 0;font-size:11px;font-weight:700;font-family:var(--font-display);border:1px solid var(--glass-border);background:transparent;color:var(--text3);cursor:pointer;transition:all .2s;letter-spacing:.03em}
 .t2-mode-btn:first-child{border-radius:10px 0 0 10px}
 .t2-mode-btn:last-child{border-radius:0 10px 10px 0;border-left:none}
-.t2-mode-btn.active{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.t2-mode-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(34,197,94,0.4)}
 .t2-manual-fields{padding:8px 14px 4px;display:none;flex-direction:column;gap:8px}
 .t2-manual-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .t2-manual-field label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
-.t2-manual-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:8px 10px;font-family:var(--font-display);transition:border-color .2s;text-align:center}
+.t2-manual-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:8px 10px;font-family:var(--font-display);transition:all .2s;text-align:center;backdrop-filter:blur(8px)}
 .t2-manual-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
 .t2-manual-input::placeholder{color:var(--text3);font-size:12px;font-weight:500}
 .t2-manual-val-wrap{padding:0 14px 8px;display:none}
 .t2-manual-val-wrap label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
-.t2-manual-val-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--accent);font-size:16px;font-weight:700;padding:10px 14px;font-family:var(--font-display);letter-spacing:-0.5px;transition:border-color .2s}
+.t2-manual-val-input{width:100%;background:var(--accent-dim);border:1px solid rgba(34,197,94,0.3);border-radius:10px;color:var(--accent);font-size:16px;font-weight:700;padding:10px 14px;font-family:var(--font-display);letter-spacing:-0.5px;transition:all .2s}
 .t2-manual-val-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.t2-manual-val-input::placeholder{color:var(--text3);font-size:14px;font-weight:600}
-/* CONTROLE FINANCEIRO */
+.t2-manual-val-input::placeholder{color:rgba(34,197,94,0.35);font-size:14px;font-weight:600}
+
+/* ── FINANCIAL VIEW ── */
 .fin-sec-hd{padding:10px 18px 6px;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-display)}
-.fin-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;margin:0 14px 12px;transition:background .25s,border-color .25s}
-.fin-card-hd{padding:12px 16px;background:var(--bg3);display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text)}
+.fin-card{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);overflow:hidden;margin:0 14px 12px;position:relative;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.fin-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
+.fin-card-hd{padding:12px 16px;background:rgba(255,255,255,0.03);display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text);border-bottom:1px solid var(--glass-border)}
 .fin-card-hd-icon{font-size:16px}
-.fin-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
+.fin-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--glass-border);font-size:13px;color:var(--text2)}
 .fin-row span:last-child{font-weight:700;font-family:var(--font-display)}
-.fin-row.income span:last-child{color:#4ADE80}
-.fin-row.expense span:last-child{color:#F87171}
-.fin-row.neutral span:last-child{color:#F472B6}
-.fin-row.total{background:rgba(255,255,255,0.04);font-weight:700}
-.fin-row.total span{color:var(--accent);font-size:14px}
-.fin-grand{background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);margin:0 14px 20px;padding:20px;display:flex;justify-content:space-between;align-items:center;transition:border-color .25s}
+.fin-row.income span:last-child{color:#4ADE80}.fin-row.expense span:last-child{color:#F87171}.fin-row.neutral span:last-child{color:#F472B6}
+.fin-row.total{background:rgba(255,255,255,0.03);font-weight:700}.fin-row.total span{color:var(--accent);font-size:14px;text-shadow:0 0 10px var(--glow)}
+.fin-grand{background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);margin:0 14px 20px;padding:20px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.fin-grand::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 50%);pointer-events:none}
 .fin-grand-lbl{font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.fin-grand-val{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-1px}
+.fin-grand-val{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-1px;text-shadow:0 0 20px var(--glow)}
 .fin-empty{text-align:center;padding:30px 20px;color:var(--text3);font-size:12px}
-
-/* Purple theme dropdown overrides */
-[data-theme="purple"] .dp-st,
-[data-theme="purple"] .cfg-lang-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235B21B6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
-[data-theme="purple"] .wage-sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237C3AED' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
-[data-theme="purple"] .nenkin-type-sel{border-color:rgba(124,58,237,0.35);color:#6D28D9}
-
-/* ====== CONTROLE FINANCEIRO ====== */
 .fin-view-wrap{padding:0 0 16px}
 .fin-month-strip{display:flex;gap:6px;padding:12px 16px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .fin-month-strip::-webkit-scrollbar{display:none}
-.fin-mtab{padding:6px 14px;border-radius:40px;border:1px solid var(--border2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--bg3);transition:all .2s;font-family:var(--font-display)}
-.fin-mtab.active{background:var(--accent);color:#000;border-color:var(--accent)}
-/* section headers */
+.fin-mtab{padding:6px 14px;border-radius:40px;border:1px solid var(--glass-border);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--glass-bg);backdrop-filter:blur(12px);transition:all .2s;font-family:var(--font-display)}
+.fin-mtab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border-color:transparent;box-shadow:0 4px 14px var(--glow)}
 .fin-section-hd{display:flex;align-items:center;gap:8px;padding:10px 16px 6px}
 .fin-section-hd-icon{font-size:16px}
 .fin-section-hd-label{font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
-.fin-section-hd-label.income-color{color:#4ADE80}
-.fin-section-hd-label.expense-color{color:#F87171}
-.fin-section-hd-label.summary-color{color:var(--accent)}
-.fin-section-hd-label.insight-color{color:#FACC15}
-/* cards */
-.fin-card2{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);margin:0 14px 10px;overflow:hidden;transition:background .25s,border-color .25s}
-.fin-row2{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
+.fin-section-hd-label.income-color{color:#4ADE80}.fin-section-hd-label.expense-color{color:#F87171}.fin-section-hd-label.summary-color{color:var(--accent)}.fin-section-hd-label.insight-color{color:#FACC15}
+.fin-card2{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--radius-lg);border:1px solid var(--glass-border);margin:0 14px 10px;overflow:hidden;position:relative;animation:fadeUp .35s cubic-bezier(.23,1,.32,1) both}
+.fin-card2::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
+.fin-row2{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--glass-border);font-size:13px;color:var(--text2)}
 .fin-row2:first-child{border-top:none}
 .fin-row2 .fin-lbl{flex:1;color:var(--text2)}
 .fin-row2 .fin-val{font-family:var(--font-display);font-weight:700;font-size:14px}
 .fin-val.green{color:#4ADE80}.fin-val.red{color:#F87171}.fin-val.accent{color:var(--accent)}.fin-val.pink{color:#F472B6}
-/* expense add form */
-.fin-add-form{padding:10px 14px 12px;background:var(--bg3);margin:0 14px 10px;border-radius:var(--radius-lg);border:1px solid var(--border2)}
+.fin-add-form{padding:10px 14px 12px;background:rgba(255,255,255,0.04);backdrop-filter:blur(14px);margin:0 14px 10px;border-radius:var(--radius-lg);border:1px solid var(--glass-border);position:relative;overflow:hidden}
+.fin-add-form::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--glass-shine) 0%,transparent 55%);pointer-events:none}
 .fin-add-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .fin-add-row3{display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:8px}
 .fin-label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
-.fin-sel{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 10px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;transition:background .2s}
+.fin-sel{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 10px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
 .fin-sel:focus{outline:none;border-color:var(--accent)}
-.fin-sel option{background:var(--bg2);color:var(--text)}
-.fin-inp{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:8px 10px;font-family:var(--font-display);transition:border-color .2s}
+.fin-sel option{background:#0F1623;color:var(--text)}
+.fin-inp{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:8px 10px;font-family:var(--font-display);transition:all .2s;backdrop-filter:blur(8px)}
 .fin-inp:focus{outline:none;border-color:var(--accent)}
-.fin-add-btn{width:100%;height:40px;background:linear-gradient(135deg,#F87171,#EF4444);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;font-family:var(--font-display);cursor:pointer;transition:opacity .15s}
-.fin-add-btn:active{opacity:.8}
-/* expense list */
-.fin-expense-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border)}
+.fin-add-btn{width:100%;height:40px;background:linear-gradient(135deg,#F87171,#EF4444);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;font-family:var(--font-display);cursor:pointer;transition:all .15s;position:relative;overflow:hidden;box-shadow:0 4px 14px rgba(239,68,68,0.3)}
+.fin-add-btn::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);animation:btnShimmer 2.5s infinite}
+.fin-add-btn:active{opacity:.8;transform:scale(.98)}
+.fin-expense-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--glass-border)}
 .fin-expense-item:first-child{border-top:none}
 .fin-exp-left{flex:1}
 .fin-exp-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text3)}
 .fin-exp-desc{font-size:13px;color:var(--text);margin-top:1px}
 .fin-exp-right{display:flex;align-items:center;gap:10px}
 .fin-exp-val{font-family:var(--font-display);font-size:14px;font-weight:700;color:#F87171}
-.fin-exp-del{background:rgba(239,68,68,0.12);border:none;border-radius:8px;color:#F87171;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
-.fin-exp-del:active{opacity:.7}
+.fin-exp-del{background:rgba(239,68,68,0.14);border:none;border-radius:8px;color:#F87171;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.fin-exp-del:active{opacity:.7;transform:scale(.92)}
 .fin-empty-state{text-align:center;padding:20px;color:var(--text3);font-size:12px}
-/* summary / saldo */
-.fin-saldo-card{margin:0 14px 10px;padding:18px 20px;background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl)}
+.fin-saldo-card{margin:0 14px 10px;padding:18px 20px;background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);position:relative;overflow:hidden;animation:fadeUp .4s cubic-bezier(.23,1,.32,1) both}
+.fin-saldo-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 50%);pointer-events:none}
 .fin-saldo-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.fin-saldo-row:last-child{margin-bottom:0;border-top:1px solid var(--border);padding-top:10px;margin-top:4px}
+.fin-saldo-row:last-child{margin-bottom:0;border-top:1px solid var(--glass-border);padding-top:10px;margin-top:4px}
 .fin-saldo-lbl{font-size:12px;color:var(--text2);font-weight:600}
 .fin-saldo-val{font-family:var(--font-display);font-size:16px;font-weight:700}
-/* insight card */
-.fin-insight-card{margin:0 14px 20px;padding:16px;background:rgba(250,204,21,0.07);border:1px solid rgba(250,204,21,0.2);border-radius:var(--radius-lg)}
+
+/* ── INSIGHT CARDS (ULTRA PREMIUM) ── */
+.fin-insight-wrap{margin:0 14px 20px;display:flex;flex-direction:column;gap:10px}
+.fin-insight-card{padding:14px 16px;border-radius:var(--radius-lg);border:1px solid transparent;position:relative;overflow:hidden;animation:insSlideUp .45s cubic-bezier(.23,1,.32,1) both}
+.fin-insight-card:nth-child(1){animation-delay:.04s}
+.fin-insight-card:nth-child(2){animation-delay:.12s}
+.fin-insight-card:nth-child(3){animation-delay:.20s}
+.fin-insight-card:nth-child(4){animation-delay:.28s}
+.fin-insight-card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ic-danger{background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.22)}.ic-danger::before{background:linear-gradient(135deg,rgba(239,68,68,.5),rgba(239,68,68,.1))}
+.ic-warn{background:rgba(245,158,11,0.10);border-color:rgba(245,158,11,0.22)}.ic-warn::before{background:linear-gradient(135deg,rgba(245,158,11,.5),rgba(245,158,11,.1))}
+.ic-info{background:rgba(59,130,246,0.10);border-color:rgba(59,130,246,0.22)}.ic-info::before{background:linear-gradient(135deg,rgba(59,130,246,.5),rgba(59,130,246,.1))}
+.ic-success{background:rgba(34,197,94,0.10);border-color:rgba(34,197,94,0.22)}.ic-success::before{background:linear-gradient(135deg,rgba(34,197,94,.5),rgba(34,197,94,.1))}
+.ic-tip{background:rgba(168,85,247,0.10);border-color:rgba(168,85,247,0.22)}.ic-tip::before{background:linear-gradient(135deg,rgba(168,85,247,.5),rgba(168,85,247,.1))}
+.fin-insight-glow{position:absolute;top:-25px;right:-15px;width:70px;height:70px;border-radius:50%;opacity:.2;pointer-events:none;animation:glowPulse 3s ease-in-out infinite}
+.ic-danger .fin-insight-glow{background:radial-gradient(circle,#EF4444,transparent)}
+.ic-warn .fin-insight-glow{background:radial-gradient(circle,#F59E0B,transparent)}
+.ic-info .fin-insight-glow{background:radial-gradient(circle,#3B82F6,transparent)}
+.ic-success .fin-insight-glow{background:radial-gradient(circle,#22C55E,transparent)}
+.ic-tip .fin-insight-glow{background:radial-gradient(circle,#A855F7,transparent)}
+.fin-insight-top{display:flex;align-items:flex-start;gap:10px}
+.fin-insight-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.ic-danger .fin-insight-icon{background:rgba(239,68,68,0.2)}
+.ic-warn .fin-insight-icon{background:rgba(245,158,11,0.2)}
+.ic-info .fin-insight-icon{background:rgba(59,130,246,0.2)}
+.ic-success .fin-insight-icon{background:rgba(34,197,94,0.2)}
+.ic-tip .fin-insight-icon{background:rgba(168,85,247,0.2)}
+.fin-insight-content{flex:1;min-width:0}
+.fin-insight-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:99px;margin-bottom:4px}
+.ic-danger .fin-insight-badge{background:rgba(239,68,68,0.2);color:#FCA5A5}
+.ic-warn .fin-insight-badge{background:rgba(245,158,11,0.2);color:#FDE68A}
+.ic-info .fin-insight-badge{background:rgba(59,130,246,0.2);color:#93C5FD}
+.ic-success .fin-insight-badge{background:rgba(34,197,94,0.2);color:#86EFAC}
+.ic-tip .fin-insight-badge{background:rgba(168,85,247,0.2);color:#D8B4FE}
+.fin-insight-title{font-family:var(--font-display);font-size:12.5px;font-weight:700;line-height:1.3;color:var(--text);margin-bottom:4px}
+.fin-insight-body{font-size:11.5px;color:var(--text2);line-height:1.65}
+.fin-insight-action{margin-top:8px;font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:8px;display:inline-block}
+.ic-danger .fin-insight-action{background:rgba(239,68,68,0.18);color:#FCA5A5}
+.ic-warn .fin-insight-action{background:rgba(245,158,11,0.18);color:#FDE68A}
+.ic-info .fin-insight-action{background:rgba(59,130,246,0.18);color:#93C5FD}
+.ic-success .fin-insight-action{background:rgba(34,197,94,0.18);color:#86EFAC}
+.ic-tip .fin-insight-action{background:rgba(168,85,247,0.18);color:#D8B4FE}
+.fin-insight-bar{margin-top:9px;height:3px;border-radius:99px;background:rgba(255,255,255,0.07);overflow:hidden}
+.fin-insight-bar-fill{height:100%;border-radius:99px;transition:width .6s ease;position:relative;overflow:hidden}
+.fin-insight-bar-fill::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shimmerBar 2s infinite}
+.ic-danger .fin-insight-bar-fill{background:linear-gradient(90deg,#EF4444,#F87171)}
+.ic-warn .fin-insight-bar-fill{background:linear-gradient(90deg,#F59E0B,#FCD34D)}
+.ic-info .fin-insight-bar-fill{background:linear-gradient(90deg,#3B82F6,#60A5FA)}
+.ic-success .fin-insight-bar-fill{background:linear-gradient(90deg,#22C55E,#4ADE80)}
+.ic-tip .fin-insight-bar-fill{background:linear-gradient(90deg,#A855F7,#C084FC)}
+/* legacy */
+.fin-insight-card-legacy{margin:0 14px 20px;padding:16px;background:rgba(250,204,21,0.07);border:1px solid rgba(250,204,21,0.2);border-radius:var(--radius-lg)}
 .fin-insight-msg{font-size:13px;color:var(--text2);line-height:1.65;font-style:italic}
 .fin-insight-msg::before{content:'💡 '}
+
+/* ── PURPLE THEME OVERRIDES ── */
+[data-theme="purple"] .dp-st,[data-theme="purple"] .cfg-lang-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235B21B6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+[data-theme="purple"] .wage-sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237C3AED' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+[data-theme="purple"] .nenkin-type-sel{border-color:rgba(124,58,237,0.35);color:#6D28D9}
 </style>
 </head>
 <body>
@@ -1181,8 +1278,8 @@ function renderFinanceiro(){
 
   // ---- INSIGHTS section ----
   stripHtml+='<div class="fin-section-hd"><span class="fin-section-hd-icon">🧠</span><span class="fin-section-hd-label insight-color">'+(L.finSecInsights||'Insights')+'</span></div>';
-  var insight=buildFinInsight(L,totalIncome,totalExpenses,saldo,workTotal,nkVal,expenses,cats);
-  stripHtml+='<div class="fin-insight-card"><div class="fin-insight-msg">'+insight+'</div></div>';
+  var insightCards=buildFinInsightCards(L,totalIncome,totalExpenses,saldo,workTotal,nkVal,expenses,cats);
+  stripHtml+='<div class="fin-insight-wrap">'+insightCards+'</div>';
 
   stripHtml+='</div>'; // fin-view-wrap
   wrap.innerHTML=stripHtml;
@@ -1239,36 +1336,366 @@ function getCatLabel(id,cats){
   return id;
 }
 
-function buildFinInsight(L,income,expenses,saldo,salary,nenkin,expenseArr,cats){
-  if(income===0)return L.insightNoData||'Registre seus ganhos e gastos para receber insights personalizados.';
-  var ratio=expenses>0?(expenses/income*100):0;
-  var msgs=[];
-  if(saldo<0){
-    msgs.push(L.insightNegativo||'Seus gastos superaram suas entradas este mês. Revise os maiores itens de despesa.');
-  } else if(ratio>80){
-    msgs.push(L.insightAlto||'Você gastou mais de 80% de suas entradas. Tente reduzir os gastos nas próximas semanas.');
-  } else if(ratio>50){
-    msgs.push(L.insightMedio||'Gastos em torno de '+Math.round(ratio)+'% das entradas. Você ainda tem margem de economia.');
-  } else if(ratio<=30&&expenses>0){
-    msgs.push(L.insightBom||'Ótimo! Você está gastando apenas '+Math.round(ratio)+'% das entradas. Continue assim!');
-  } else if(expenses===0){
-    msgs.push(L.insightSemGastos||'Nenhum gasto registrado ainda. Adicione suas despesas para análise completa.');
+function buildFinInsightCards(L,income,expenses,saldo,salary,nenkin,expenseArr,cats){
+  var lang=L.name||'Português';
+  var isPT=(lang==='Português');
+  var isEN=(lang==='English');
+  var isJA=(lang==='日本語');
+  var isES=(lang==='Español');
+  var isZH=(lang==='中文');
+  var isKO=(lang==='한국어');
+  var isVI=(lang==='Tiếng Việt');
+  var isFR=(lang==='Français');
+  var isDE=(lang==='Deutsch');
+
+  // helper: localize text
+  function t(pt,en,ja,es,zh,ko,vi,fr,de){
+    if(isJA)return ja;if(isES)return es;if(isZH)return zh;if(isKO)return ko;if(isVI)return vi;if(isFR)return fr;if(isDE)return de;if(isEN)return en;return pt;
   }
-  // top category
+
+  if(income===0){
+    return insCard('ic-info','📊',
+      t('Comece a registrar','Start recording','記録を始めよう','Empieza a registrar','开始记录','기록 시작','Bắt đầu ghi','Commencez à enregistrer','Aufzeichnung starten'),
+      t('Adicione seus ganhos e gastos do mês para receber análises e dicas personalizadas de economia.','Add your income and expenses to receive personalized savings tips and analysis.','今月の収入と支出を登録すると、個別のアドバイスが表示されます。','Añade tus ingresos y gastos para recibir análisis y consejos personalizados.','添加本月收入和支出，获取个性化分析和储蓄建议。','이번 달 수입과 지출을 등록하면 맞춤형 분석을 받을 수 있습니다.','Thêm thu nhập và chi tiêu để nhận phân tích và lời khuyên tiết kiệm.','Ajoutez vos revenus et dépenses pour recevoir des analyses personnalisées.','Fügen Sie Einnahmen und Ausgaben hinzu, um personalisierte Analysen zu erhalten.'),
+      '','',0);
+  }
+
+  var cards='';
+  var ratio=expenses>0?(expenses/income*100):0;
+  var savingAmt=saldo>0?saldo:0;
+  var savingPct=saldo>0?(saldo/income*100):0;
+
+  // --- CARD 1: Budget status ---
+  if(saldo<0){
+    var deficit=Math.abs(saldo);
+    cards+=insCard('ic-danger','🚨',
+      t('Gastos acima do orçamento','Over budget this month','今月は赤字です','Gastos por encima del presupuesto','本月超出预算','이번 달 초과 지출','Vượt ngân sách tháng này','Budget dépassé ce mois','Diesen Monat über Budget'),
+      t('Você gastou ¥'+deficit.toLocaleString()+' a mais do que recebeu ('+Math.round(ratio)+'% da renda). Revise os lançamentos maiores e tente cortar gastos não essenciais na próxima semana.',
+        'You spent ¥'+deficit.toLocaleString()+' more than you earned ('+Math.round(ratio)+'% of income). Review your largest entries and cut non-essential costs next week.',
+        '収入より¥'+deficit.toLocaleString()+'多く支出しました（収入の'+Math.round(ratio)+'%）。大きな支出を見直し、来週から不要な支出を削減してください。',
+        'Gastaste ¥'+deficit.toLocaleString()+' más de lo que ganaste ('+Math.round(ratio)+'% del ingreso). Revisa los gastos más grandes y elimina los no esenciales.',
+        '本月支出超出收入¥'+deficit.toLocaleString()+'（占收入'+Math.round(ratio)+'%）。请检查最大支出项目，削减不必要开支。',
+        '수입보다 ¥'+deficit.toLocaleString()+' 더 지출했습니다(수입의 '+Math.round(ratio)+'%). 큰 지출 항목을 검토하고 불필요한 지출을 줄이세요.',
+        'Bạn chi nhiều hơn thu nhập ¥'+deficit.toLocaleString()+' ('+Math.round(ratio)+'% thu nhập). Xem xét các khoản lớn và cắt giảm chi tiêu không cần thiết.',
+        'Vous avez dépensé ¥'+deficit.toLocaleString()+' de plus que vos revenus ('+Math.round(ratio)+'%). Révisez vos plus grosses dépenses.',
+        'Sie haben ¥'+deficit.toLocaleString()+' mehr ausgegeben als eingenommen ('+Math.round(ratio)+'%). Überprüfen Sie Ihre größten Ausgaben.'),
+      t('💡 Dica: priorize apenas o essencial até o fim do mês.',
+        '💡 Tip: prioritize essentials only until month end.',
+        '💡 ヒント: 月末まで必需品だけに集中しましょう。',
+        '💡 Consejo: prioriza solo lo esencial hasta fin de mes.',
+        '💡 提示：月底前只保留必需品支出。',
+        '💡 팁: 월말까지 필수품만 우선시하세요.',
+        '💡 Mẹo: Chỉ ưu tiên các khoản thiết yếu đến cuối tháng.',
+        '💡 Conseil: priorisez l\'essentiel jusqu\'à la fin du mois.',
+        '💡 Tipp: Priorisieren Sie bis Monatsende nur das Wesentliche.'),
+      Math.min(ratio,100));
+  } else if(ratio>80){
+    cards+=insCard('ic-warn','⚠️',
+      t('Economia baixa — '+Math.round(savingPct)+'% guardado','Low savings — '+Math.round(savingPct)+'% saved','貯蓄率が低い — '+Math.round(savingPct)+'%','Ahorro bajo — '+Math.round(savingPct)+'% guardado','储蓄率低 — 仅储蓄'+Math.round(savingPct)+'%','저축률 낮음 — '+Math.round(savingPct)+'% 저축','Tiết kiệm thấp — '+Math.round(savingPct)+'% tiết kiệm','Épargne faible — '+Math.round(savingPct)+'% épargnés','Geringe Ersparnis — '+Math.round(savingPct)+'% gespart'),
+      t('Você gastou '+Math.round(ratio)+'% da renda e economizou apenas ¥'+savingAmt.toLocaleString()+'. O ideal é guardar ao menos 20% da renda mensal para emergências e objetivos.',
+        'You spent '+Math.round(ratio)+'% of income, saving only ¥'+savingAmt.toLocaleString()+'. Aim to save at least 20% monthly for emergencies and goals.',
+        '収入の'+Math.round(ratio)+'%を支出し、¥'+savingAmt.toLocaleString()+'しか貯蓄できませんでした。緊急時と目標のために月収の20%以上を貯蓄するのが理想です。',
+        'Gastaste el '+Math.round(ratio)+'% de tus ingresos, ahorrando solo ¥'+savingAmt.toLocaleString()+'. Lo ideal es ahorrar al menos el 20% mensual.',
+        '本月花费收入的'+Math.round(ratio)+'%，仅储蓄¥'+savingAmt.toLocaleString()+'。理想情况下每月储蓄至少20%。',
+        '수입의 '+Math.round(ratio)+'%를 지출하여 ¥'+savingAmt.toLocaleString()+'만 저축했습니다. 이상적으로는 월수입의 20% 이상을 저축하세요.',
+        'Bạn đã chi '+Math.round(ratio)+'% thu nhập, chỉ tiết kiệm ¥'+savingAmt.toLocaleString()+'. Hãy cố tiết kiệm ít nhất 20% thu nhập mỗi tháng.',
+        'Vous avez dépensé '+Math.round(ratio)+'% de vos revenus, épargnant seulement ¥'+savingAmt.toLocaleString()+'. Visez à épargner au moins 20% mensuellement.',
+        'Sie haben '+Math.round(ratio)+'% Ihres Einkommens ausgegeben und nur ¥'+savingAmt.toLocaleString()+' gespart. Streben Sie mindestens 20% Ersparnis an.'),
+      t('💡 Regra 50/30/20: 50% necessidades, 30% desejos, 20% poupança.',
+        '💡 50/30/20 rule: 50% needs, 30% wants, 20% savings.',
+        '💡 50/30/20ルール: 50%は必需品、30%は欲求、20%は貯蓄。',
+        '💡 Regla 50/30/20: 50% necesidades, 30% deseos, 20% ahorro.',
+        '💡 50/30/20法则：50%必需品，30%娱乐，20%储蓄。',
+        '💡 50/30/20 규칙: 50% 필수품, 30% 욕구, 20% 저축.',
+        '💡 Quy tắc 50/30/20: 50% nhu cầu, 30% mong muốn, 20% tiết kiệm.',
+        '💡 Règle 50/30/20 : 50% besoins, 30% envies, 20% épargne.',
+        '💡 50/30/20-Regel: 50% Bedürfnisse, 30% Wünsche, 20% Sparen.'),
+      ratio);
+  } else if(ratio>40&&ratio<=80){
+    cards+=insCard('ic-info','📊',
+      t('Balanço razoável — '+Math.round(savingPct)+'% economizado','Reasonable balance — '+Math.round(savingPct)+'% saved','まずまずの収支 — '+Math.round(savingPct)+'%貯蓄','Balance razonable — '+Math.round(savingPct)+'% ahorrado','收支合理 — 储蓄'+Math.round(savingPct)+'%','합리적인 균형 — '+Math.round(savingPct)+'% 저축','Cân bằng hợp lý — '+Math.round(savingPct)+'% tiết kiệm','Balance raisonnable — '+Math.round(savingPct)+'% épargnés','Angemessene Balance — '+Math.round(savingPct)+'% gespart'),
+      t('Você usou '+Math.round(ratio)+'% da renda e economizou ¥'+savingAmt.toLocaleString()+'. Bom resultado! Com pequenos ajustes nos gastos variáveis você pode aumentar a poupança.',
+        'You used '+Math.round(ratio)+'% of income and saved ¥'+savingAmt.toLocaleString()+'. Good result! Small adjustments to variable spending can boost your savings.',
+        '収入の'+Math.round(ratio)+'%を使い、¥'+savingAmt.toLocaleString()+'を貯蓄しました。良い結果です！変動費を少し調整すれば貯蓄を増やせます。',
+        'Usaste el '+Math.round(ratio)+'% y ahorraste ¥'+savingAmt.toLocaleString()+'. ¡Buen resultado! Pequeños ajustes en gastos variables pueden mejorar tu ahorro.',
+        '使用了收入的'+Math.round(ratio)+'%，储蓄了¥'+savingAmt.toLocaleString()+'。结果不错！通过微调可变支出可以进一步提高储蓄。',
+        '수입의 '+Math.round(ratio)+'%를 사용하고 ¥'+savingAmt.toLocaleString()+'을 저축했습니다. 좋은 결과입니다! 소소한 조정으로 저축을 늘릴 수 있어요.',
+        'Bạn đã dùng '+Math.round(ratio)+'% thu nhập và tiết kiệm ¥'+savingAmt.toLocaleString()+'. Kết quả tốt! Điều chỉnh nhỏ có thể tăng tiết kiệm.',
+        'Vous avez utilisé '+Math.round(ratio)+'% et épargné ¥'+savingAmt.toLocaleString()+'. Bon résultat ! De petits ajustements peuvent améliorer votre épargne.',
+        'Sie haben '+Math.round(ratio)+'% verwendet und ¥'+savingAmt.toLocaleString()+' gespart. Gutes Ergebnis! Kleine Anpassungen können die Ersparnis steigern.'),
+      t('💡 Tente aumentar 5% a mais de poupança no próximo mês.',
+        '💡 Try to increase savings by 5% next month.',
+        '💡 来月は貯蓄率を5%上げてみましょう。',
+        '💡 Intenta aumentar el ahorro un 5% el próximo mes.',
+        '💡 尝试下个月多储蓄5%。',
+        '💡 다음 달 저축을 5% 늘려보세요.',
+        '💡 Hãy thử tăng tiết kiệm thêm 5% tháng tới.',
+        '💡 Essayez d\'augmenter votre épargne de 5% le mois prochain.',
+        '💡 Versuchen Sie, die Ersparnis nächsten Monat um 5% zu erhöhen.'),
+      ratio);
+  } else if(expenses===0){
+    cards+=insCard('ic-info','📝',
+      t('Nenhum gasto registrado','No expenses recorded','支出未登録','Sin gastos registrados','尚无支出记录','지출 미등록','Chưa có chi tiêu','Aucune dépense enregistrée','Keine Ausgaben erfasst'),
+      t('Você tem ¥'+income.toLocaleString()+' de entradas registradas mas nenhum gasto ainda. Adicione suas despesas para visualizar análises completas.',
+        'You have ¥'+income.toLocaleString()+' in recorded income but no expenses yet. Add your expenses to see complete analysis.',
+        '¥'+income.toLocaleString()+'の収入がありますが、支出がまだ登録されていません。支出を追加して完全な分析を確認してください。',
+        'Tienes ¥'+income.toLocaleString()+' de ingresos pero ningún gasto aún. Agrega tus gastos para ver análisis completos.',
+        '已记录¥'+income.toLocaleString()+'的收入，但尚无支出记录。添加支出以查看完整分析。',
+        '¥'+income.toLocaleString()+'의 수입이 기록되었지만 아직 지출이 없습니다. 지출을 추가하여 분석을 확인하세요.',
+        'Bạn có ¥'+income.toLocaleString()+' thu nhập nhưng chưa có chi tiêu. Thêm chi tiêu để xem phân tích đầy đủ.',
+        'Vous avez ¥'+income.toLocaleString()+' de revenus mais aucune dépense. Ajoutez vos dépenses pour une analyse complète.',
+        'Sie haben ¥'+income.toLocaleString()+' Einnahmen, aber noch keine Ausgaben. Fügen Sie Ausgaben hinzu.'),
+      '','',0);
+  } else {
+    cards+=insCard('ic-success','🏆',
+      t('Excelente economia — '+Math.round(savingPct)+'% guardado','Excellent savings — '+Math.round(savingPct)+'% saved','優秀な節約 — '+Math.round(savingPct)+'%貯蓄','Excelente ahorro — '+Math.round(savingPct)+'% guardado','出色的储蓄 — 已储蓄'+Math.round(savingPct)+'%','훌륭한 저축 — '+Math.round(savingPct)+'% 저축','Tiết kiệm xuất sắc — '+Math.round(savingPct)+'%','Excellente épargne — '+Math.round(savingPct)+'% épargnés','Hervorragende Ersparnis — '+Math.round(savingPct)+'% gespart'),
+      t('Você gastou apenas '+Math.round(ratio)+'% da renda e economizou ¥'+savingAmt.toLocaleString()+'. Excelente controle financeiro! Considere investir parte desse saldo.',
+        'You spent only '+Math.round(ratio)+'% of income, saving ¥'+savingAmt.toLocaleString()+'. Excellent financial control! Consider investing part of this balance.',
+        '収入のわずか'+Math.round(ratio)+'%しか使わず、¥'+savingAmt.toLocaleString()+'を貯蓄しました。素晴らしい財務管理！この残高の一部を投資することを検討してください。',
+        'Gastaste solo el '+Math.round(ratio)+'% y ahorraste ¥'+savingAmt.toLocaleString()+'. ¡Excelente control financiero! Considera invertir parte del saldo.',
+        '仅使用收入的'+Math.round(ratio)+'%，储蓄了¥'+savingAmt.toLocaleString()+'。出色的财务管理！考虑将部分余额用于投资。',
+        '수입의 '+Math.round(ratio)+'%만 사용하고 ¥'+savingAmt.toLocaleString()+'을 저축했습니다. 훌륭한 재정 관리! 잔액의 일부를 투자해 보세요.',
+        'Chỉ chi '+Math.round(ratio)+'% thu nhập, tiết kiệm ¥'+savingAmt.toLocaleString()+'. Quản lý tài chính xuất sắc! Hãy xem xét đầu tư một phần.',
+        'Vous n\'avez dépensé que '+Math.round(ratio)+'% et épargné ¥'+savingAmt.toLocaleString()+'. Excellent contrôle financier ! Envisagez d\'investir une partie.',
+        'Sie haben nur '+Math.round(ratio)+'% ausgegeben und ¥'+savingAmt.toLocaleString()+' gespart. Hervorragendes Finanzmanagement!'),
+      t('🎯 Objetivo alcançado! Que tal criar uma meta de investimento?',
+        '🎯 Goal achieved! How about setting an investment target?',
+        '🎯 目標達成！投資目標を設定してみては？',
+        '🎯 ¡Meta alcanzada! ¿Y si estableces una meta de inversión?',
+        '🎯 目标达成！何不设定一个投资目标？',
+        '🎯 목표 달성! 투자 목표를 세워보는 건 어떨까요?',
+        '🎯 Đạt mục tiêu! Hãy đặt mục tiêu đầu tư?',
+        '🎯 Objectif atteint ! Et si vous vous fixiez un objectif d\'investissement ?',
+        '🎯 Ziel erreicht! Wie wäre es mit einem Investitionsziel?'),
+      ratio);
+  }
+
+  // --- CARD 2: Top categories analysis ---
   if(expenseArr.length>0){
     var catTotals={};
     expenseArr.forEach(function(e){catTotals[e.cat]=(catTotals[e.cat]||0)+(parseInt(e.val)||0);});
-    var topCat='';var topVal=0;
-    Object.keys(catTotals).forEach(function(k){if(catTotals[k]>topVal){topVal=catTotals[k];topCat=k;}});
-    if(topCat){
-      var topLbl=getCatLabel(topCat,cats);
-      msgs.push((L.insightTopCat||'Maior gasto: ')+topLbl+' — ¥'+topVal.toLocaleString());
+    var sortedCats=Object.keys(catTotals).sort(function(a,b){return catTotals[b]-catTotals[a];});
+
+    // Top category card with smart advice
+    var topCat=sortedCats[0];
+    var topVal=catTotals[topCat];
+    var topLbl=getCatLabel(topCat,cats);
+    var topPct=income>0?Math.round(topVal/income*100):0;
+
+    var catAdvice=getCatAdvice(topCat,topVal,topPct,t);
+    cards+=insCard(topPct>30?'ic-warn':'ic-info','🔍',
+      t('Maior gasto: '+topLbl+' ('+topPct+'% da renda)',
+        'Top expense: '+topLbl+' ('+topPct+'% of income)',
+        '最大支出: '+topLbl+' (収入の'+topPct+'%)',
+        'Mayor gasto: '+topLbl+' ('+topPct+'% del ingreso)',
+        '最大支出: '+topLbl+' (占收入'+topPct+'%)',
+        '최대 지출: '+topLbl+' (수입의 '+topPct+'%)',
+        'Chi tiêu lớn nhất: '+topLbl+' ('+topPct+'% thu nhập)',
+        'Plus grosse dépense: '+topLbl+' ('+topPct+'% du revenu)',
+        'Größte Ausgabe: '+topLbl+' ('+topPct+'% des Einkommens)'),
+      t('Você direcionou ¥'+topVal.toLocaleString()+' para '+topLbl+' este mês. '+catAdvice.pt,
+        'You directed ¥'+topVal.toLocaleString()+' to '+topLbl+' this month. '+catAdvice.en,
+        '今月は'+topLbl+'に¥'+topVal.toLocaleString()+'を使いました。'+catAdvice.ja,
+        'Destinaste ¥'+topVal.toLocaleString()+' a '+topLbl+' este mes. '+catAdvice.es,
+        '本月在'+topLbl+'上花了¥'+topVal.toLocaleString()+'。'+catAdvice.zh,
+        '이번 달 '+topLbl+'에 ¥'+topVal.toLocaleString()+'을 사용했습니다. '+catAdvice.ko,
+        'Bạn đã dùng ¥'+topVal.toLocaleString()+' cho '+topLbl+' tháng này. '+catAdvice.vi,
+        'Vous avez dépensé ¥'+topVal.toLocaleString()+' en '+topLbl+' ce mois. '+catAdvice.fr,
+        'Sie haben ¥'+topVal.toLocaleString()+' für '+topLbl+' ausgegeben. '+catAdvice.de),
+      catAdvice.tip,'',topPct);
+
+    // Second category if exists and spending ratio noteworthy
+    if(sortedCats.length>1){
+      var sec=sortedCats[1];
+      var secVal=catTotals[sec];
+      var secLbl=getCatLabel(sec,cats);
+      var secPct=income>0?Math.round(secVal/income*100):0;
+      if(secPct>=10){
+        cards+=insCard('ic-tip','📌',
+          t('2º maior gasto: '+secLbl,'2nd expense: '+secLbl,'2番目の支出: '+secLbl,'2.º gasto: '+secLbl,'第二大支出: '+secLbl,'2번째 지출: '+secLbl,'Chi tiêu thứ 2: '+secLbl,'2e dépense: '+secLbl,'2. Ausgabe: '+secLbl),
+          t('¥'+secVal.toLocaleString()+' em '+secLbl+' representa '+secPct+'% da sua renda. '+getCatAdvice(sec,secVal,secPct,t).pt,
+            '¥'+secVal.toLocaleString()+' in '+secLbl+' is '+secPct+'% of income. '+getCatAdvice(sec,secVal,secPct,t).en,
+            '¥'+secVal.toLocaleString()+'を'+secLbl+'に使い、収入の'+secPct+'%です。'+getCatAdvice(sec,secVal,secPct,t).ja,
+            '¥'+secVal.toLocaleString()+' en '+secLbl+' es el '+secPct+'% del ingreso. '+getCatAdvice(sec,secVal,secPct,t).es,
+            '在'+secLbl+'上花了¥'+secVal.toLocaleString()+'，占收入'+secPct+'%。'+getCatAdvice(sec,secVal,secPct,t).zh,
+            '¥'+secVal.toLocaleString()+'을 '+secLbl+'에 사용, 수입의 '+secPct+'%입니다. '+getCatAdvice(sec,secVal,secPct,t).ko,
+            '¥'+secVal.toLocaleString()+' cho '+secLbl+', chiếm '+secPct+'% thu nhập. '+getCatAdvice(sec,secVal,secPct,t).vi,
+            '¥'+secVal.toLocaleString()+' en '+secLbl+', soit '+secPct+'% du revenu. '+getCatAdvice(sec,secVal,secPct,t).fr,
+            '¥'+secVal.toLocaleString()+' für '+secLbl+', das sind '+secPct+'% des Einkommens. '+getCatAdvice(sec,secVal,secPct,t).de),
+          getCatAdvice(sec,secVal,secPct,t).tip,'',secPct);
+      }
+    }
+
+    // Diversification card: how many categories
+    var numCats=sortedCats.length;
+    if(numCats===1&&expenses>0){
+      cards+=insCard('ic-tip','🗂️',
+        t('Registre mais categorias','Record more categories','カテゴリーを増やして','Registra más categorías','记录更多类别','더 많은 카테고리 등록','Ghi thêm danh mục','Enregistrez plus de catégories','Mehr Kategorien erfassen'),
+        t('Todos seus gastos estão em uma categoria. Detalhar por tipo (alimentação, transporte, lazer…) permite análises mais precisas e identificar onde economizar.',
+          'All your expenses are in one category. Detailing by type (food, transport, leisure...) enables more precise analysis and reveals where to save.',
+          'すべての支出が1つのカテゴリーにまとめられています。種類別（食費、交通費、娯楽費など）に分けると、より正確な分析と節約箇所の特定ができます。',
+          'Todos tus gastos están en una categoría. Detalla por tipo para análisis más precisos.',
+          '您所有支出都在一个类别中。按类型细分（食物、交通、娱乐等）可获得更精准的分析。',
+          '모든 지출이 한 카테고리에 있습니다. 유형별로 나누면 더 정확한 분석이 가능합니다.',
+          'Tất cả chi tiêu trong một danh mục. Phân loại chi tiết hơn để phân tích chính xác hơn.',
+          'Toutes vos dépenses sont dans une seule catégorie. Détaillez par type pour une analyse plus précise.',
+          'Alle Ausgaben sind in einer Kategorie. Detaillieren Sie nach Typ für präzisere Analysen.'),
+        '','',0);
     }
   }
+
+  // --- CARD 3: Nenkin / pension info ---
   if(nenkin>0){
-    msgs.push((L.insightNenkin||'Pensão recebida este mês: ')+'¥'+nenkin.toLocaleString());
+    var nkPct=income>0?Math.round(nenkin/income*100):0;
+    cards+=insCard('ic-success','🏅',
+      t('Pensão recebida este mês','Pension received this month','今月の年金受取','Pensión recibida este mes','本月收到养老金','이번 달 연금 수령','Nhận lương hưu tháng này','Retraite reçue ce mois','Rente erhalten diesen Monat'),
+      t('A pensão (¥'+nenkin.toLocaleString()+') representa '+nkPct+'% da sua renda total (¥'+income.toLocaleString()+'). É uma fonte estável — considere alocar parte dela em uma reserva de emergência.',
+        'The pension (¥'+nenkin.toLocaleString()+') represents '+nkPct+'% of total income (¥'+income.toLocaleString()+'). It is a stable source — consider allocating part to an emergency reserve.',
+        '年金（¥'+nenkin.toLocaleString()+'）は総収入（¥'+income.toLocaleString()+'）の'+nkPct+'%を占めます。安定した収入源です。一部を緊急資金に充てることを検討してください。',
+        'La pensión (¥'+nenkin.toLocaleString()+') representa el '+nkPct+'% del ingreso total. Considera asignar una parte a una reserva de emergencia.',
+        '养老金（¥'+nenkin.toLocaleString()+'）占总收入（¥'+income.toLocaleString()+'）的'+nkPct+'%。这是稳定收入来源——考虑将部分用于应急储备。',
+        '연금(¥'+nenkin.toLocaleString()+')은 총수입(¥'+income.toLocaleString()+')의 '+nkPct+'%입니다. 안정적인 수입원 — 일부를 비상금으로 배정하세요.',
+        'Lương hưu (¥'+nenkin.toLocaleString()+') chiếm '+nkPct+'% tổng thu nhập. Đây là nguồn ổn định — hãy trích một phần làm quỹ khẩn cấp.',
+        'La retraite (¥'+nenkin.toLocaleString()+') représente '+nkPct+'% du revenu total. C\'est une source stable — envisagez d\'en allouer une partie à une réserve d\'urgence.',
+        'Die Rente (¥'+nenkin.toLocaleString()+') macht '+nkPct+'% des Gesamteinkommens aus. Erwägen Sie, einen Teil für einen Notfallfonds zu verwenden.'),
+      '','',nkPct);
   }
-  return msgs.length>0?msgs.join(' '):( L.insightOk||'Tudo certo! Seu balanço está equilibrado.');
+
+  // --- CARD 4: Savings goal motivational ---
+  if(saldo>0&&expenses>0){
+    var goalMsg6=Math.round(savingAmt*6).toLocaleString();
+    var goalMsg12=Math.round(savingAmt*12).toLocaleString();
+    cards+=insCard('ic-success','🎯',
+      t('Projeção de poupança','Savings projection','貯蓄の見通し','Proyección de ahorro','储蓄预测','저축 예측','Dự báo tiết kiệm','Projection d\'épargne','Sparprojn'),
+      t('Se você mantiver esse ritmo, vai economizar aproximadamente ¥'+goalMsg6+' em 6 meses e ¥'+goalMsg12+' em 12 meses. Use esse valor para criar uma reserva de emergência (3–6x a renda mensal).',
+        'At this pace, you will save approximately ¥'+goalMsg6+' in 6 months and ¥'+goalMsg12+' in 12 months. Use this to build an emergency fund (3–6x monthly income).',
+        'このペースで行けば、6ヶ月で約¥'+goalMsg6+'、12ヶ月で¥'+goalMsg12+'の貯蓄ができます。月収の3〜6倍の緊急資金を作りましょう。',
+        'A este ritmo, ahorrarás ¥'+goalMsg6+' en 6 meses y ¥'+goalMsg12+' en 12 meses. Úsalo para crear un fondo de emergencia.',
+        '按此速度，6个月可储蓄约¥'+goalMsg6+'，12个月可储蓄¥'+goalMsg12+'。用于建立应急资金（月收入的3–6倍）。',
+        '이 속도라면 6개월에 약 ¥'+goalMsg6+', 12개월에 ¥'+goalMsg12+'를 저축할 수 있습니다. 비상금(월수입의 3–6배)을 만드세요.',
+        'Với tốc độ này, bạn sẽ tiết kiệm khoảng ¥'+goalMsg6+' sau 6 tháng và ¥'+goalMsg12+' sau 12 tháng.',
+        'À ce rythme, vous économiserez environ ¥'+goalMsg6+' en 6 mois et ¥'+goalMsg12+' en 12 mois.',
+        'In diesem Tempo sparen Sie ca. ¥'+goalMsg6+' in 6 Monaten und ¥'+goalMsg12+' in 12 Monaten.'),
+      '','',Math.min(savingPct*2,100));
+  }
+
+  return cards||insCard('ic-info','✅',
+    t('Balanço OK','Balance OK','収支OK','Balance OK','收支OK','수지 OK','Thu chi OK','Équilibré','Budget OK'),
+    t('Suas finanças estão equilibradas.','Your finances are balanced.','収支がバランスしています。','Tus finanzas están equilibradas.','您的财务状况平衡。','재정이 균형 잡혀 있습니다.','Tài chính của bạn cân bằng.','Vos finances sont équilibrées.','Ihre Finanzen sind ausgeglichen.'),
+    '','',0);
+}
+
+function insCard(cls,icon,title,body,tip,bar,pct){
+  var barHtml='';
+  if(pct>0)barHtml='<div class="fin-insight-bar"><div class="fin-insight-bar-fill" style="width:'+Math.min(pct,100)+'%"></div></div>';
+  var tipHtml=tip?'<div class="fin-insight-action">'+tip+'</div>':'';
+  return '<div class="fin-insight-card '+cls+'"><div class="fin-insight-glow"></div><div class="fin-insight-top"><div class="fin-insight-icon">'+icon+'</div><div class="fin-insight-content"><div class="fin-insight-badge">'+getBadgeLabel(cls)+'</div><div class="fin-insight-title">'+title+'</div><div class="fin-insight-body">'+body+'</div>'+tipHtml+barHtml+'</div></div></div>';
+}
+function getBadgeLabel(cls){
+  if(cls==='ic-danger')return 'atenção';
+  if(cls==='ic-warn')return 'atenção';
+  if(cls==='ic-success')return 'ótimo';
+  if(cls==='ic-tip')return 'dica';
+  return 'info';
+}
+
+function getCatAdvice(cat,val,pct,t){
+  var advice={pt:'',en:'',ja:'',es:'',zh:'',ko:'',vi:'',fr:'',de:'',tip:''};
+  if(cat==='moradia'){
+    advice.pt='Moradia acima de 30% da renda pode comprometer o orçamento. Avalie se há opções mais acessíveis ou compartilhamento de custos.';
+    advice.en='Housing above 30% of income can strain your budget. Consider more affordable options or cost sharing.';
+    advice.ja='住居費が収入の30%を超えると家計を圧迫します。より手頃な選択肢やコスト分担を検討してください。';
+    advice.es='La vivienda por encima del 30% del ingreso puede estresar el presupuesto. Considera opciones más asequibles.';
+    advice.zh='住房超过收入30%会给预算带来压力。考虑更实惠的选择或分担费用。';
+    advice.ko='주거비가 수입의 30%를 초과하면 예산이 부담될 수 있습니다.';
+    advice.vi='Nhà ở vượt 30% thu nhập có thể gây căng thẳng ngân sách.';
+    advice.fr='Le logement au-delà de 30% du revenu peut peser sur le budget.';
+    advice.de='Wohnen über 30% des Einkommens kann das Budget belasten.';
+    advice.tip=pct>30?'💡 '+t('Tente negociar aluguel ou dividir custos.','Try negotiating rent or splitting costs.','家賃交渉や費用分担を検討。','Intenta negociar el alquiler.','尝试协商房租。','임대료 협상을 시도해보세요.','Thử thương lượng tiền thuê.','Essayez de négocier votre loyer.','Verhandeln Sie über die Miete.'):'';
+  } else if(cat==='alimentacao'){
+    advice.pt='Alimentação costuma ter grande potencial de economia. Cozinhar em casa, planejar refeições e evitar deliveries frequentes podem reduzir este gasto.';
+    advice.en='Food spending has great saving potential. Cooking at home, meal planning and reducing delivery orders can cut costs significantly.';
+    advice.ja='食費は節約の余地が大きい項目です。自炊、食事計画、デリバリー削減で大幅に節約できます。';
+    advice.es='La alimentación tiene mucho potencial de ahorro. Cocinar en casa y planificar comidas puede reducir este gasto.';
+    advice.zh='饮食费用有很大节省潜力。在家做饭、规划膳食和减少外卖可显著降低支出。';
+    advice.ko='식비는 절약 가능성이 큽니다. 집에서 요리하고 배달을 줄이면 비용을 크게 절감할 수 있습니다.';
+    advice.vi='Chi phí ăn uống có tiềm năng tiết kiệm lớn. Nấu ăn tại nhà và giảm giao hàng có thể cắt giảm đáng kể.';
+    advice.fr='L\'alimentation a un grand potentiel d\'économies. Cuisiner à la maison et planifier les repas peut réduire ce coût.';
+    advice.de='Lebensmittelausgaben haben großes Einsparpotenzial. Heimkochen und Mahlzeitenplanung können die Kosten senken.';
+    advice.tip='💡 '+t('Planejar refeições semanais pode economizar até 30%.','Weekly meal planning can save up to 30%.','週間食事計画で最大30%節約できます。','Planificar comidas semanales puede ahorrar hasta un 30%.','每周制定餐饮计划可节省多达30%。','주간 식사 계획으로 최대 30% 절약 가능합니다.','Lên kế hoạch bữa ăn hàng tuần có thể tiết kiệm 30%.','Planifier les repas hebdomadaires peut économiser jusqu\'à 30%.','Wöchentliche Mahlzeitenplanung kann bis zu 30% sparen.');
+  } else if(cat==='transporte'){
+    advice.pt='Transporte pode ser otimizado. Considere transporte público, caronas compartilhadas ou bicicleta para trajetos curtos.';
+    advice.en='Transport can be optimized. Consider public transport, carpooling or cycling for short trips.';
+    advice.ja='交通費は最適化できます。公共交通機関、カープール、または短距離の自転車利用を検討してください。';
+    advice.es='El transporte puede optimizarse. Considera transporte público, carpooling o bicicleta.';
+    advice.zh='交通可以优化。考虑公共交通、拼车或短途骑自行车。';
+    advice.ko='교통비를 최적화할 수 있습니다. 대중교통, 카풀 또는 자전거를 고려해보세요.';
+    advice.vi='Giao thông có thể được tối ưu hóa. Hãy xem xét phương tiện công cộng hoặc đi xe chung.';
+    advice.fr='Le transport peut être optimisé. Envisagez les transports en commun ou le covoiturage.';
+    advice.de='Transport kann optimiert werden. Erwägen Sie öffentliche Verkehrsmittel oder Fahrgemeinschaften.';
+    advice.tip='💡 '+t('1 a menos de taxi/uber por semana = economia significativa.','1 fewer taxi/uber per week = significant savings.','週に1回タクシー/ウーバーを減らすだけで大きな節約になります。','1 menos taxi/uber por semana = ahorro significativo.','每周少坐一次出租车/网约车=显著节省。','주 1회 택시 줄이면 상당한 절약이 됩니다.','Giảm 1 lần taxi/uber mỗi tuần = tiết kiệm đáng kể.','1 taxi/uber en moins par semaine = économies significatives.','1 weniger Taxi/Uber pro Woche = erhebliche Ersparnis.');
+  } else if(cat==='lazer'){
+    advice.pt='Lazer é importante mas pode escalar sem perceber. Defina um limite mensal e busque atividades gratuitas ou de baixo custo no Japão.';
+    advice.en='Leisure is important but can scale unnoticed. Set a monthly limit and look for free or low-cost activities.';
+    advice.ja='娯楽は大切ですが気づかないうちに増えることがあります。月間上限を設定し、無料または低コストの活動を探しましょう。';
+    advice.es='El ocio es importante pero puede crecer sin darte cuenta. Fija un límite mensual y busca actividades gratuitas.';
+    advice.zh='休闲娱乐很重要，但可能在不知不觉中增加。设定月度限额并寻找免费或低成本活动。';
+    advice.ko='레저는 중요하지만 모르는 사이에 늘어날 수 있습니다. 월 한도를 설정하고 무료 활동을 찾아보세요.';
+    advice.vi='Giải trí quan trọng nhưng có thể tăng mà không hay. Đặt giới hạn hàng tháng và tìm hoạt động miễn phí.';
+    advice.fr='Les loisirs sont importants mais peuvent augmenter sans qu\'on s\'en aperçoive. Fixez une limite mensuelle.';
+    advice.de='Freizeit ist wichtig, kann aber unmerklich zunehmen. Setzen Sie ein monatliches Limit.';
+    advice.tip='💡 '+t('Tente a regra: metade do lazer = atividades gratuitas.','Try: half your leisure = free activities.','娯楽の半分を無料活動にする。','Intenta: la mitad del ocio = actividades gratuitas.','尝试：一半休闲=免费活动。','절반의 레저 = 무료 활동 도전.','Thử: một nửa giải trí = hoạt động miễn phí.','Essayez : la moitié des loisirs = activités gratuites.','Versuchen Sie: Hälfte Freizeit = kostenlose Aktivitäten.');
+  } else if(cat==='saude'){
+    advice.pt='Saúde é investimento, não gasto. Se possível, use o sistema de saúde público japonês (Kokumin Kenko Hoken) para reduzir custos com consultas.';
+    advice.en='Health is investment, not expense. If possible, use the Japanese public health system (Kokumin Kenko Hoken) to reduce consultation costs.';
+    advice.ja='健康は投資です。可能であれば国民健康保険を活用して診察費を抑えましょう。';
+    advice.es='La salud es inversión. Si es posible, usa el sistema público de salud para reducir costos.';
+    advice.zh='健康是投资。如可能，使用日本公共医疗保险（国民健康保险）降低就诊费用。';
+    advice.ko='건강은 투자입니다. 가능하면 일본 공공 건강보험을 활용해 진료비를 줄이세요.';
+    advice.vi='Sức khỏe là đầu tư. Nếu có thể, hãy sử dụng hệ thống y tế công cộng Nhật Bản để giảm chi phí.';
+    advice.fr='La santé est un investissement. Si possible, utilisez le système de santé public japonais.';
+    advice.de='Gesundheit ist eine Investition. Nutzen Sie wenn möglich das japanische öffentliche Gesundheitssystem.';
+    advice.tip='';
+  } else if(cat==='utilidades'){
+    advice.pt='Contas de serviços podem ser reduzidas com pequenos hábitos: desligar luzes, temperatura controlada do ar-condicionado e aparelhos em standby.';
+    advice.en='Utility bills can be reduced with small habits: turning off lights, controlled AC temperature and unplugging standby devices.';
+    advice.ja='公共料金は小さな習慣で減らせます：電気を消す、エアコンの温度管理、待機電力の削減。';
+    advice.es='Las facturas de servicios pueden reducirse con pequeños hábitos: apagar luces, controlar el aire acondicionado.';
+    advice.zh='养成小习惯可降低公用事业费：关灯、控制空调温度、拔掉待机电器插头。';
+    advice.ko='소소한 습관으로 공과금을 줄일 수 있습니다: 불 끄기, 에어컨 온도 조절, 대기전력 차단.';
+    advice.vi='Thói quen nhỏ có thể giảm hóa đơn tiện ích: tắt đèn, kiểm soát nhiệt độ điều hòa.';
+    advice.fr='Les factures de services peuvent être réduites : éteindre les lumières, régler la climatisation.';
+    advice.de='Versorgungsrechnungen können durch kleine Gewohnheiten reduziert werden.';
+    advice.tip='💡 '+t('Verificar o plano de celular/internet pode gerar economia.','Check your phone/internet plan for possible savings.','携帯・ネットのプランを見直すと節約になることがあります。','Revisa tu plan de celular/internet.','检查手机/网络套餐是否有节省空间。','휴대폰/인터넷 요금제를 확인해 보세요.','Kiểm tra gói điện thoại/internet của bạn.','Vérifiez votre forfait téléphone/internet.','Überprüfen Sie Ihren Telefon-/Internetplan.');
+  } else if(cat==='educacao'){
+    advice.pt='Investimento em educação gera retorno a longo prazo. Considere recursos gratuitos (YouTube, apps de idiomas) para complementar cursos pagos.';
+    advice.en='Education investment generates long-term returns. Consider free resources (YouTube, language apps) to complement paid courses.';
+    advice.ja='教育への投資は長期的なリターンをもたらします。無料リソース（YouTube、語学アプリ）を有料コースと組み合わせて活用しましょう。';
+    advice.es='La inversión en educación genera retorno a largo plazo. Considera recursos gratuitos para complementar.';
+    advice.zh='教育投资产生长期回报。考虑免费资源（YouTube、语言应用）补充付费课程。';
+    advice.ko='교육 투자는 장기적인 수익을 창출합니다. 무료 리소스를 활용해보세요.';
+    advice.vi='Đầu tư giáo dục tạo ra lợi nhuận dài hạn. Hãy xem xét tài nguyên miễn phí.';
+    advice.fr='L\'investissement en éducation génère des retours à long terme.';
+    advice.de='Bildungsinvestitionen bringen langfristige Renditen.';
+    advice.tip='';
+  } else {
+    advice.pt='Monitore este gasto mês a mês para identificar tendências e oportunidades de economia.';
+    advice.en='Monitor this expense month to month to identify trends and savings opportunities.';
+    advice.ja='この支出を月ごとに追跡して、傾向と節約の機会を把握しましょう。';
+    advice.es='Monitorea este gasto mes a mes para identificar tendencias.';
+    advice.zh='逐月监控此支出以识别趋势和节省机会。';
+    advice.ko='이 지출을 월별로 모니터링하여 추세를 파악하세요.';
+    advice.vi='Theo dõi chi tiêu này hàng tháng để xác định xu hướng.';
+    advice.fr='Surveillez cette dépense mois par mois pour identifier les tendances.';
+    advice.de='Überwachen Sie diese Ausgabe monatlich, um Trends zu erkennen.';
+    advice.tip='';
+  }
+  return advice;
+}
+
+// LEGACY function kept for compatibility
+function buildFinInsight(L,income,expenses,saldo,salary,nenkin,expenseArr,cats){
+  return buildFinInsightCards(L,income,expenses,saldo,salary,nenkin,expenseArr,cats);
 }
 
 function showView(v){
