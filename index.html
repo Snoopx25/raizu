@@ -20,13 +20,17 @@
   --accent:#22C55E;--accent-dim:rgba(34,197,94,0.15);--accent2:#16A34A;
   --glow:rgba(34,197,94,0.3);--glow2:rgba(34,197,94,0.55);
   --green:#22C55E;--blue:#3B82F6;--red:#EF4444;--amber:#F59E0B;--purple:#A855F7;
+  --cyan:#22D3EE;--teal:#14B8A6;--pink:#EC4899;--indigo:#6366F1;
+  --nenkin:#F472B6;--nenkin-dim:rgba(244,114,182,0.15);
   --radius:14px;--radius-lg:20px;--radius-xl:26px;
   --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
 }
 [data-theme="purple"]{--bg:#F5F0FF;--bg2:#EDE5FF;--bg3:#E0D4FF;--bg4:#D0BFFF;--border:rgba(100,60,200,0.12);--border2:rgba(100,60,200,0.22);--text:#1A0D3A;--text2:rgba(26,13,58,0.55);--text3:rgba(26,13,58,0.28);--accent:#7C3AED;--accent-dim:rgba(124,58,237,0.15);--accent2:#6D28D9;--glow:rgba(124,58,237,0.3);--glow2:rgba(124,58,237,0.55)}
 [data-theme="orange"]{--bg:#0A0600;--bg2:#120C00;--bg3:#1C1200;--bg4:#251800;--border:rgba(255,140,0,0.1);--border2:rgba(255,140,0,0.2);--text:#FFF3E0;--text2:rgba(255,243,224,0.5);--text3:rgba(255,243,224,0.25);--accent:#F97316;--accent-dim:rgba(249,115,22,0.15);--accent2:#EA580C;--glow:rgba(249,115,22,0.3);--glow2:rgba(249,115,22,0.55)}
-[data-theme="cyan"]{--bg:#010A14;--bg2:#041422;--bg3:#071E30;--bg4:#0C2840;--border:rgba(0,200,255,0.08);--border2:rgba(0,200,255,0.16);--text:#E0F7FF;--text2:rgba(224,247,255,0.5);--text3:rgba(224,247,255,0.25);--accent:#06B6D4;--accent-dim:rgba(6,182,212,0.15);--accent2:#0891B2;--glow:rgba(6,182,212,0.3);--glow2:rgba(6,182,212,0.55)}
+[data-theme="cyan"]{--bg:#010A14;--bg2:#041422;--bg3:#071E30;--bg4:#0C2840;--border:rgba(34,211,238,0.08);--border2:rgba(34,211,238,0.18);--text:#E0FFFE;--text2:rgba(224,255,254,0.5);--text3:rgba(224,255,254,0.25);--accent:#22D3EE;--accent-dim:rgba(34,211,238,0.15);--accent2:#0EA5E9;--glow:rgba(34,211,238,0.3);--glow2:rgba(34,211,238,0.6)}
 [data-theme="red"]{--bg:#0C0000;--bg2:#150000;--bg3:#1E0000;--bg4:#280000;--border:rgba(239,68,68,0.1);--border2:rgba(239,68,68,0.2);--text:#FFF0F0;--text2:rgba(255,240,240,0.5);--text3:rgba(255,240,240,0.25);--accent:#EF4444;--accent-dim:rgba(239,68,68,0.15);--accent2:#DC2626;--glow:rgba(239,68,68,0.3);--glow2:rgba(239,68,68,0.55)}
+[data-theme="teal"]{--bg:#00100E;--bg2:#001C19;--bg3:#002823;--bg4:#00362F;--border:rgba(20,184,166,0.09);--border2:rgba(20,184,166,0.18);--text:#E0FFF9;--text2:rgba(224,255,249,0.5);--text3:rgba(224,255,249,0.25);--accent:#14B8A6;--accent-dim:rgba(20,184,166,0.15);--accent2:#0D9488;--glow:rgba(20,184,166,0.3);--glow2:rgba(20,184,166,0.55)}
+[data-theme="pink"]{--bg:#0E0009;--bg2:#180012;--bg3:#22001A;--bg4:#2E0023;--border:rgba(236,72,153,0.09);--border2:rgba(236,72,153,0.18);--text:#FFF0FA;--text2:rgba(255,240,250,0.5);--text3:rgba(255,240,250,0.25);--accent:#EC4899;--accent-dim:rgba(236,72,153,0.15);--accent2:#DB2777;--glow:rgba(236,72,153,0.3);--glow2:rgba(236,72,153,0.55)}
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;overscroll-behavior:none;-webkit-font-smoothing:antialiased;transition:background .35s,color .25s}
 .app{max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:72px}
 .topbar{background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:50;transition:background .35s,border-color .25s}
@@ -34,6 +38,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 [data-theme="orange"] .topbar{background:rgba(10,6,0,0.95)}
 [data-theme="cyan"] .topbar{background:rgba(1,10,20,0.95)}
 [data-theme="red"] .topbar{background:rgba(12,0,0,0.95)}
+[data-theme="teal"] .topbar{background:rgba(0,16,14,0.95)}
+[data-theme="pink"] .topbar{background:rgba(14,0,9,0.95)}
 .topbar-logo{height:44px;width:auto;display:block;object-fit:contain}
 .topbar-right{text-align:right}
 .topbar-earn{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-0.5px;transition:color .25s}
@@ -57,7 +63,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .wday{font-size:10px;font-weight:700;color:var(--text3);text-align:center;padding:3px 0;letter-spacing:.3px}
 .wday:first-child{color:rgba(239,68,68,0.45)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:0 12px 10px}
-.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;gap:2px}
+.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;gap:1px;padding:2px 0}
 .cal-cell:active{opacity:.7}
 .cal-cell.empty{pointer-events:none}
 .cal-d{font-size:12px;font-weight:600;color:rgba(255,255,255,0.65)}
@@ -91,11 +97,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .dp-field label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
 .dp-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:background .25s,border-color .25s}
 .dp-sel:focus{outline:none;border-color:var(--accent)}
-.dp-sel option{background:#1a2035}
+.dp-sel option{background:var(--bg3);color:var(--text)}
 .dp-st-wrap{padding:0 14px 10px}
 .dp-st{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:10px 12px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;transition:background .25s,border-color .25s}
 .dp-st:focus{outline:none;border-color:var(--accent)}
-.dp-st option{background:#1a2035}
+.dp-st option{background:var(--bg3);color:var(--text)}
 .block-divider{display:flex;align-items:center;gap:10px;padding:10px 14px 2px}
 .block-divider-line{flex:1;height:1px;background:var(--border)}
 .block-divider-label{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;font-family:var(--font-display);white-space:nowrap;opacity:.8}
@@ -104,7 +110,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .wage-label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px}
 .wage-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--accent);font-size:14px;font-weight:700;padding:10px 14px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2322C55E' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;letter-spacing:-0.5px;transition:background .25s,border-color .25s,color .25s}
 .wage-sel:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.wage-sel option{background:#1a2035;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px}
+.wage-sel option{background:var(--bg3);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
 .dp-breakdown{padding:2px 16px 10px;display:none;flex-direction:column;gap:3px}
 .dp-br-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)}
 .dp-br-row span:last-child{font-weight:700;color:var(--text2);font-family:var(--font-display)}
@@ -124,7 +130,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .sum-mhd-val{color:var(--accent);font-size:15px}
 .sum-row{display:flex;justify-content:space-between;padding:9px 16px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
 .sum-row span:last-child{color:var(--text);font-weight:600}
-.sum-row.total{font-weight:700}.sum-row.total span{color:var(--accent)}
+.sum-row.total{font-weight:700}.sum-row.total span{color:var(--accent)}.sum-row-exp{border-top:1px solid var(--border);background:rgba(239,68,68,0.04)}.sum-row-saldo{border-top:1px solid rgba(255,255,255,0.1);margin-top:2px}
 .grand-card{background:linear-gradient(135deg,var(--accent-dim),transparent);border:1px solid var(--glow);border-radius:var(--radius-xl);margin:0 14px 20px;padding:24px;transition:border-color .25s}
 .grand-lbl{font-size:11px;color:var(--accent);opacity:.7;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
 .grand-val{font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--accent);letter-spacing:-1px}
@@ -132,7 +138,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .cfg-hd{font-size:15px;font-weight:700;margin-bottom:18px;color:var(--text);font-family:var(--font-display)}
 .cfg-lang-select{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:15px;font-family:var(--font-body);font-weight:600;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:border-color .2s}
 .cfg-lang-select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.cfg-lang-select option{background:#1a2035}
+.cfg-lang-select option{background:var(--bg3);color:var(--text)}
 .cfg-f{margin-bottom:16px}
 .cfg-f label{font-size:11.5px;color:var(--text2);display:block;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .cfg-f input{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:16px;font-family:var(--font-display);font-weight:600;transition:border-color .2s}
@@ -140,7 +146,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .btn-primary{width:100%;padding:15px;background:var(--accent);color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:all .2s;box-shadow:0 4px 20px var(--glow)}
 .btn-primary:active{transform:scale(0.98);opacity:.9}
 .cfg-tip{padding:0 18px 24px;font-size:11px;color:var(--text3);line-height:1.9}
-.theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:4px}
+.theme-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:4px}
 .theme-btn{height:48px;border-radius:10px;border:2px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;font-family:var(--font-display);text-transform:uppercase;letter-spacing:.05em;transition:all .2s;flex-direction:column;gap:3px;color:rgba(255,255,255,0.9);padding:4px 2px}
 .theme-btn.active{border-color:white;transform:scale(1.06);box-shadow:0 0 14px rgba(255,255,255,0.3)}
 .theme-btn span{font-size:18px;line-height:1}
@@ -149,6 +155,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 [data-theme="orange"] .bottomnav{background:rgba(10,6,0,0.95)}
 [data-theme="cyan"] .bottomnav{background:rgba(1,10,20,0.95)}
 [data-theme="red"] .bottomnav{background:rgba(12,0,0,0.95)}
+[data-theme="teal"] .bottomnav{background:rgba(0,16,14,0.95)}
+[data-theme="pink"] .bottomnav{background:rgba(14,0,9,0.95)}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;font-size:10px;font-weight:600;color:var(--text3);border:none;background:none;user-select:none;transition:color .2s;font-family:var(--font-display);letter-spacing:.03em}
 .nav-btn.active{color:var(--accent)}
 .nav-ico{font-size:22px;line-height:1}
@@ -162,6 +170,101 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .bar-bg{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s ease}
 .bar-val{font-size:10px;color:var(--text2);min-width:58px;text-align:right;flex-shrink:0;font-family:var(--font-display);font-weight:600}
+/* NENKIN */
+.nenkin-wrap{margin:0 14px 10px;background:var(--bg2);border:1px solid rgba(244,114,182,0.2);border-radius:var(--radius-lg);overflow:hidden;transition:background .25s,border-color .25s}
+.nenkin-hd{display:flex;align-items:center;gap:10px;padding:10px 14px 8px;border-bottom:1px solid var(--border)}
+.nenkin-hd-icon{font-size:16px}
+.nenkin-hd-title{font-family:var(--font-display);font-size:11px;font-weight:700;color:#F472B6;text-transform:uppercase;letter-spacing:.08em;flex:1}
+.nenkin-type-wrap{display:flex;align-items:center;gap:8px;padding:10px 14px 6px}
+.nenkin-type-lbl{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.nenkin-type-sel{flex:1;background:var(--bg3);border:1px solid rgba(244,114,182,0.25);border-radius:10px;color:#F472B6;font-size:13px;font-weight:700;padding:8px 12px;font-family:var(--font-display);-webkit-appearance:none;appearance:none;cursor:pointer;transition:background .2s}
+.nenkin-type-sel:focus{outline:none;border-color:#F472B6}
+.nenkin-type-sel option{background:var(--bg3);color:var(--text)}
+.nenkin-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:6px 14px 8px}
+.nenkin-field label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px}
+.nenkin-sel{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 4px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;transition:background .25s,border-color .25s}
+.nenkin-sel:focus{outline:none;border-color:#F472B6}
+.nenkin-sel option{background:var(--bg3);color:var(--text)}
+.nenkin-total-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 10px;border-top:1px solid var(--border)}
+.nenkin-total-lbl{font-size:10px;color:rgba(244,114,182,0.65);font-weight:600}
+.nenkin-total-val{font-family:var(--font-display);font-size:15px;font-weight:700;color:#F472B6;letter-spacing:-0.5px}
+/* CONTROLE FINANCEIRO */
+.fin-sec-hd{padding:10px 18px 6px;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;font-family:var(--font-display)}
+.fin-card{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;margin:0 14px 12px;transition:background .25s,border-color .25s}
+.fin-card-hd{padding:12px 16px;background:var(--bg3);display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text)}
+.fin-card-hd-icon{font-size:16px}
+.fin-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
+.fin-row span:last-child{font-weight:700;font-family:var(--font-display)}
+.fin-row.income span:last-child{color:#4ADE80}
+.fin-row.expense span:last-child{color:#F87171}
+.fin-row.neutral span:last-child{color:#F472B6}
+.fin-row.total{background:rgba(255,255,255,0.04);font-weight:700}
+.fin-row.total span{color:var(--accent);font-size:14px}
+.fin-grand{background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl);margin:0 14px 20px;padding:20px;display:flex;justify-content:space-between;align-items:center;transition:border-color .25s}
+.fin-grand-lbl{font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.fin-grand-val{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-1px}
+.fin-empty{text-align:center;padding:30px 20px;color:var(--text3);font-size:12px}
+
+/* Purple theme dropdown overrides */
+[data-theme="purple"] .dp-st,
+[data-theme="purple"] .cfg-lang-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235B21B6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+[data-theme="purple"] .wage-sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237C3AED' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+[data-theme="purple"] .nenkin-type-sel{border-color:rgba(124,58,237,0.35);color:#6D28D9}
+
+/* ====== CONTROLE FINANCEIRO ====== */
+.fin-view-wrap{padding:0 0 16px}
+.fin-month-strip{display:flex;gap:6px;padding:12px 16px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fin-month-strip::-webkit-scrollbar{display:none}
+.fin-mtab{padding:6px 14px;border-radius:40px;border:1px solid var(--border2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text2);background:var(--bg3);transition:all .2s;font-family:var(--font-display)}
+.fin-mtab.active{background:var(--accent);color:#000;border-color:var(--accent)}
+/* section headers */
+.fin-section-hd{display:flex;align-items:center;gap:8px;padding:10px 16px 6px}
+.fin-section-hd-icon{font-size:16px}
+.fin-section-hd-label{font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.fin-section-hd-label.income-color{color:#4ADE80}
+.fin-section-hd-label.expense-color{color:#F87171}
+.fin-section-hd-label.summary-color{color:var(--accent)}
+.fin-section-hd-label.insight-color{color:#FACC15}
+/* cards */
+.fin-card2{background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--border);margin:0 14px 10px;overflow:hidden;transition:background .25s,border-color .25s}
+.fin-row2{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--border);font-size:13px;color:var(--text2)}
+.fin-row2:first-child{border-top:none}
+.fin-row2 .fin-lbl{flex:1;color:var(--text2)}
+.fin-row2 .fin-val{font-family:var(--font-display);font-weight:700;font-size:14px}
+.fin-val.green{color:#4ADE80}.fin-val.red{color:#F87171}.fin-val.accent{color:var(--accent)}.fin-val.pink{color:#F472B6}
+/* expense add form */
+.fin-add-form{padding:10px 14px 12px;background:var(--bg3);margin:0 14px 10px;border-radius:var(--radius-lg);border:1px solid var(--border2)}
+.fin-add-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.fin-add-row3{display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:8px}
+.fin-label{font-size:9.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+.fin-sel{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:12px;font-weight:600;padding:8px 10px;font-family:var(--font-body);-webkit-appearance:none;appearance:none;cursor:pointer;transition:background .2s}
+.fin-sel:focus{outline:none;border-color:var(--accent)}
+.fin-sel option{background:var(--bg2);color:var(--text)}
+.fin-inp{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:13px;font-weight:600;padding:8px 10px;font-family:var(--font-display);transition:border-color .2s}
+.fin-inp:focus{outline:none;border-color:var(--accent)}
+.fin-add-btn{width:100%;height:40px;background:linear-gradient(135deg,#F87171,#EF4444);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;font-family:var(--font-display);cursor:pointer;transition:opacity .15s}
+.fin-add-btn:active{opacity:.8}
+/* expense list */
+.fin-expense-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border)}
+.fin-expense-item:first-child{border-top:none}
+.fin-exp-left{flex:1}
+.fin-exp-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text3)}
+.fin-exp-desc{font-size:13px;color:var(--text);margin-top:1px}
+.fin-exp-right{display:flex;align-items:center;gap:10px}
+.fin-exp-val{font-family:var(--font-display);font-size:14px;font-weight:700;color:#F87171}
+.fin-exp-del{background:rgba(239,68,68,0.12);border:none;border-radius:8px;color:#F87171;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.fin-exp-del:active{opacity:.7}
+.fin-empty-state{text-align:center;padding:20px;color:var(--text3);font-size:12px}
+/* summary / saldo */
+.fin-saldo-card{margin:0 14px 10px;padding:18px 20px;background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(244,114,182,0.08));border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-xl)}
+.fin-saldo-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.fin-saldo-row:last-child{margin-bottom:0;border-top:1px solid var(--border);padding-top:10px;margin-top:4px}
+.fin-saldo-lbl{font-size:12px;color:var(--text2);font-weight:600}
+.fin-saldo-val{font-family:var(--font-display);font-size:16px;font-weight:700}
+/* insight card */
+.fin-insight-card{margin:0 14px 20px;padding:16px;background:rgba(250,204,21,0.07);border:1px solid rgba(250,204,21,0.2);border-radius:var(--radius-lg)}
+.fin-insight-msg{font-size:13px;color:var(--text2);line-height:1.65;font-style:italic}
+.fin-insight-msg::before{content:'💡 '}
 </style>
 </head>
 <body>
@@ -217,6 +320,32 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
         </div>
       </div>
 
+      <!-- NENKIN / SHOUGAI NENKIN -->
+      <div class="block-divider" style="padding-top:12px">
+        <div class="block-divider-line"></div>
+        <div class="block-divider-label" style="color:#F472B6" id="lbl-nenkin-hd">年金</div>
+        <div class="block-divider-line"></div>
+      </div>
+      <div class="nenkin-wrap" style="margin:6px 14px 10px">
+        <div class="nenkin-type-wrap">
+          <span class="nenkin-type-lbl" id="lbl-nenkin-tipo">Tipo</span>
+          <select class="nenkin-type-sel" id="nk-tipo" onchange="onNenkinChg()">
+            <option value="">— (não registrar) —</option>
+            <option value="nenkin">年金 (Nenkin)</option>
+            <option value="shougai">障害年金 (Shougai Nenkin)</option>
+          </select>
+        </div>
+        <div class="nenkin-fields" id="nk-fields" style="display:none">
+          <div class="nenkin-field"><label id="lbl-nk-mes">Mês</label><select class="nenkin-sel" id="nk-mes" onchange="onNenkinChg()"></select></div>
+          <div class="nenkin-field"><label id="lbl-nk-dia">Dia</label><select class="nenkin-sel" id="nk-dia" onchange="onNenkinChg()"></select></div>
+          <div class="nenkin-field"><label id="lbl-nk-val">¥ Valor</label><select class="nenkin-sel" id="nk-val" onchange="onNenkinChg()"></select></div>
+        </div>
+        <div class="nenkin-total-row" id="nk-total-row" style="display:none">
+          <span class="nenkin-total-lbl" id="lbl-nk-total">Total Mensal</span>
+          <span class="nenkin-total-val" id="nk-total-val">¥ —</span>
+        </div>
+      </div>
+
       <div class="dp-breakdown" id="dp-breakdown">
         <div class="dp-br-row"><span id="lbl-br1">Turno 1</span><span id="br-b1">¥—</span></div>
         <div class="dp-br-row"><span id="lbl-br2">Turno 2</span><span id="br-b2">¥—</span></div>
@@ -231,6 +360,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
       <div class="dp-hint" id="dp-hint"></div>
     </div>
     <div id="chart-wrap"></div>
+  </div>
+
+  <div class="view" id="view-financeiro">
+    <div id="fin-content"></div>
   </div>
 
   <div class="view" id="view-resumo">
@@ -266,46 +399,174 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 
 <div class="bottomnav">
   <button class="nav-btn active" id="nav-ponto" onclick="showView('ponto')"><span class="nav-ico">📅</span><span id="nav-lbl-ponto"></span></button>
+  <button class="nav-btn" id="nav-financeiro" onclick="showView('financeiro')"><span class="nav-ico">💴</span><span id="nav-lbl-fin"></span></button>
   <button class="nav-btn" id="nav-resumo" onclick="showView('resumo')"><span class="nav-ico">📊</span><span id="nav-lbl-resumo"></span></button>
   <button class="nav-btn" id="nav-config" onclick="showView('config')"><span class="nav-ico">⚙️</span><span id="nav-lbl-cfg"></span></button>
 </div>
 
 <script>
 const LANGS={
-'pt-BR':{name:'Português',flag:'🇧🇷',months:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],wdays:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],nav:['Ponto','Resumo','Config'],kpi:['Dias trab.','Total ganho','H. extras','Faltas'],secSum:'Todos os meses',secCfg:'Configurações',cfgTitle:'Parâmetros do sistema',cfgLabels:['Salário por hora (¥)','Horas normais/dia','Multiplicador h. extra','Desconto almoço (min, se ≥6h)','Desconto descanso (min, se ≥4h)'],cfgSave:'Salvar configurações',cfgTip:'Dados salvos localmente neste navegador.\nPara instalar no iPhone: Safari → Compartilhar → "Adicionar à Tela de Início".\nPara instalar no Android: Chrome → menu ⋮ → "Adicionar à tela inicial".',status:['— Automático','✅ Trabalhado','❌ Falta','🌿 Folga','🎌 Feriado','🌓 Meio Dia','⚠️ Incompleto'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Entrada','Saída','H. extra'],totalLbl:'Total do dia',save:'Salvar dia',clear:'Limpar dia',hint:'Selecione um dia no calendário para registrar o ponto.',thisMonth:'este mês',totalMonths:'Total 6 meses',sumRows:['Dias trab.','H. normais','H. extras','Total'],chartHd:'Ganhos diários (¥)',legendLabels:['Trabalhado','Falta','Folga','Meio dia'],badgeLabels:{work:'✅ Trabalhado',absent:'❌ Falta',folga:'🌿 Folga',meio:'🌓 Meio Dia',inc:'⚠️ Incompleto',none:'—'},langTitle:'Idioma',langLabel:'Selecione o idioma',themeTitle:'Tema de Cores',themeNames:['🌿 Verde','🔮 Roxo','🔥 Laranja','💎 Ciano','🔴 Vermelho'],turno2:'Turno 2 (opcional)',turno2Lbl:'Valor por hora',entrada2:'Entrada 2',saida2:'Saída 2',extra2:'H. Extra 2',brTurno1:'Turno 1',brTurno2:'Turno 2',brTotal:'Total'},
-'en-US':{name:'English',flag:'🇺🇸',months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],monthsFull:['January','February','March','April','May','June','July','August','September','October','November','December'],wdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],nav:['Clock','Summary','Settings'],kpi:['Days worked','Total earned','Overtime hrs','Absences'],secSum:'All months',secCfg:'Settings',cfgTitle:'System parameters',cfgLabels:['Hourly wage (¥)','Normal hrs/day','Overtime multiplier','Lunch break (min, if ≥6h)','Rest break (min, if ≥4h)'],cfgSave:'Save settings',cfgTip:'Data saved locally in this browser.\nTo install on iPhone: Safari → Share → "Add to Home Screen".\nTo install on Android: Chrome → menu ⋮ → "Add to Home Screen".',status:['— Auto','✅ Worked','❌ Absent','🌿 Day off','🎌 Holiday','🌓 Half Day','⚠️ Incomplete'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Clock in','Clock out','Overtime'],totalLbl:'Day total',save:'Save day',clear:'Clear day',hint:'Tap a day on the calendar to log your hours.',thisMonth:'this month',totalMonths:'Total 6 months',sumRows:['Days worked','Normal hrs','Overtime hrs','Total'],chartHd:'Daily earnings (¥)',legendLabels:['Worked','Absent','Day off','Half day'],badgeLabels:{work:'✅ Worked',absent:'❌ Absent',folga:'🌿 Day off',meio:'🌓 Half Day',inc:'⚠️ Incomplete',none:'—'},langTitle:'Language',langLabel:'Select language',themeTitle:'Color Theme',themeNames:['🌿 Green','🔮 Purple','🔥 Orange','💎 Cyan','🔴 Red'],turno2:'Shift 2 (optional)',turno2Lbl:'Hourly rate',entrada2:'Clock in 2',saida2:'Clock out 2',extra2:'Overtime 2',brTurno1:'Shift 1',brTurno2:'Shift 2',brTotal:'Total'},
-'ja':{name:'日本語',flag:'🇯🇵',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],wdays:['日','月','火','水','木','金','土'],nav:['勤怠','集計','設定'],kpi:['出勤日数','合計収入','残業時間','欠勤'],secSum:'全月集計',secCfg:'設定',cfgTitle:'システム設定',cfgLabels:['時給 (¥)','通常勤務時間/日','残業割増率','昼休み (分、≥6h)','休憩 (分、≥4h)'],cfgSave:'保存',cfgTip:'データはブラウザに保存されます。\nインストール (iPhone): Safari → 共有 → "ホーム画面に追加"。\nインストール (Android): Chrome → メニュー ⋮ → "ホーム画面に追加"。',status:['— 自動','✅ 出勤','❌ 欠勤','🌿 休暇','🎌 祝日','🌓 半日','⚠️ 未完了'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['出勤時刻','退勤時刻','残業'],totalLbl:'日別合計',save:'保存',clear:'クリア',hint:'カレンダーの日付をタップして勤怠を記録してください。',thisMonth:'今月',totalMonths:'6ヶ月合計',sumRows:['出勤日数','通常時間','残業時間','合計'],chartHd:'日別収入 (¥)',legendLabels:['出勤','欠勤','休暇','半日'],badgeLabels:{work:'✅ 出勤',absent:'❌ 欠勤',folga:'🌿 休暇',meio:'🌓 半日',inc:'⚠️ 未完了',none:'—'},langTitle:'言語',langLabel:'言語を選択',themeTitle:'カラーテーマ',themeNames:['🌿 グリーン','🔮 パープル','🔥 オレンジ','💎 シアン','🔴 レッド'],turno2:'シフト2（任意）',turno2Lbl:'時給',entrada2:'出勤2',saida2:'退勤2',extra2:'残業2',brTurno1:'シフト1',brTurno2:'シフト2',brTotal:'合計'},
-'es':{name:'Español',flag:'🇪🇸',months:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],monthsFull:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],wdays:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],nav:['Registro','Resumen','Config'],kpi:['Días trab.','Total ganado','H. extra','Faltas'],secSum:'Todos los meses',secCfg:'Configuración',cfgTitle:'Parámetros del sistema',cfgLabels:['Salario por hora (¥)','Horas normales/día','Multiplicador h. extra','Descanso almuerzo (min, si ≥6h)','Descanso (min, si ≥4h)'],cfgSave:'Guardar configuración',cfgTip:'Datos guardados localmente.\nPara instalar en iPhone: Safari → Compartir → "Agregar a pantalla de inicio".\nPara instalar en Android: Chrome → menú ⋮ → "Agregar a pantalla de inicio".',status:['— Automático','✅ Trabajado','❌ Falta','🌿 Descanso','🎌 Festivo','🌓 Medio Día','⚠️ Incompleto'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Entrada','Salida','H. extra'],totalLbl:'Total del día',save:'Guardar día',clear:'Limpiar día',hint:'Seleccione un día en el calendario para registrar.',thisMonth:'este mes',totalMonths:'Total 6 meses',sumRows:['Días trab.','H. normales','H. extras','Total'],chartHd:'Ganancias diarias (¥)',legendLabels:['Trabajado','Falta','Descanso','Medio día'],badgeLabels:{work:'✅ Trabajado',absent:'❌ Falta',folga:'🌿 Descanso',meio:'🌓 Medio Día',inc:'⚠️ Incompleto',none:'—'},langTitle:'Idioma',langLabel:'Selecciona el idioma',themeTitle:'Tema de Colores',themeNames:['🌿 Verde','🔮 Morado','🔥 Naranja','💎 Cian','🔴 Rojo'],turno2:'Turno 2 (opcional)',turno2Lbl:'Tarifa por hora',entrada2:'Entrada 2',saida2:'Salida 2',extra2:'H. Extra 2',brTurno1:'Turno 1',brTurno2:'Turno 2',brTotal:'Total'},
-'zh':{name:'中文',flag:'🇨🇳',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],wdays:['日','一','二','三','四','五','六'],nav:['考勤','汇总','设置'],kpi:['工作天数','总收入','加班时间','缺勤'],secSum:'全部月份',secCfg:'系统设置',cfgTitle:'参数设置',cfgLabels:['时薪 (¥)','每日正常工时','加班倍率','午餐时间 (分钟, ≥6h)','休息时间 (分钟, ≥4h)'],cfgSave:'保存设置',cfgTip:'数据保存在本地浏览器中。\n安装方法 (iPhone): Safari → 分享 → "添加到主屏幕"。\n安装方法 (Android): Chrome → 菜单 ⋮ → "添加到主屏幕"。',status:['— 自动','✅ 已上班','❌ 缺勤','🌿 假期','🎌 节假日','🌓 半天','⚠️ 未完成'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['上班时间','下班时间','加班'],totalLbl:'当天合计',save:'保存',clear:'清除',hint:'点击日历中的日期来记录考勤。',thisMonth:'本月',totalMonths:'6个月合计',sumRows:['工作天数','正常工时','加班工时','合计'],chartHd:'每日收入 (¥)',legendLabels:['已上班','缺勤','假期','半天'],badgeLabels:{work:'✅ 已上班',absent:'❌ 缺勤',folga:'🌿 假期',meio:'🌓 半天',inc:'⚠️ 未完成',none:'—'},langTitle:'语言',langLabel:'选择语言',themeTitle:'颜色主题',themeNames:['🌿 绿色','🔮 紫色','🔥 橙色','💎 青色','🔴 红色'],turno2:'班次2（可选）',turno2Lbl:'每小时费率',entrada2:'上班2',saida2:'下班2',extra2:'加班2',brTurno1:'班次1',brTurno2:'班次2',brTotal:'合计'},
-'ko':{name:'한국어',flag:'🇰🇷',months:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],monthsFull:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],wdays:['일','월','화','수','목','금','토'],nav:['근태','요약','설정'],kpi:['근무일수','총수입','초과근무','결근'],secSum:'전체 월',secCfg:'설정',cfgTitle:'시스템 설정',cfgLabels:['시급 (¥)','일반 근무시간/일','초과근무 배수','점심시간 (분, ≥6h)','휴식시간 (분, ≥4h)'],cfgSave:'설정 저장',cfgTip:'데이터는 로컬에 저장됩니다.\n설치 (iPhone): Safari → 공유 → "홈 화면에 추가".\n설치 (Android): Chrome → 메뉴 ⋮ → "홈 화면에 추가".',status:['— 자동','✅ 근무','❌ 결근','🌿 휴가','🎌 공휴일','🌓 반차','⚠️ 미완료'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['출근시간','퇴근시간','초과근무'],totalLbl:'당일 합계',save:'저장',clear:'삭제',hint:'달력에서 날짜를 탭하여 근태를 기록하세요.',thisMonth:'이번 달',totalMonths:'6개월 합계',sumRows:['근무일수','일반시간','초과시간','합계'],chartHd:'일별 수입 (¥)',legendLabels:['근무','결근','휴가','반차'],badgeLabels:{work:'✅ 근무',absent:'❌ 결근',folga:'🌿 휴가',meio:'🌓 반차',inc:'⚠️ 미완료',none:'—'},langTitle:'언어',langLabel:'언어 선택',themeTitle:'색상 테마',themeNames:['🌿 초록','🔮 보라','🔥 주황','💎 시안','🔴 빨강'],turno2:'교대 2 (선택)',turno2Lbl:'시간당 요금',entrada2:'출근2',saida2:'퇴근2',extra2:'초과근무2',brTurno1:'교대1',brTurno2:'교대2',brTotal:'합계'},
-'vi':{name:'Tiếng Việt',flag:'🇻🇳',months:['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'],monthsFull:['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],wdays:['CN','T2','T3','T4','T5','T6','T7'],nav:['Chấm công','Tổng kết','Cài đặt'],kpi:['Ngày làm','Tổng thu','G. tăng ca','Vắng mặt'],secSum:'Tất cả các tháng',secCfg:'Cài đặt',cfgTitle:'Tham số hệ thống',cfgLabels:['Lương mỗi giờ (¥)','Giờ làm bình thường/ngày','Hệ số tăng ca','Nghỉ trưa (phút, nếu ≥6h)','Nghỉ giải lao (phút, nếu ≥4h)'],cfgSave:'Lưu cài đặt',cfgTip:'Dữ liệu được lưu cục bộ.\nCài đặt (iPhone): Safari → Chia sẻ → "Thêm vào màn hình chính".\nCài đặt (Android): Chrome → menu ⋮ → "Thêm vào màn hình chính".',status:['— Tự động','✅ Đã làm','❌ Vắng','🌿 Nghỉ phép','🎌 Lễ','🌓 Nửa Ngày','⚠️ Chưa xong'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Vào ca','Ra ca','Tăng ca'],totalLbl:'Tổng ngày',save:'Lưu',clear:'Xóa',hint:'Nhấn vào ngày trên lịch để ghi chấm công.',thisMonth:'tháng này',totalMonths:'Tổng 6 tháng',sumRows:['Ngày làm','Giờ thường','Giờ tăng ca','Tổng'],chartHd:'Thu nhập hàng ngày (¥)',legendLabels:['Đã làm','Vắng','Nghỉ phép','Nửa ngày'],badgeLabels:{work:'✅ Đã làm',absent:'❌ Vắng',folga:'🌿 Nghỉ phép',meio:'🌓 Nửa Ngày',inc:'⚠️ Chưa xong',none:'—'},langTitle:'Ngôn ngữ',langLabel:'Chọn ngôn ngữ',themeTitle:'Chủ đề màu sắc',themeNames:['🌿 Xanh lá','🔮 Tím','🔥 Cam','💎 Cyan','🔴 Đỏ'],turno2:'Ca 2 (tùy chọn)',turno2Lbl:'Mức lương/giờ',entrada2:'Vào ca 2',saida2:'Ra ca 2',extra2:'Tăng ca 2',brTurno1:'Ca 1',brTurno2:'Ca 2',brTotal:'Tổng'},
-'fr':{name:'Français',flag:'🇫🇷',months:['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],monthsFull:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],wdays:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],nav:['Pointage','Résumé','Paramètres'],kpi:['Jours trav.','Total gagné','H. supp.','Absences'],secSum:'Tous les mois',secCfg:'Paramètres',cfgTitle:'Paramètres du système',cfgLabels:['Taux horaire (¥)','Heures normales/jour','Multiplicateur h. supp.','Pause déjeuner (min, si ≥6h)','Pause repos (min, si ≥4h)'],cfgSave:'Enregistrer',cfgTip:'Données sauvegardées localement.\nPour installer sur iPhone: Safari → Partager → "Ajouter à l\'écran d\'accueil".\nPour installer sur Android: Chrome → menu ⋮ → "Ajouter à l\'écran d\'accueil".',status:['— Auto','✅ Travaillé','❌ Absent','🌿 Congé','🎌 Férié','🌓 Demi-Journée','⚠️ Incomplet'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Arrivée','Départ','H. supp.'],totalLbl:'Total du jour',save:'Enregistrer',clear:'Effacer',hint:'Sélectionnez un jour dans le calendrier pour enregistrer.',thisMonth:'ce mois',totalMonths:'Total 6 mois',sumRows:['Jours trav.','H. normales','H. supp.','Total'],chartHd:'Gains journaliers (¥)',legendLabels:['Travaillé','Absent','Congé','Demi-journée'],badgeLabels:{work:'✅ Travaillé',absent:'❌ Absent',folga:'🌿 Congé',meio:'🌓 Demi-Journée',inc:'⚠️ Incomplet',none:'—'},langTitle:'Langue',langLabel:'Sélectionner la langue',themeTitle:'Thème de couleurs',themeNames:['🌿 Vert','🔮 Violet','🔥 Orange','💎 Cyan','🔴 Rouge'],turno2:'Équipe 2 (optionnel)',turno2Lbl:'Taux horaire',entrada2:'Arrivée 2',saida2:'Départ 2',extra2:'H. supp. 2',brTurno1:'Équipe 1',brTurno2:'Équipe 2',brTotal:'Total'},
-'de':{name:'Deutsch',flag:'🇩🇪',months:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],monthsFull:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],wdays:['So','Mo','Di','Mi','Do','Fr','Sa'],nav:['Zeiterfassung','Übersicht','Einstellungen'],kpi:['Arbeitstage','Gesamtverdienst','Überstunden','Fehltage'],secSum:'Alle Monate',secCfg:'Einstellungen',cfgTitle:'Systemparameter',cfgLabels:['Stundenlohn (¥)','Normale Std./Tag','Überstunden-Faktor','Mittagspause (Min, bei ≥6h)','Pause (Min, bei ≥4h)'],cfgSave:'Einstellungen speichern',cfgTip:'Daten werden lokal gespeichert.\nInstallation auf iPhone: Safari → Teilen → "Zum Home-Bildschirm".\nInstallation auf Android: Chrome → Menü ⋮ → "Zum Startbildschirm hinzufügen".',status:['— Automatisch','✅ Gearbeitet','❌ Fehlend','🌿 Frei','🎌 Feiertag','🌓 Halbtag','⚠️ Unvollständig'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Kommen','Gehen','Überstd.'],totalLbl:'Tagesverdienst',save:'Speichern',clear:'Löschen',hint:'Wählen Sie einen Tag im Kalender aus.',thisMonth:'diesen Monat',totalMonths:'Gesamt 6 Monate',sumRows:['Arbeitstage','Normalstd.','Überstunden','Gesamt'],chartHd:'Tagesverdienst (¥)',legendLabels:['Gearbeitet','Fehlend','Frei','Halbtag'],badgeLabels:{work:'✅ Gearbeitet',absent:'❌ Fehlend',folga:'🌿 Frei',meio:'🌓 Halbtag',inc:'⚠️ Unvollständig',none:'—'},langTitle:'Sprache',langLabel:'Sprache auswählen',themeTitle:'Farbthema',themeNames:['🌿 Grün','🔮 Lila','🔥 Orange','💎 Cyan','🔴 Rot'],turno2:'Schicht 2 (optional)',turno2Lbl:'Stundensatz',entrada2:'Kommen 2',saida2:'Gehen 2',extra2:'Überstd. 2',brTurno1:'Schicht 1',brTurno2:'Schicht 2',brTotal:'Gesamt'},
+'pt-BR':{name:'Português',flag:'🇧🇷',months:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],monthsFull:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],wdays:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],nav:['Ponto','Resumo','Config'],kpi:['Dias trab.','Total ganho','H. extras','Faltas'],secSum:'Todos os meses',secCfg:'Configurações',cfgTitle:'Parâmetros do sistema',cfgLabels:['Salário por hora (¥)','Horas normais/dia','Multiplicador h. extra','Desconto almoço (min, se ≥6h)','Desconto descanso (min, se ≥4h)'],cfgSave:'Salvar configurações',cfgTip:'Dados salvos localmente neste navegador.\nPara instalar no iPhone: Safari → Compartilhar → "Adicionar à Tela de Início".\nPara instalar no Android: Chrome → menu ⋮ → "Adicionar à tela inicial".',status:['— Automático','✅ Trabalhado','❌ Falta','🌿 Folga','🎌 Feriado','🌓 Meio Dia','⚠️ Incompleto'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Entrada','Saída','H. extra'],totalLbl:'Total do dia',save:'Salvar dia',clear:'Limpar dia',hint:'Selecione um dia no calendário para registrar o ponto.',thisMonth:'este mês',totalMonths:'Total 6 meses',sumRows:['Dias trab.','H. normais','H. extras','Total'],chartHd:'Ganhos diários (¥)',legendLabels:['Trabalhado','Falta','Folga','Meio dia'],badgeLabels:{work:'✅ Trabalhado',absent:'❌ Falta',folga:'🌿 Folga',meio:'🌓 Meio Dia',inc:'⚠️ Incompleto',none:'—'},langTitle:'Idioma',langLabel:'Selecione o idioma',themeTitle:'Tema de Cores',themeNames:['🌿 Verde','🔮 Roxo','🔥 Laranja','💎 Ciano','🔴 Vermelho','🌊 Teal','🌸 Pink'],turno2:'Turno 2 (opcional)',turno2Lbl:'Valor por hora',entrada2:'Entrada 2',saida2:'Saída 2',extra2:'H. Extra 2',brTurno1:'Turno 1',brTurno2:'Turno 2',brTotal:'Total',navFin:'Finanças',nenkinHd:'年金 Pensão',nenkinTipo:'Tipo',nenkinMes:'Mês',nenkinDia:'Dia',nenkinVal:'¥ Valor',nenkinTotalMes:'Total Mensal',finSecHd:'Controle Financeiro',finSalario:'Salário (Trabalho)',finNenkin:'Pensão (年金)',finShougai:'Pensão Invalidez',finTotal:'Total Líquido',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Gastos',sumSaldo:'💰 Sobrou',sumSaldoTotal:'💰 Saldo acumulado',finComingSoon:'Em breve: registro de gastos e pagamentos mensais.',finSecEntradas:'Entradas',finTransporte:'Transporte',finTotalEntradas:'Total Entradas',finSecGastos:'Gastos',finCategoria:'Categoria',finValor:'¥ Valor',finDescricao:'Descrição (opcional)',finAddGasto:'Adicionar gasto',finSemGastos:'Sem gastos',finTotalGastos:'Total Gastos',finSecResumo:'Resumo',finTotalGanhos:'Total Ganhos',finSaldo:'Saldo',finSecInsights:'Insights',catMoradia:'🏠 Moradia',catAlimentacao:'🍱 Alimentação',catTransporte:'🚃 Transporte',catSaude:'🏥 Saúde',catEducacao:'📚 Educação',catLazer:'🎮 Lazer',catRoupas:'👕 Roupas',catUtilidades:'💡 Utilidades',catImpostos:'🏙 Impostos',catOutros:'📦 Outros',insightNoData:'Registre ganhos e gastos.',insightNegativo:'Gastos superaram entradas.',insightAlto:'Gastou mais de 80%.',insightMedio:'Gastos equilibrados.',insightBom:'Ótimo! Economia excelente!',insightSemGastos:'Nenhum gasto ainda.',insightTopCat:'Maior gasto: ',insightNenkin:'Pensão recebida: ',insightOk:'Balanço equilibrado!',nkOpts:['— (não registrar) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (não usar) —'},
+'en-US':{name:'English',flag:'🇺🇸',months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],monthsFull:['January','February','March','April','May','June','July','August','September','October','November','December'],wdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],nav:['Clock','Summary','Settings'],kpi:['Days worked','Total earned','Overtime hrs','Absences'],secSum:'All months',secCfg:'Settings',cfgTitle:'System parameters',cfgLabels:['Hourly wage (¥)','Normal hrs/day','Overtime multiplier','Lunch break (min, if ≥6h)','Rest break (min, if ≥4h)'],cfgSave:'Save settings',cfgTip:'Data saved locally in this browser.\nTo install on iPhone: Safari → Share → "Add to Home Screen".\nTo install on Android: Chrome → menu ⋮ → "Add to Home Screen".',status:['— Auto','✅ Worked','❌ Absent','🌿 Day off','🎌 Holiday','🌓 Half Day','⚠️ Incomplete'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Clock in','Clock out','Overtime'],totalLbl:'Day total',save:'Save day',clear:'Clear day',hint:'Tap a day on the calendar to log your hours.',thisMonth:'this month',totalMonths:'Total 6 months',sumRows:['Days worked','Normal hrs','Overtime hrs','Total'],chartHd:'Daily earnings (¥)',legendLabels:['Worked','Absent','Day off','Half day'],badgeLabels:{work:'✅ Worked',absent:'❌ Absent',folga:'🌿 Day off',meio:'🌓 Half Day',inc:'⚠️ Incomplete',none:'—'},langTitle:'Language',langLabel:'Select language',themeTitle:'Color Theme',themeNames:['🌿 Green','🔮 Purple','🔥 Orange','💎 Cyan','🔴 Red','🌊 Teal','🌸 Pink'],turno2:'Shift 2 (optional)',turno2Lbl:'Hourly rate',entrada2:'Clock in 2',saida2:'Clock out 2',extra2:'Overtime 2',brTurno1:'Shift 1',brTurno2:'Shift 2',brTotal:'Total',navFin:'Finance',nenkinHd:'年金 Pension',nenkinTipo:'Type',nenkinMes:'Month',nenkinDia:'Day',nenkinVal:'¥ Value',nenkinTotalMes:'Monthly Total',finSecHd:'Financial Control',finSalario:'Salary (Work)',finNenkin:'Pension (年金)',finShougai:'Disability Pension',finTotal:'Net Total',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Expenses',sumSaldo:'💰 Remaining',sumSaldoTotal:'💰 Accumulated balance',finComingSoon:'Coming soon: monthly expenses and payment tracking.',finSecEntradas:'Income',finTransporte:'Transport',finTotalEntradas:'Total Income',finSecGastos:'Expenses',finCategoria:'Category',finValor:'¥ Value',finDescricao:'Description (optional)',finAddGasto:'Add expense',finSemGastos:'No expenses',finTotalGastos:'Total Expenses',finSecResumo:'Summary',finTotalGanhos:'Total Income',finSaldo:'Balance',finSecInsights:'Insights',catMoradia:'🏠 Housing',catAlimentacao:'🍱 Food',catTransporte:'🚃 Transport',catSaude:'🏥 Health',catEducacao:'📚 Education',catLazer:'🎮 Leisure',catRoupas:'👕 Clothing',catUtilidades:'💡 Utilities',catImpostos:'🏙 Taxes',catOutros:'📦 Other',insightNoData:'Record income and expenses.',insightNegativo:'Expenses exceeded income.',insightAlto:'Over 80% of income spent.',insightMedio:'Balanced spending.',insightBom:'Great! Excellent savings!',insightSemGastos:'No expenses yet.',insightTopCat:'Top expense: ',insightNenkin:'Pension received: ',insightOk:'Balanced budget!',nkOpts:['— (do not register) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (not used) —'},
+'ja':{name:'日本語',flag:'🇯🇵',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],wdays:['日','月','火','水','木','金','土'],nav:['勤怠','集計','設定'],kpi:['出勤日数','合計収入','残業時間','欠勤'],secSum:'全月集計',secCfg:'設定',cfgTitle:'システム設定',cfgLabels:['時給 (¥)','通常勤務時間/日','残業割増率','昼休み (分、≥6h)','休憩 (分、≥4h)'],cfgSave:'保存',cfgTip:'データはブラウザに保存されます。\nインストール (iPhone): Safari → 共有 → "ホーム画面に追加"。\nインストール (Android): Chrome → メニュー ⋮ → "ホーム画面に追加"。',status:['— 自動','✅ 出勤','❌ 欠勤','🌿 休暇','🎌 祝日','🌓 半日','⚠️ 未完了'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['出勤時刻','退勤時刻','残業'],totalLbl:'日別合計',save:'保存',clear:'クリア',hint:'カレンダーの日付をタップして勤怠を記録してください。',thisMonth:'今月',totalMonths:'6ヶ月合計',sumRows:['出勤日数','通常時間','残業時間','合計'],chartHd:'日別収入 (¥)',legendLabels:['出勤','欠勤','休暇','半日'],badgeLabels:{work:'✅ 出勤',absent:'❌ 欠勤',folga:'🌿 休暇',meio:'🌓 半日',inc:'⚠️ 未完了',none:'—'},langTitle:'言語',langLabel:'言語を選択',themeTitle:'カラーテーマ',themeNames:['🌿 グリーン','🔮 パープル','🔥 オレンジ','💎 シアン','🔴 レッド','🌊 ティール','🌸 ピンク'],turno2:'シフト2（任意）',turno2Lbl:'時給',entrada2:'出勤2',saida2:'退勤2',extra2:'残業2',brTurno1:'シフト1',brTurno2:'シフト2',brTotal:'合計',navFin:'財務',nenkinHd:'年金',nenkinTipo:'種類',nenkinMes:'月',nenkinDia:'日',nenkinVal:'¥ 金額',nenkinTotalMes:'月合計',finSecHd:'収入管理',finSalario:'給料（勤務）',finNenkin:'年金',finShougai:'障害年金',finTotal:'手取り合計',sumNenkin:'年金',sumShougai:'障害年金',sumGastos:'💸 支出',sumSaldo:'💰 残り',sumSaldoTotal:'💰 累計残高',finComingSoon:'近日公開：月次支出・支払い管理。',finSecEntradas:'収入',finTransporte:'交通費',finTotalEntradas:'収入合計',finSecGastos:'支出',finCategoria:'カテゴリー',finValor:'¥金額',finDescricao:'説明任意',finAddGasto:'支出追加',finSemGastos:'支出未登録',finTotalGastos:'支出合計',finSecResumo:'まとめ',finTotalGanhos:'総収入',finSaldo:'残高',finSecInsights:'インサイト',catMoradia:'🏠住居',catAlimentacao:'🍱食費',catTransporte:'🚃交通',catSaude:'🏥医療',catEducacao:'📚教育',catLazer:'🎮娯楽',catRoupas:'👕衣類',catUtilidades:'💡公共料金',catImpostos:'🏙税社保',catOutros:'📦その他',insightNoData:'収支を入力するとインサイトが表示されます。',insightNegativo:'支出が収入を上回りました。',insightAlto:'収入の80％以上使いました。',insightMedio:'バランスが取れています。',insightBom:'素晴らしい！節約率高！',insightSemGastos:'支出未登録。',insightTopCat:'最大の支出: ',insightNenkin:'受取年金: ',insightOk:'バランス良好！',nkOpts:['— (登録しない) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (使用しない) —'},
+'es':{name:'Español',flag:'🇪🇸',months:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],monthsFull:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],wdays:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],nav:['Registro','Resumen','Config'],kpi:['Días trab.','Total ganado','H. extra','Faltas'],secSum:'Todos los meses',secCfg:'Configuración',cfgTitle:'Parámetros del sistema',cfgLabels:['Salario por hora (¥)','Horas normales/día','Multiplicador h. extra','Descanso almuerzo (min, si ≥6h)','Descanso (min, si ≥4h)'],cfgSave:'Guardar configuración',cfgTip:'Datos guardados localmente.\nPara instalar en iPhone: Safari → Compartir → "Agregar a pantalla de inicio".\nPara instalar en Android: Chrome → menú ⋮ → "Agregar a pantalla de inicio".',status:['— Automático','✅ Trabajado','❌ Falta','🌿 Descanso','🎌 Festivo','🌓 Medio Día','⚠️ Incompleto'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Entrada','Salida','H. extra'],totalLbl:'Total del día',save:'Guardar día',clear:'Limpiar día',hint:'Seleccione un día en el calendario para registrar.',thisMonth:'este mes',totalMonths:'Total 6 meses',sumRows:['Días trab.','H. normales','H. extras','Total'],chartHd:'Ganancias diarias (¥)',legendLabels:['Trabajado','Falta','Descanso','Medio día'],badgeLabels:{work:'✅ Trabajado',absent:'❌ Falta',folga:'🌿 Descanso',meio:'🌓 Medio Día',inc:'⚠️ Incompleto',none:'—'},langTitle:'Idioma',langLabel:'Selecciona el idioma',themeTitle:'Tema de Colores',themeNames:['🌿 Verde','🔮 Morado','🔥 Naranja','💎 Cian','🔴 Rojo','🌊 Teal','🌸 Rosa'],turno2:'Turno 2 (opcional)',turno2Lbl:'Tarifa por hora',entrada2:'Entrada 2',saida2:'Salida 2',extra2:'H. Extra 2',brTurno1:'Turno 1',brTurno2:'Turno 2',brTotal:'Total',navFin:'Finanzas',nenkinHd:'年金 Pensión',nenkinTipo:'Tipo',nenkinMes:'Mes',nenkinDia:'Día',nenkinVal:'¥ Valor',nenkinTotalMes:'Total Mensual',finSecHd:'Control Financiero',finSalario:'Salario (Trabajo)',finNenkin:'Pensión (年金)',finShougai:'Pensión Invalidez',finTotal:'Total Neto',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Gastos',sumSaldo:'💰 Restante',sumSaldoTotal:'💰 Saldo acumulado',finComingSoon:'Próximamente: registro de gastos y pagos mensuales.',finSecEntradas:'Ingresos',finTransporte:'Transporte',finTotalEntradas:'Total Ingresos',finSecGastos:'Gastos',finCategoria:'Categoría',finValor:'¥Valor',finDescricao:'Descripción (opcional)',finAddGasto:'Agregar gasto',finSemGastos:'Sin gastos',finTotalGastos:'Total Gastos',finSecResumo:'Resumen',finTotalGanhos:'Total Ingresos',finSaldo:'Saldo',finSecInsights:'Insights',catMoradia:'🏠Vivienda',catAlimentacao:'🍱Alimentación',catTransporte:'🚃Transporte',catSaude:'🏥Salud',catEducacao:'📚Educación',catLazer:'🎮Ocio',catRoupas:'👕Ropa',catUtilidades:'💡Servicios',catImpostos:'🏙Impuestos',catOutros:'📦Otros',insightNoData:'Registra ingresos y gastos.',insightNegativo:'Los gastos superaron los ingresos.',insightAlto:'Gastaste más del 80%.',insightMedio:'Balance equilibrado.',insightBom:'¡Excelente ahorro!',insightSemGastos:'Aún no hay gastos.',insightTopCat:'Mayor gasto: ',insightNenkin:'Pensión recibida: ',insightOk:'¡Balance equilibrado!',nkOpts:['— (no registrar) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (no usar) —'},
+'zh':{name:'中文',flag:'🇨🇳',months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],monthsFull:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],wdays:['日','一','二','三','四','五','六'],nav:['考勤','汇总','设置'],kpi:['工作天数','总收入','加班时间','缺勤'],secSum:'全部月份',secCfg:'系统设置',cfgTitle:'参数设置',cfgLabels:['时薪 (¥)','每日正常工时','加班倍率','午餐时间 (分钟, ≥6h)','休息时间 (分钟, ≥4h)'],cfgSave:'保存设置',cfgTip:'数据保存在本地浏览器中。\n安装方法 (iPhone): Safari → 分享 → "添加到主屏幕"。\n安装方法 (Android): Chrome → 菜单 ⋮ → "添加到主屏幕"。',status:['— 自动','✅ 已上班','❌ 缺勤','🌿 假期','🎌 节假日','🌓 半天','⚠️ 未完成'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['上班时间','下班时间','加班'],totalLbl:'当天合计',save:'保存',clear:'清除',hint:'点击日历中的日期来记录考勤。',thisMonth:'本月',totalMonths:'6个月合计',sumRows:['工作天数','正常工时','加班工时','合计'],chartHd:'每日收入 (¥)',legendLabels:['已上班','缺勤','假期','半天'],badgeLabels:{work:'✅ 已上班',absent:'❌ 缺勤',folga:'🌿 假期',meio:'🌓 半天',inc:'⚠️ 未完成',none:'—'},langTitle:'语言',langLabel:'选择语言',themeTitle:'颜色主题',themeNames:['🌿 绿色','🔮 紫色','🔥 橙色','💎 青色','🔴 红色','🌊 青绿','🌸 粉色'],turno2:'班次2（可选）',turno2Lbl:'每小时费率',entrada2:'上班2',saida2:'下班2',extra2:'加班2',brTurno1:'班次1',brTurno2:'班次2',brTotal:'合计',navFin:'财务',nenkinHd:'年金 养老金',nenkinTipo:'类型',nenkinMes:'月',nenkinDia:'日',nenkinVal:'¥ 金额',nenkinTotalMes:'月合计',finSecHd:'财务管理',finSalario:'工资（工作）',finNenkin:'养老金（年金）',finShougai:'残疾养老金',finTotal:'净收入',sumNenkin:'年金',sumShougai:'障害年金',sumGastos:'💸 支出',sumSaldo:'💰 结余',sumSaldoTotal:'💰 累计余额',finComingSoon:'即将推出：月度支出和付款记录。',finSecEntradas:'收入',finTransporte:'交通',finTotalEntradas:'总收入',finSecGastos:'支出',finCategoria:'类别',finValor:'¥金额',finDescricao:'描述(可选)',finAddGasto:'添加支出',finSemGastos:'暂无支出',finTotalGastos:'总支出',finSecResumo:'汇总',finTotalGanhos:'总收入',finSaldo:'余额',finSecInsights:'洞察',catMoradia:'🏠住房',catAlimentacao:'🍱饮食',catTransporte:'🚃交通',catSaude:'🏥医疗',catEducacao:'📚教育',catLazer:'🎮娱乐',catRoupas:'👕服装',catUtilidades:'💡水电费',catImpostos:'🏙税收',catOutros:'📦其他',insightNoData:'记录收支以获取洞察。',insightNegativo:'本月支出超过收入。',insightAlto:'支出超过80%。',insightMedio:'收支平衡。',insightBom:'太棒了！本月储蓄出色！',insightSemGastos:'尚未记录支出。',insightTopCat:'最大支出: ',insightNenkin:'收到养老金: ',insightOk:'收支平衡！',nkOpts:['— (不登记) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (不使用) —'},
+'ko':{name:'한국어',flag:'🇰🇷',months:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],monthsFull:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],wdays:['일','월','화','수','목','금','토'],nav:['근태','요약','설정'],kpi:['근무일수','총수입','초과근무','결근'],secSum:'전체 월',secCfg:'설정',cfgTitle:'시스템 설정',cfgLabels:['시급 (¥)','일반 근무시간/일','초과근무 배수','점심시간 (분, ≥6h)','휴식시간 (분, ≥4h)'],cfgSave:'설정 저장',cfgTip:'데이터는 로컬에 저장됩니다.\n설치 (iPhone): Safari → 공유 → "홈 화면에 추가".\n설치 (Android): Chrome → 메뉴 ⋮ → "홈 화면에 추가".',status:['— 자동','✅ 근무','❌ 결근','🌿 휴가','🎌 공휴일','🌓 반차','⚠️ 미완료'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['출근시간','퇴근시간','초과근무'],totalLbl:'당일 합계',save:'저장',clear:'삭제',hint:'달력에서 날짜를 탭하여 근태를 기록하세요.',thisMonth:'이번 달',totalMonths:'6개월 합계',sumRows:['근무일수','일반시간','초과시간','합계'],chartHd:'일별 수입 (¥)',legendLabels:['근무','결근','휴가','반차'],badgeLabels:{work:'✅ 근무',absent:'❌ 결근',folga:'🌿 휴가',meio:'🌓 반차',inc:'⚠️ 미완료',none:'—'},langTitle:'언어',langLabel:'언어 선택',themeTitle:'색상 테마',themeNames:['🌿 초록','🔮 보라','🔥 주황','💎 시안','🔴 빨강','🌊 틸','🌸 핑크'],turno2:'교대 2 (선택)',turno2Lbl:'시간당 요금',entrada2:'출근2',saida2:'퇴근2',extra2:'초과근무2',brTurno1:'교대1',brTurno2:'교대2',brTotal:'합계',navFin:'재무',nenkinHd:'年金 연금',nenkinTipo:'유형',nenkinMes:'월',nenkinDia:'일',nenkinVal:'¥ 금액',nenkinTotalMes:'월합계',finSecHd:'재무 관리',finSalario:'급여（근무）',finNenkin:'연금（年金）',finShougai:'장애연금',finTotal:'순수입',sumNenkin:'연금',sumShougai:'장애연금',sumGastos:'💸 지출',sumSaldo:'💰 남은돈',sumSaldoTotal:'💰 누적잔액',finComingSoon:'출시 예정: 월 지출 및 결제 관리.',finSecEntradas:'수입',finTransporte:'교통',finTotalEntradas:'총수입',finSecGastos:'지출',finCategoria:'카테고리',finValor:'¥금액',finDescricao:'설명(선택)',finAddGasto:'지출추가',finSemGastos:'지출없음',finTotalGastos:'총지출',finSecResumo:'요약',finTotalGanhos:'총수입',finSaldo:'잊액',finSecInsights:'인사이트',catMoradia:'🏠주거',catAlimentacao:'🍱식비',catTransporte:'🚃교통',catSaude:'🏥의료',catEducacao:'📚교육',catLazer:'🎮여가',catRoupas:'👕의류',catUtilidades:'💡공과금',catImpostos:'🏙세금',catOutros:'📦기타',insightNoData:'수입과지출을입력하세요.',insightNegativo:'지출이수입을초과했습니다.',insightAlto:'80%이상지출.',insightMedio:'균형잡힌지출.',insightBom:'훌륭해요!절약뛰어납니다!',insightSemGastos:'지출없음.',insightTopCat:'최대지출: ',insightNenkin:'연금수령: ',insightOk:'균형잊액!',nkOpts:['— (등록 안 함) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (사용 안 함) —'},
+'vi':{name:'Tiếng Việt',flag:'🇻🇳',months:['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'],monthsFull:['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],wdays:['CN','T2','T3','T4','T5','T6','T7'],nav:['Chấm công','Tổng kết','Cài đặt'],kpi:['Ngày làm','Tổng thu','G. tăng ca','Vắng mặt'],secSum:'Tất cả các tháng',secCfg:'Cài đặt',cfgTitle:'Tham số hệ thống',cfgLabels:['Lương mỗi giờ (¥)','Giờ làm bình thường/ngày','Hệ số tăng ca','Nghỉ trưa (phút, nếu ≥6h)','Nghỉ giải lao (phút, nếu ≥4h)'],cfgSave:'Lưu cài đặt',cfgTip:'Dữ liệu được lưu cục bộ.\nCài đặt (iPhone): Safari → Chia sẻ → "Thêm vào màn hình chính".\nCài đặt (Android): Chrome → menu ⋮ → "Thêm vào màn hình chính".',status:['— Tự động','✅ Đã làm','❌ Vắng','🌿 Nghỉ phép','🎌 Lễ','🌓 Nửa Ngày','⚠️ Chưa xong'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Vào ca','Ra ca','Tăng ca'],totalLbl:'Tổng ngày',save:'Lưu',clear:'Xóa',hint:'Nhấn vào ngày trên lịch để ghi chấm công.',thisMonth:'tháng này',totalMonths:'Tổng 6 tháng',sumRows:['Ngày làm','Giờ thường','Giờ tăng ca','Tổng'],chartHd:'Thu nhập hàng ngày (¥)',legendLabels:['Đã làm','Vắng','Nghỉ phép','Nửa ngày'],badgeLabels:{work:'✅ Đã làm',absent:'❌ Vắng',folga:'🌿 Nghỉ phép',meio:'🌓 Nửa Ngày',inc:'⚠️ Chưa xong',none:'—'},langTitle:'Ngôn ngữ',langLabel:'Chọn ngôn ngữ',themeTitle:'Chủ đề màu sắc',themeNames:['🌿 Xanh lá','🔮 Tím','🔥 Cam','💎 Cyan','🔴 Đỏ','🌊 Teal','🌸 Hồng'],turno2:'Ca 2 (tùy chọn)',turno2Lbl:'Mức lương/giờ',entrada2:'Vào ca 2',saida2:'Ra ca 2',extra2:'Tăng ca 2',brTurno1:'Ca 1',brTurno2:'Ca 2',brTotal:'Tổng',navFin:'Tài chính',nenkinHd:'年金 Lương hưu',nenkinTipo:'Loại',nenkinMes:'Tháng',nenkinDia:'Ngày',nenkinVal:'¥ Giá trị',nenkinTotalMes:'Tổng tháng',finSecHd:'Quản lý tài chính',finSalario:'Lương (Làm việc)',finNenkin:'Lương hưu (年金)',finShougai:'Lương hưu khuyết tật',finTotal:'Thu nhập ròng',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Chi tiêu',sumSaldo:'💰 Còn lại',sumSaldoTotal:'💰 Số dư tích lũy',finComingSoon:'Sắp ra mắt: theo dõi chi tiêu và thanh toán hàng tháng.',finSecEntradas:'Thu nhập',finTransporte:'Đi lại',finTotalEntradas:'Tổng thu nhập',finSecGastos:'Chi tiêu',finCategoria:'Danh mục',finValor:'¥Giá trị',finDescricao:'Mô tả (tùy chọn)',finAddGasto:'Thêm chi tiêu',finSemGastos:'Chưa có chi tiêu',finTotalGastos:'Tổng chi tiêu',finSecResumo:'Tóm tắt',finTotalGanhos:'Tổng thu nhập',finSaldo:'Số dư',finSecInsights:'Nhận xét',catMoradia:'🏠Nhàở',catAlimentacao:'🍱Ănuống',catTransporte:'🚃Đilại',catSaude:'🏥Ytế',catEducacao:'📚Giáodục',catLazer:'🎮Giảitrí',catRoupas:'👕Quầnáo',catUtilidades:'💡Tiệních',catImpostos:'🏙Thuế',catOutros:'📦Khác',insightNoData:'Ghi lại thu nhập và chi tiêu.',insightNegativo:'Chi tiêu vượt thu nhập.',insightAlto:'Đã chi hơn 80%.',insightMedio:'Cân bằng chi tiêu.',insightBom:'Xuất sắc! Tiết kiệm tốt!',insightSemGastos:'Chưa có chi tiêu.',insightTopCat:'Chi tiêu lớn nhất: ',insightNenkin:'Lương hưu nhận: ',insightOk:'Ngân sách cân bằng!',nkOpts:['— (không đăng ký) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (không sử dụng) —'},
+'fr':{name:'Français',flag:'🇫🇷',months:['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],monthsFull:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],wdays:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],nav:['Pointage','Résumé','Paramètres'],kpi:['Jours trav.','Total gagné','H. supp.','Absences'],secSum:'Tous les mois',secCfg:'Paramètres',cfgTitle:'Paramètres du système',cfgLabels:['Taux horaire (¥)','Heures normales/jour','Multiplicateur h. supp.','Pause déjeuner (min, si ≥6h)','Pause repos (min, si ≥4h)'],cfgSave:'Enregistrer',cfgTip:'Données sauvegardées localement.\nPour installer sur iPhone: Safari → Partager → "Ajouter à l\'écran d\'accueil".\nPour installer sur Android: Chrome → menu ⋮ → "Ajouter à l\'écran d\'accueil".',status:['— Auto','✅ Travaillé','❌ Absent','🌿 Congé','🎌 Férié','🌓 Demi-Journée','⚠️ Incomplet'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Arrivée','Départ','H. supp.'],totalLbl:'Total du jour',save:'Enregistrer',clear:'Effacer',hint:'Sélectionnez un jour dans le calendrier pour enregistrer.',thisMonth:'ce mois',totalMonths:'Total 6 mois',sumRows:['Jours trav.','H. normales','H. supp.','Total'],chartHd:'Gains journaliers (¥)',legendLabels:['Travaillé','Absent','Congé','Demi-journée'],badgeLabels:{work:'✅ Travaillé',absent:'❌ Absent',folga:'🌿 Congé',meio:'🌓 Demi-Journée',inc:'⚠️ Incomplet',none:'—'},langTitle:'Langue',langLabel:'Sélectionner la langue',themeTitle:'Thème de couleurs',themeNames:['🌿 Vert','🔮 Violet','🔥 Orange','💎 Cyan','🔴 Rouge','🌊 Sarcelle','🌸 Rose'],turno2:'Équipe 2 (optionnel)',turno2Lbl:'Taux horaire',entrada2:'Arrivée 2',saida2:'Départ 2',extra2:'H. supp. 2',brTurno1:'Équipe 1',brTurno2:'Équipe 2',brTotal:'Total',navFin:'Finances',nenkinHd:'年金 Retraite',nenkinTipo:'Type',nenkinMes:'Mois',nenkinDia:'Jour',nenkinVal:'¥ Valeur',nenkinTotalMes:'Total mensuel',finSecHd:'Contrôle financier',finSalario:'Salaire (Travail)',finNenkin:'Retraite (年金)',finShougai:'Pension invalidité',finTotal:'Total net',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Dépenses',sumSaldo:'💰 Restant',sumSaldoTotal:'💰 Solde cumulé',finComingSoon:'Bientôt : suivi des dépenses et paiements mensuels.',finSecEntradas:'Revenus',finTransporte:'Transport',finTotalEntradas:'Total Revenus',finSecGastos:'Dépenses',finCategoria:'Catégorie',finValor:'¥Valeur',finDescricao:'Description (optionnel)',finAddGasto:'Ajouter dépense',finSemGastos:'Aucune dépense',finTotalGastos:'Total Dépenses',finSecResumo:'Résumé',finTotalGanhos:'Total Revenus',finSaldo:'Solde',finSecInsights:'Insights',catMoradia:'🏠Logement',catAlimentacao:'🍱Alimentation',catTransporte:'🚃Transport',catSaude:'🏥Santé',catEducacao:'📚Éducation',catLazer:'🎮Loisirs',catRoupas:'👕Vêtements',catUtilidades:'💡Charges',catImpostos:'🏙Impôts',catOutros:'📦Autre',insightNoData:'Enregistrez revenus et dépenses.',insightNegativo:'Les dépenses ont dépassé les revenus.',insightAlto:'Plus de 80% dépensés.',insightMedio:'Budget équilibré.',insightBom:'Excellent! Très bonne épargne!',insightSemGastos:'Aucune dépense.',insightTopCat:'Plus grande dépense: ',insightNenkin:'Retraite reçue: ',insightOk:'Budget équilibré!',nkOpts:['— (ne pas enregistrer) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (ne pas utiliser) —'},
+'de':{name:'Deutsch',flag:'🇩🇪',months:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],monthsFull:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],wdays:['So','Mo','Di','Mi','Do','Fr','Sa'],nav:['Zeiterfassung','Übersicht','Einstellungen'],kpi:['Arbeitstage','Gesamtverdienst','Überstunden','Fehltage'],secSum:'Alle Monate',secCfg:'Einstellungen',cfgTitle:'Systemparameter',cfgLabels:['Stundenlohn (¥)','Normale Std./Tag','Überstunden-Faktor','Mittagspause (Min, bei ≥6h)','Pause (Min, bei ≥4h)'],cfgSave:'Einstellungen speichern',cfgTip:'Daten werden lokal gespeichert.\nInstallation auf iPhone: Safari → Teilen → "Zum Home-Bildschirm".\nInstallation auf Android: Chrome → Menü ⋮ → "Zum Startbildschirm hinzufügen".',status:['— Automatisch','✅ Gearbeitet','❌ Fehlend','🌿 Frei','🎌 Feiertag','🌓 Halbtag','⚠️ Unvollständig'],statusVals:['','trabalhado','falta','folga','feriado','meio','incompleto'],entryLabel:['Kommen','Gehen','Überstd.'],totalLbl:'Tagesverdienst',save:'Speichern',clear:'Löschen',hint:'Wählen Sie einen Tag im Kalender aus.',thisMonth:'diesen Monat',totalMonths:'Gesamt 6 Monate',sumRows:['Arbeitstage','Normalstd.','Überstunden','Gesamt'],chartHd:'Tagesverdienst (¥)',legendLabels:['Gearbeitet','Fehlend','Frei','Halbtag'],badgeLabels:{work:'✅ Gearbeitet',absent:'❌ Fehlend',folga:'🌿 Frei',meio:'🌓 Halbtag',inc:'⚠️ Unvollständig',none:'—'},langTitle:'Sprache',langLabel:'Sprache auswählen',themeTitle:'Farbthema',themeNames:['🌿 Grün','🔮 Lila','🔥 Orange','💎 Cyan','🔴 Rot','🌊 Blaugrün','🌸 Pink'],turno2:'Schicht 2 (optional)',turno2Lbl:'Stundensatz',entrada2:'Kommen 2',saida2:'Gehen 2',extra2:'Überstd. 2',brTurno1:'Schicht 1',brTurno2:'Schicht 2',brTotal:'Gesamt',navFin:'Finanzen',nenkinHd:'年金 Rente',nenkinTipo:'Typ',nenkinMes:'Monat',nenkinDia:'Tag',nenkinVal:'¥ Betrag',nenkinTotalMes:'Monatssumme',finSecHd:'Finanzkontrolle',finSalario:'Gehalt (Arbeit)',finNenkin:'Rente (年金)',finShougai:'Invalidenrente',finTotal:'Nettosumme',sumNenkin:'nenkin',sumShougai:'shougai nenkin',sumGastos:'💸 Ausgaben',sumSaldo:'💰 Übrig',sumSaldoTotal:'💰 Kumulierter Saldo',finComingSoon:'Demnächst: Erfassung monatlicher Ausgaben und Zahlungen.',finSecEntradas:'Einnahmen',finTransporte:'Transport',finTotalEntradas:'Gesamteinnahmen',finSecGastos:'Ausgaben',finCategoria:'Kategorie',finValor:'¥Betrag',finDescricao:'Beschreibung (optional)',finAddGasto:'Ausgabe hinzufügen',finSemGastos:'Keine Ausgaben',finTotalGastos:'Gesamtausgaben',finSecResumo:'Zusammenfassung',finTotalGanhos:'Gesamteinnahmen',finSaldo:'Saldo',finSecInsights:'Erkenntnisse',catMoradia:'🏠Wohnen',catAlimentacao:'🍱Ernährung',catTransporte:'🚃Transport',catSaude:'🏥Gesundheit',catEducacao:'📚Bildung',catLazer:'🎮Freizeit',catRoupas:'👕Kleidung',catUtilidades:'💡Nebenkosten',catImpostos:'🏙Steuern',catOutros:'📦Sonstiges',insightNoData:'Erfassen Sie Einnahmen und Ausgaben.',insightNegativo:'Ausgaben übersteigen Einnahmen.',insightAlto:'Über 80% ausgegeben.',insightMedio:'Ausgeglichenes Budget.',insightBom:'Ausgezeichnet! Tolle Ersparnis!',insightSemGastos:'Noch keine Ausgaben.',insightTopCat:'Größte Ausgabe: ',insightNenkin:'Rente erhalten: ',insightOk:'Ausgeglichenes Budget!',nkOpts:['— (nicht erfassen) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'],wageEmpty:'— (nicht verwenden) —'},
 };
 
 const THEMES=[
   {id:'default',bg:'linear-gradient(135deg,#070B14,#22C55E)'},
   {id:'purple',bg:'linear-gradient(135deg,#EDE5FF,#7C3AED)'},
   {id:'orange',bg:'linear-gradient(135deg,#0A0600,#F97316)'},
-  {id:'cyan',bg:'linear-gradient(135deg,#010A14,#06B6D4)'},
+  {id:'cyan',bg:'linear-gradient(135deg,#010A14,#22D3EE)'},
   {id:'red',bg:'linear-gradient(135deg,#0C0000,#EF4444)'},
+  {id:'teal',bg:'linear-gradient(135deg,#00100E,#14B8A6)'},
+  {id:'pink',bg:'linear-gradient(135deg,#0E0009,#EC4899)'},
 ];
 
 const TIME_OPTS=['06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30'];
 const EXT_OPTS=['00:00','00:30','01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30'];
 
 function buildWageOpts(){
-  const opts=['<option value="">— (não usar) —</option>'];
-  for(let v=950;v<=15000;v+=50)opts.push(`<option value="${v}">¥${v.toLocaleString()}/h</option>`);
+  var L=LANGS[lang];
+  var emptyLabel=L.wageEmpty||'— (não usar) —';
+  var opts=['<option value="">'+emptyLabel+'</option>'];
+  for(var v=950;v<=15000;v+=50)opts.push('<option value="'+v+'">¥'+v.toLocaleString()+'/h</option>');
   return opts.join('');
 }
 
 let lang='pt-BR',cfg={hora:1049,horas:4,mult:1.5,almoco:40,descanso:20};
 let activeMonth=0,selDay=null,currentTheme='default';
 
+// ===== FERIADOS JAPONESES REAIS =====
+// Regras oficiais dos Feriados Nacionais do Japão (Shukujitsu-hō)
+// Fonte: Cabinet Office Japan / 内閣府
+
+function getJapanHolidays(year) {
+  const h = {};
+  const mk = (m, d, emoji, name) => { h[`${year}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`] = {emoji, name}; };
+
+  // Helper: nth weekday of month (n=1 first, n=-1 last)
+  function nthWeekday(year, month, weekday, n) {
+    if (n > 0) {
+      let d = 1;
+      while (new Date(year, month-1, d).getDay() !== weekday) d++;
+      return d + (n-1)*7;
+    } else {
+      const last = new Date(year, month, 0).getDate();
+      let d = last;
+      while (new Date(year, month-1, d).getDay() !== weekday) d--;
+      return d + (n+1)*7;
+    }
+  }
+
+  // Shunbun-no-hi: Vernal Equinox (aprox. 20-21 Mar, calculado)
+  function vernalEquinox(y) {
+    if (y <= 1979) return Math.floor(20.8357 + 0.242194*(y-1980) - Math.floor((y-1983)/4));
+    if (y <= 2099) return Math.floor(20.8431 + 0.242194*(y-1980) - Math.floor((y-1980)/4));
+    return Math.floor(21.851 + 0.242194*(y-1980) - Math.floor((y-1980)/4));
+  }
+
+  // Shūbun-no-hi: Autumnal Equinox (aprox. 22-23 Sep)
+  function autumnalEquinox(y) {
+    if (y <= 1979) return Math.floor(23.2588 + 0.242194*(y-1980) - Math.floor((y-1983)/4));
+    if (y <= 2099) return Math.floor(23.2488 + 0.242194*(y-1980) - Math.floor((y-1980)/4));
+    return Math.floor(24.2488 + 0.242194*(y-1980) - Math.floor((y-1980)/4));
+  }
+
+  // 1 Jan — Ganjitsu (元日) Ano Novo
+  mk(1, 1, '🎍', '元日 Ganjitsu');
+
+  // 2ª Segunda de Jan — Seijin-no-hi (成人の日) Dia dos Adultos
+  mk(1, nthWeekday(year, 1, 1, 2), '🎒', '成人の日 Seijin-no-hi');
+
+  // 11 Feb — Kenkoku Kinen-no-hi (建国記念の日) Dia da Fundação
+  mk(2, 11, '🏯', '建国記念の日 Kenkoku Kinen');
+
+  // 23 Feb — Tennō Tanjōbi (天皇誕生日) Aniversário do Imperador (desde 2020)
+  if (year >= 2020) mk(2, 23, '👑', '天皇誕生日 Tennō Tanjōbi');
+
+  // Mar — Shunbun-no-hi (春分の日) Equinócio da Primavera
+  mk(3, vernalEquinox(year), '🌸', '春分の日 Shunbun-no-hi');
+
+  // 29 Apr — Shōwa-no-hi (昭和の日) Dia Shōwa
+  mk(4, 29, '🏵️', '昭和の日 Shōwa-no-hi');
+
+  // 3 Mai — Kenpō Kinenbi (憲法記念日) Dia da Constituição
+  mk(5, 3, '📜', '憲法記念日 Kenpō Kinenbi');
+
+  // 4 Mai — Midori-no-hi (みどりの日) Dia da Natureza/Árvore
+  mk(5, 4, '🌿', 'みどりの日 Midori-no-hi');
+
+  // 5 Mai — Kodomo-no-hi (こどもの日) Dia das Crianças
+  mk(5, 5, '🎏', 'こどもの日 Kodomo-no-hi');
+
+  // 3ª Segunda de Jul — Umi-no-hi (海の日) Dia do Mar
+  mk(7, nthWeekday(year, 7, 1, 3), '🌊', '海の日 Umi-no-hi');
+
+  // 11 Ago — Yama-no-hi (山の日) Dia da Montanha (desde 2016)
+  if (year >= 2016) mk(8, 11, '⛰️', '山の日 Yama-no-hi');
+
+  // 3ª Segunda de Set — Keirō-no-hi (敬老の日) Dia dos Idosos
+  mk(9, nthWeekday(year, 9, 1, 3), '👴', '敬老の日 Keirō-no-hi');
+
+  // Set — Shūbun-no-hi (秋分の日) Equinócio do Outono
+  mk(9, autumnalEquinox(year), '🍂', '秋分の日 Shūbun-no-hi');
+
+  // 2ª Segunda de Out — Taiiku-no-hi / Sports-no-hi (体育の日)
+  mk(10, nthWeekday(year, 10, 1, 2), '🏅', year >= 2020 ? 'スポーツの日 Sports-no-hi' : '体育の日 Taiiku-no-hi');
+
+  // 3 Nov — Bunka-no-hi (文化の日) Dia da Cultura
+  mk(11, 3, '🎭', '文化の日 Bunka-no-hi');
+
+  // 23 Nov — Kinrō Kansha-no-hi (勤労感謝の日) Dia do Trabalho
+  mk(11, 23, '🙏', '勤労感謝の日 Kinrō Kansha-no-hi');
+
+  // Furiseki (振替休日): Se feriado cai no domingo, segunda é compensatória
+  const keys = Object.keys(h);
+  const furiseki = {};
+  keys.forEach(k => {
+    const dt = new Date(k);
+    if (dt.getDay() === 0) { // domingo
+      const next = new Date(dt.getTime() + 86400000);
+      const nk = `${next.getFullYear()}-${String(next.getMonth()+1).padStart(2,'0')}-${String(next.getDate()).padStart(2,'0')}`;
+      if (!h[nk]) furiseki[nk] = {emoji: '🔄', name: '振替休日 Furiseki'};
+    }
+  });
+  Object.assign(h, furiseki);
+
+  // Golden Week highlight (28 Apr - 6 Mai não já marcados)
+  // Nota: os dias oficiais já cobrem 29/4, 3/5, 4/5, 5/5
+  // Kokumin-no-kyūjitsu: dia entre dois feriados é também feriado
+  // (ex: se 29/4 e 3/5 são feriados, 30/4, 1/5, 2/5 podem ser)
+  // Simplificado: marcamos apenas os oficiais acima
+
+  return h;
+}
+
+// Cache de feriados por ano
+const HOLIDAY_CACHE = {};
+function getHolidayInfo(year, month, day) {
+  if (!HOLIDAY_CACHE[year]) HOLIDAY_CACHE[year] = getJapanHolidays(year);
+  const key = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+  return HOLIDAY_CACHE[year][key] || null;
+}
+
+// ===== GERAÇÃO DE MESES ATÉ 2050 =====
 function genMonths(){
   const today=new Date(),arr=[];
-  for(let i=0;i<6;i++){const d=new Date(today.getFullYear(),today.getMonth()+i,1);arr.push({mo:d.getMonth()+1,yr:d.getFullYear(),days:new Date(d.getFullYear(),d.getMonth()+1,0).getDate()});}
+  const startYear=today.getFullYear(), startMonth=today.getMonth();
+  const endYear=2050, endMonth=11; // Dezembro 2050
+  let yr=startYear, mo=startMonth;
+  while(yr < endYear || (yr===endYear && mo<=endMonth)){
+    const d=new Date(yr,mo,1);
+    arr.push({mo:d.getMonth()+1,yr:d.getFullYear(),days:new Date(d.getFullYear(),d.getMonth()+1,0).getDate()});
+    mo++;
+    if(mo>11){mo=0;yr++;}
+  }
   return arr;
 }
 const MONTHS_DATA=genMonths();
@@ -393,7 +654,16 @@ function saveConfig(){
 function buildLangDropdown(){
   document.getElementById('lang-select').innerHTML=Object.entries(LANGS).map(([k,v])=>`<option value="${k}"${k===lang?' selected':''  }>${v.flag} ${v.name}</option>`).join('');
 }
-function setLang(l){lang=l;sv('lang',l);renderAll();}
+function setLang(l){
+  lang=l;sv('lang',l);renderAll();
+  // Refresh views that depend on language
+  const activeView=document.querySelector('.view.active');
+  if(activeView){
+    const vid=activeView.id;
+    if(vid==='view-resumo')renderResumo();
+    if(vid==='view-financeiro')renderFinanceiro();
+  }
+}
 
 function applyI18n(){
   const L=LANGS[lang];
@@ -406,6 +676,7 @@ function applyI18n(){
   document.getElementById('btn-save-cfg').textContent=L.cfgSave;
   document.getElementById('cfg-tip').innerHTML=L.cfgTip.replace(/\n/g,'<br>');
   L.nav.forEach((t,i)=>document.getElementById(['nav-lbl-ponto','nav-lbl-resumo','nav-lbl-cfg'][i]).textContent=t);
+  document.getElementById('nav-lbl-fin').textContent=L.navFin||'Finanças';
   ['lbl-e','lbl-s','lbl-x'].forEach((id,i)=>document.getElementById(id).textContent=L.entryLabel[i]);
   document.getElementById('lbl-total').textContent=L.totalLbl;
   document.getElementById('dp-save-btn').textContent=L.save;
@@ -413,12 +684,35 @@ function applyI18n(){
   // Turno 2 labels
   document.getElementById('lbl-turno2').textContent=L.turno2||'Turno 2';
   document.getElementById('lbl-wage2').textContent=L.turno2Lbl||'Valor por hora';
+  // Rebuild wage dropdown with translated empty option (preserve selected value)
+  var wageSel=document.getElementById('dp-wage2');
+  var curWageVal=wageSel.value;
+  wageSel.innerHTML=buildWageOpts();
+  wageSel.value=curWageVal;
   document.getElementById('lbl-e2').textContent=L.entrada2||'Entrada 2';
   document.getElementById('lbl-s2').textContent=L.saida2||'Saída 2';
   document.getElementById('lbl-x2').textContent=L.extra2||'H. Extra 2';
   document.getElementById('lbl-br1').textContent=L.brTurno1||'Turno 1';
   document.getElementById('lbl-br2').textContent=L.brTurno2||'Turno 2';
   document.getElementById('lbl-br-total').textContent=L.brTotal||'Total';
+  // Nenkin labels
+  document.getElementById('lbl-nenkin-hd').textContent=L.nenkinHd||'年金 Pensão';
+  document.getElementById('lbl-nenkin-tipo').textContent=L.nenkinTipo||'Tipo';
+  document.getElementById('lbl-nk-mes').textContent=L.nenkinMes||'Mês';
+  document.getElementById('lbl-nk-dia').textContent=L.nenkinDia||'Dia';
+  document.getElementById('lbl-nk-val').textContent=L.nenkinVal||'¥ Valor';
+  document.getElementById('lbl-nk-total').textContent=L.nenkinTotalMes||'Total Mensal';
+  // Rebuild nenkin month dropdown with current language months (preserve selected value)
+  var nkMesSel=document.getElementById('nk-mes');
+  var curMesVal=nkMesSel.value;
+  nkMesSel.innerHTML=buildNenkinMesOpts();
+  nkMesSel.value=curMesVal;
+  // Update nenkin type select options with translated labels
+  const nkTipoSel=document.getElementById('nk-tipo');
+  const curNkTipo=nkTipoSel.value;
+  const nkOpts=L.nkOpts||['— (não registrar) —','年金 (Nenkin)','障害年金 (Shougai Nenkin)'];
+  nkTipoSel.innerHTML=`<option value="">${nkOpts[0]}</option><option value="nenkin">${nkOpts[1]}</option><option value="shougai">${nkOpts[2]}</option>`;
+  nkTipoSel.value=curNkTipo;
   // Status dropdown
   const dpSt=document.getElementById('dp-st'),curVal=dpSt.value;
   dpSt.innerHTML=L.statusVals.map((v,i)=>`<option value="${v}">${L.status[i]}</option>`).join('');
@@ -436,13 +730,15 @@ const monthLabel=mi=>{const L=LANGS[lang],m=MONTHS_DATA[mi];return L.months[m.mo
 const monthFull=mi=>{const L=LANGS[lang],m=MONTHS_DATA[mi];return L.monthsFull[m.mo-1]+' '+m.yr;};
 
 function renderTabs(){document.getElementById('mtabs').innerHTML=MONTHS_DATA.map((_,i)=>`<div class="mtab${i===activeMonth?' active':''}" onclick="switchMonth(${i})">${monthLabel(i)}</div>`).join('');}
-function switchMonth(i){activeMonth=i;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();}
-function prevCal(){if(activeMonth>0){activeMonth--;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();}}
-function nextCal(){if(activeMonth<MONTHS_DATA.length-1){activeMonth++;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();}}
+function switchMonth(i){activeMonth=i;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();setNenkinData(getNenkinMonth(activeMonth));}
+function prevCal(){if(activeMonth>0){activeMonth--;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();setNenkinData(getNenkinMonth(activeMonth));}}
+function nextCal(){if(activeMonth<MONTHS_DATA.length-1){activeMonth++;selDay=null;renderTabs();renderCalendar();renderPanel();renderKPIs();setNenkinData(getNenkinMonth(activeMonth));}}
 
 function renderKPIs(){
   const s=getStats(activeMonth),L=LANGS[lang];
-  if(s.totalY>0){document.getElementById('t-earn').textContent='¥'+Math.round(s.totalY).toLocaleString();document.getElementById('t-earn-lbl').textContent=L.thisMonth;}
+  const nk=getNenkinMonth(activeMonth),nkVal=parseInt(nk.val)||0;
+  const totalComNenkin=Math.round(s.totalY)+nkVal;
+  if(totalComNenkin>0){document.getElementById('t-earn').textContent='¥'+totalComNenkin.toLocaleString();document.getElementById('t-earn-lbl').textContent=L.thisMonth+(nkVal>0?' 💴':'');}
   else{document.getElementById('t-earn').textContent='';document.getElementById('t-earn-lbl').textContent='';}
   document.getElementById('kpis').innerHTML=`<div class="kpi"><span class="kpi-icon">📅</span><div class="kpi-val green">${s.dias}</div><div class="kpi-lbl">${L.kpi[0]}</div></div><div class="kpi"><span class="kpi-icon">💴</span><div class="kpi-val blue" style="font-size:18px;padding-top:3px">¥${Math.round(s.totalY).toLocaleString()}</div><div class="kpi-lbl">${L.kpi[1]}</div></div><div class="kpi"><span class="kpi-icon">⚡</span><div class="kpi-val amber">${fmtH(s.extMin)}</div><div class="kpi-lbl">${L.kpi[2]}</div></div><div class="kpi"><span class="kpi-icon">📋</span><div class="kpi-val${s.faltas>0?' red':''}">${s.faltas}</div><div class="kpi-lbl">${L.kpi[3]}</div></div>`;
 }
@@ -460,7 +756,14 @@ function renderCalendar(){
     const isSel=selDay===d;
     const cls=st==='sun'?'sun':(st==='work'?'work':(st==='absent'?'absent':(st==='folga'?'folga':(st==='meio'?'meio':(st==='inc'?'inc':'')))));
     const hasPip=cls&&cls!=='sun';
-    html+=`<div class="cal-cell${cls?' '+cls:''}${isSel?' cal-selected':''}" onclick="selectDay(${d})"><div class="cal-d"${isToday?' style="background:rgba(255,255,255,0.13);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;"':''}>${d}</div>${hasPip?'<div class="cal-pip"></div>':`<div style="width:5px;height:5px"></div>`}</div>`;
+    const holidayInfo=getHolidayInfo(m.yr,m.mo,d);
+    const isRed=(dow===0||holidayInfo)&&!hasPip;
+    const numColor=isRed?'color:rgba(239,68,68,0.8);':'';
+    const dayStyle=isToday?'background:rgba(255,255,255,0.13);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;'+numColor:numColor?'style="'+numColor+'"':'';
+    const dayAttr=dayStyle?` style="${dayStyle}"`:'';
+    const hlBg=holidayInfo&&!hasPip?' style="background:rgba(239,68,68,0.05)"':'';
+    const emojiDiv=holidayInfo?`<div style="font-size:8px;line-height:1;margin-top:0px;opacity:0.9" title="${holidayInfo.name}">${holidayInfo.emoji}</div>`:'';
+    html+=`<div class="cal-cell${cls?' '+cls:''}${isSel?' cal-selected':''}"${hlBg} onclick="selectDay(${d})"><div class="cal-d"${dayAttr}>${d}</div>${emojiDiv}${hasPip?'<div class="cal-pip"></div>':(holidayInfo?'':'<div style="width:5px;height:5px"></div>')}</div>`;
   }
   document.getElementById('cal-grid').innerHTML=html;
   renderChart();
@@ -535,10 +838,60 @@ function updatePanelCalc(){
 
 function onFieldChg(){if(selDay)updatePanelCalc();}
 
+// === NENKIN ===
+const NENKIN_VALS=[5000,10000,15000,20000,25000,30000,35000,40000,45000,50000,60000,70000,80000,90000,100000,120000,150000,200000];
+function buildNenkinValOpts(){
+  return '<option value="">— ¥ —</option>'+NENKIN_VALS.map(v=>`<option value="${v}">¥${v.toLocaleString()}</option>`).join('');
+}
+function buildNenkinMesOpts(){
+  var months=LANGS[lang].months||['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return '<option value="">—</option>'+months.map(function(m,i){return '<option value="'+(i+1)+'">'+m+'</option>';}).join('');
+}
+function buildNenkinDiaOpts(){
+  let opts='<option value="">—</option>';
+  for(let d=1;d<=31;d++)opts+=`<option value="${d}">${d}</option>`;
+  return opts;
+}
+function onNenkinChg(){
+  const tipo=document.getElementById('nk-tipo').value;
+  const fields=document.getElementById('nk-fields');
+  const totRow=document.getElementById('nk-total-row');
+  if(!tipo){fields.style.display='none';totRow.style.display='none';updateNenkinTotal();return;}
+  fields.style.display='grid';
+  const val=parseInt(document.getElementById('nk-val').value)||0;
+  if(val>0){totRow.style.display='flex';updateNenkinTotal();}
+  else{totRow.style.display='none';}
+}
+function updateNenkinTotal(){
+  const val=parseInt(document.getElementById('nk-val').value)||0;
+  document.getElementById('nk-total-val').textContent=val>0?'¥'+val.toLocaleString():'¥ —';
+}
+function getNenkinData(){
+  return {
+    tipo:document.getElementById('nk-tipo').value,
+    mes:document.getElementById('nk-mes').value,
+    dia:document.getElementById('nk-dia').value,
+    val:document.getElementById('nk-val').value
+  };
+}
+function setNenkinData(d){
+  document.getElementById('nk-tipo').value=d.tipo||'';
+  document.getElementById('nk-mes').value=d.mes||'';
+  document.getElementById('nk-dia').value=d.dia||'';
+  document.getElementById('nk-val').value=d.val||'';
+  onNenkinChg();
+}
+// Store nenkin per month (global monthly, not per day)
+const NENKIN_KEY='nk_';
+function getNenkinMonth(mi){try{const s=localStorage.getItem(NENKIN_KEY+mi);return s?JSON.parse(s):{tipo:'',mes:'',dia:'',val:''}}catch(e){return {tipo:'',mes:'',dia:'',val:''}}}
+function setNenkinMonth(mi,d){try{localStorage.setItem(NENKIN_KEY+mi,JSON.stringify(d));}catch(e){}}
+
 function saveSelected(){
   if(!selDay)return;
   const data={e:document.getElementById('dp-e').value,s:document.getElementById('dp-s').value,x:document.getElementById('dp-x').value,st:document.getElementById('dp-st').value,e2:document.getElementById('dp-e2').value,s2:document.getElementById('dp-s2').value,x2:document.getElementById('dp-x2').value,wage2:document.getElementById('dp-wage2').value};
   setDd(activeMonth,selDay,data);
+  // Save nenkin data for this month
+  setNenkinMonth(activeMonth,getNenkinData());
   const btn=document.getElementById('dp-save-btn');
   btn.textContent='✓ '+LANGS[lang].save;
   setTimeout(()=>{btn.textContent=LANGS[lang].save;},1200);
@@ -561,13 +914,221 @@ function renderChart(){
 }
 
 function renderResumo(){
-  const L=LANGS[lang];let html='',grand=0;
-  MONTHS_DATA.forEach((_,i)=>{
-    const s=getStats(i);grand+=s.totalY;
-    html+=`<div class="sum-card"><div class="sum-mhd"><span>${monthFull(i)}</span><span class="sum-mhd-val">¥${Math.round(s.totalY).toLocaleString()}</span></div><div class="sum-row"><span>${L.sumRows[0]}</span><span>${s.dias}</span></div><div class="sum-row"><span>${L.sumRows[1]}</span><span>${fmtH(s.normMin)}</span></div><div class="sum-row"><span>${L.sumRows[2]}</span><span style="color:var(--amber)">${fmtH(s.extMin)}</span></div><div class="sum-row total"><span>${L.sumRows[3]}</span><span>¥${Math.round(s.totalY).toLocaleString()}</span></div></div>`;
+  var L=LANGS[lang];var html='';var grand=0;var grandSaldo=0;
+  MONTHS_DATA.forEach(function(_,i){
+    var s=getStats(i);
+    var nk=getNenkinMonth(i);
+    var nkVal=parseInt(nk.val)||0;
+    var nkTipo=nk.tipo;
+    var workTotal=Math.round(s.totalY);
+    var grandMonth=workTotal+nkVal;
+    grand+=grandMonth;
+    // Gastos do mês (Finance tab)
+    var expenses=getFinExpenses(i);
+    var totalExp=expenses.reduce(function(acc,e){return acc+(parseInt(e.val)||0);},0);
+    var saldo=grandMonth-totalExp;
+    grandSaldo+=saldo;
+    var nkLabel=nkTipo==='nenkin'?(L.sumNenkin||'nenkin'):(nkTipo==='shougai'?(L.sumShougai||'shougai nenkin'):'');
+    var nkMesStr=nk.mes?(L.months[parseInt(nk.mes)-1]||''):'';
+    var nkDiaStr=nk.dia?' '+nk.dia:'';
+    var nkDateStr=(nkMesStr||nkDiaStr)?' ('+nkMesStr+nkDiaStr+')':'';
+    var nkRow=nkVal>0&&nkLabel?'<div class="sum-row" style="color:#F472B6"><span>'+nkLabel+nkDateStr+'</span><span style="color:#F472B6;font-weight:700">¥'+nkVal.toLocaleString()+'</span></div>':'';
+    // Gastos row (só mostra se houver gastos registrados)
+    var expRow=totalExp>0?'<div class="sum-row sum-row-exp"><span>'+(L.sumGastos||'💸 Gastos')+'</span><span style="color:#F87171">−¥'+totalExp.toLocaleString()+'</span></div>':'';
+    // Saldo row (só mostra se houver renda ou gastos)
+    var saldoColor=saldo>=0?'#4ADE80':'#F87171';
+    var saldoSign=saldo>=0?'':'-';
+    var saldoRow=(grandMonth>0||totalExp>0)?'<div class="sum-row sum-row-saldo" style="background:rgba(255,255,255,0.03)"><span style="font-weight:700;color:var(--text)">'+(L.sumSaldo||'💰 Sobrou')+'</span><span style="color:'+saldoColor+';font-size:14px;font-weight:800">'+saldoSign+'¥'+Math.abs(saldo).toLocaleString()+'</span></div>':'';
+    html+='<div class="sum-card">'
+      +'<div class="sum-mhd"><span>'+monthFull(i)+'</span><span class="sum-mhd-val">¥'+workTotal.toLocaleString()+'</span></div>'
+      +'<div class="sum-row"><span>'+L.sumRows[0]+'</span><span>'+s.dias+'</span></div>'
+      +'<div class="sum-row"><span>'+L.sumRows[1]+'</span><span>'+fmtH(s.normMin)+'</span></div>'
+      +'<div class="sum-row"><span>'+L.sumRows[2]+'</span><span style="color:var(--amber)">'+fmtH(s.extMin)+'</span></div>'
+      +nkRow
+      +'<div class="sum-row total"><span>'+L.sumRows[3]+'</span><span>¥'+grandMonth.toLocaleString()+'</span></div>'
+      +expRow
+      +saldoRow
+      +'</div>';
   });
-  html+=`<div class="grand-card"><div class="grand-lbl">${L.totalMonths}</div><div class="grand-val">¥${Math.round(grand).toLocaleString()}</div></div>`;
+  var saldoTotalColor=grandSaldo>=0?'var(--accent)':'#F87171';
+  var saldoTotalSign=grandSaldo>=0?'':'-';
+  html+='<div class="grand-card"><div class="grand-lbl">'+L.totalMonths+'</div><div class="grand-val">¥'+Math.round(grand).toLocaleString()+'</div>'
+    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)"><div class="grand-lbl" style="opacity:.6">'+(L.sumSaldoTotal||'💰 Saldo acumulado')+'</div>'
+    +'<div style="font-family:var(--font-display);font-size:26px;font-weight:800;color:'+saldoTotalColor+';letter-spacing:-1px">'+saldoTotalSign+'¥'+Math.abs(Math.round(grandSaldo)).toLocaleString()+'</div>'
+    +'</div></div>';
   document.getElementById('resumo-list').innerHTML=html;
+}
+
+function renderFinanceiro(){
+  var L=LANGS[lang];
+  var wrap=document.getElementById('fin-content');
+
+  // ---- month strip ----
+  var stripHtml='<div class="fin-view-wrap"><div class="fin-month-strip">';
+  MONTHS_DATA.forEach(function(_,i){
+    var lbl=L.months[MONTHS_DATA[i].mo-1]+' '+MONTHS_DATA[i].yr;
+    stripHtml+='<div class="fin-mtab'+(i===finMonth?' active':'\"')+'" onclick="setFinMonth('+i+')">'+lbl+'</div>';
+  });
+  // fix closing quote issue
+  stripHtml=stripHtml.replace(/active'"/g,"active\"");
+  stripHtml+='</div>';
+
+  var mi=finMonth;
+  var nk=getNenkinMonth(mi);
+  var nkVal=parseInt(nk.val)||0;
+  var nkTipo=nk.tipo;
+  var s=getStats(mi);
+  var workTotal=Math.round(s.totalY);
+  var nkLabel=nkTipo==='nenkin'?(L.sumNenkin||'nenkin'):(nkTipo==='shougai'?(L.sumShougai||'shougai nenkin'):'');
+  var totalIncome=workTotal+nkVal;
+
+  // ---- ENTRADAS section ----
+  stripHtml+='<div class="fin-section-hd"><span class="fin-section-hd-icon">💰</span><span class="fin-section-hd-label income-color">'+(L.finSecEntradas||'Entradas')+'</span></div>';
+  stripHtml+='<div class="fin-card2">';
+  stripHtml+='<div class="fin-row2"><span class="fin-lbl">'+(L.finSalario||'Salário')+'</span><span class="fin-val green">¥'+(workTotal>0?workTotal.toLocaleString():'—')+'</span></div>';
+  if(nkVal>0&&nkLabel){
+    stripHtml+='<div class="fin-row2"><span class="fin-lbl">'+nkLabel+'</span><span class="fin-val pink">¥'+nkVal.toLocaleString()+'</span></div>';
+  }
+  stripHtml+='<div class="fin-row2" style="background:rgba(74,222,128,0.06)"><span class="fin-lbl" style="font-weight:700;color:var(--text)">'+(L.finTotalEntradas||'Total Entradas')+'</span><span class="fin-val green" style="font-size:16px">¥'+totalIncome.toLocaleString()+'</span></div>';
+  stripHtml+='</div>';
+
+  // ---- GASTOS section ----
+  var expenses=getFinExpenses(mi);
+  var totalExpenses=expenses.reduce(function(s,e){return s+(parseInt(e.val)||0);},0);
+
+  stripHtml+='<div class="fin-section-hd"><span class="fin-section-hd-icon">💸</span><span class="fin-section-hd-label expense-color">'+(L.finSecGastos||'Gastos')+'</span></div>';
+  // add expense form
+  var cats=getExpenseCategories(L);
+  stripHtml+='<div class="fin-add-form">';
+  stripHtml+='<div class="fin-add-row3">';
+  stripHtml+='<div><label class="fin-label">'+(L.finCategoria||'Categoria')+'</label>';
+  stripHtml+='<select class="fin-sel" id="fin-exp-cat">';
+  cats.forEach(function(c){stripHtml+='<option value="'+c.id+'">'+c.label+'</option>';});
+  stripHtml+='</select></div>';
+  stripHtml+='<div><label class="fin-label">'+(L.finValor||'¥ Valor')+'</label>';
+  stripHtml+='<input type="number" class="fin-inp" id="fin-exp-val" placeholder="0" style="padding:8px 8px">';
+  stripHtml+='</div></div>';
+  stripHtml+='<div style="margin-bottom:8px"><label class="fin-label">'+(L.finDescricao||'Descrição (opcional)')+'</label>';
+  stripHtml+='<input type="text" class="fin-inp" id="fin-exp-desc" placeholder="..." maxlength="40"></div>';
+  stripHtml+='<button class="fin-add-btn" onclick="addFinExpense('+mi+')">＋ '+(L.finAddGasto||'Adicionar gasto')+'</button>';
+  stripHtml+='</div>';
+  // expense list
+  stripHtml+='<div class="fin-card2">';
+  if(expenses.length===0){
+    stripHtml+='<div class="fin-empty-state">'+(L.finSemGastos||'Sem gastos registrados')+'</div>';
+  } else {
+    expenses.forEach(function(e,idx){
+      var catLbl=getCatLabel(e.cat,cats);
+      stripHtml+='<div class="fin-expense-item">';
+      stripHtml+='<div class="fin-exp-left"><div class="fin-exp-cat">'+catLbl+'</div><div class="fin-exp-desc">'+(e.desc||'—')+'</div></div>';
+      stripHtml+='<div class="fin-exp-right"><span class="fin-exp-val">¥'+(parseInt(e.val)||0).toLocaleString()+'</span>';
+      stripHtml+='<button class="fin-exp-del" onclick="delFinExpense('+mi+','+idx+')">✕</button></div>';
+      stripHtml+='</div>';
+    });
+  }
+  stripHtml+='<div class="fin-row2" style="background:rgba(239,68,68,0.06)"><span class="fin-lbl" style="font-weight:700;color:var(--text)">'+(L.finTotalGastos||'Total Gastos')+'</span><span class="fin-val red">¥'+totalExpenses.toLocaleString()+'</span></div>';
+  stripHtml+='</div>';
+
+  // ---- RESUMO section ----
+  var saldo=totalIncome-totalExpenses;
+  stripHtml+='<div class="fin-section-hd"><span class="fin-section-hd-icon">📊</span><span class="fin-section-hd-label summary-color">'+(L.finSecResumo||'Resumo')+'</span></div>';
+  stripHtml+='<div class="fin-saldo-card">';
+  stripHtml+='<div class="fin-saldo-row"><span class="fin-saldo-lbl">'+(L.finTotalGanhos||'Total Ganhos')+'</span><span class="fin-saldo-val" style="color:#4ADE80">¥'+totalIncome.toLocaleString()+'</span></div>';
+  stripHtml+='<div class="fin-saldo-row"><span class="fin-saldo-lbl">'+(L.finTotalGastos||'Total Gastos')+'</span><span class="fin-saldo-val" style="color:#F87171">¥'+totalExpenses.toLocaleString()+'</span></div>';
+  var saldoColor=saldo>=0?'#4ADE80':'#F87171';
+  stripHtml+='<div class="fin-saldo-row"><span class="fin-saldo-lbl" style="font-size:14px;font-weight:700;color:var(--text)">'+(L.finSaldo||'Saldo')+'</span><span class="fin-saldo-val" style="color:'+saldoColor+';font-size:22px">¥'+saldo.toLocaleString()+'</span></div>';
+  stripHtml+='</div>';
+
+  // ---- INSIGHTS section ----
+  stripHtml+='<div class="fin-section-hd"><span class="fin-section-hd-icon">🧠</span><span class="fin-section-hd-label insight-color">'+(L.finSecInsights||'Insights')+'</span></div>';
+  var insight=buildFinInsight(L,totalIncome,totalExpenses,saldo,workTotal,nkVal,expenses,cats);
+  stripHtml+='<div class="fin-insight-card"><div class="fin-insight-msg">'+insight+'</div></div>';
+
+  stripHtml+='</div>'; // fin-view-wrap
+  wrap.innerHTML=stripHtml;
+}
+
+// ---- Finance helpers ----
+var finMonth=0;
+function setFinMonth(i){finMonth=i;renderFinanceiro();}
+
+var FIN_STORAGE='fin_';
+function getFinExpenses(mi){try{var s=localStorage.getItem(FIN_STORAGE+'exp_'+mi);return s?JSON.parse(s):[]}catch(e){return[]}}
+function setFinExpenses(mi,arr){try{localStorage.setItem(FIN_STORAGE+'exp_'+mi,JSON.stringify(arr));}catch(e){}}
+function getFinExtra(mi,key){try{var s=localStorage.getItem(FIN_STORAGE+key+'_'+mi);return s?JSON.parse(s):0}catch(e){return 0}}
+function setFinExtra(mi,key,val){try{localStorage.setItem(FIN_STORAGE+key+'_'+mi,JSON.stringify(val));}catch(e){}}
+
+function addFinExpense(mi){
+  var cat=document.getElementById('fin-exp-cat').value;
+  var val=parseInt(document.getElementById('fin-exp-val').value)||0;
+  var desc=(document.getElementById('fin-exp-desc').value||'').trim();
+  if(val<=0)return;
+  var arr=getFinExpenses(mi);
+  arr.push({cat:cat,val:val,desc:desc});
+  setFinExpenses(mi,arr);
+  renderFinanceiro();
+}
+function delFinExpense(mi,idx){
+  var arr=getFinExpenses(mi);
+  arr.splice(idx,1);
+  setFinExpenses(mi,arr);
+  renderFinanceiro();
+}
+function onFinTransportChange(mi){
+  var v=parseInt(document.getElementById('fin-transport-input').value)||0;
+  setFinExtra(mi,'transport',v);
+  renderFinanceiro();
+}
+
+function getExpenseCategories(L){
+  return[
+    {id:'moradia',label:L.catMoradia||'🏠 Moradia'},
+    {id:'alimentacao',label:L.catAlimentacao||'🍱 Alimentação'},
+    {id:'transporte',label:L.catTransporte||'🚃 Transporte'},
+    {id:'saude',label:L.catSaude||'🏥 Saúde'},
+    {id:'educacao',label:L.catEducacao||'📚 Educação'},
+    {id:'lazer',label:L.catLazer||'🎮 Lazer'},
+    {id:'roupas',label:L.catRoupas||'👕 Roupas'},
+    {id:'utilidades',label:L.catUtilidades||'💡 Utilidades'},
+    {id:'impostos',label:L.catImpostos||'🏛 Impostos/Contribuições'},
+    {id:'outros',label:L.catOutros||'📦 Outros'},
+  ];
+}
+function getCatLabel(id,cats){
+  for(var i=0;i<cats.length;i++){if(cats[i].id===id)return cats[i].label;}
+  return id;
+}
+
+function buildFinInsight(L,income,expenses,saldo,salary,nenkin,expenseArr,cats){
+  if(income===0)return L.insightNoData||'Registre seus ganhos e gastos para receber insights personalizados.';
+  var ratio=expenses>0?(expenses/income*100):0;
+  var msgs=[];
+  if(saldo<0){
+    msgs.push(L.insightNegativo||'Seus gastos superaram suas entradas este mês. Revise os maiores itens de despesa.');
+  } else if(ratio>80){
+    msgs.push(L.insightAlto||'Você gastou mais de 80% de suas entradas. Tente reduzir os gastos nas próximas semanas.');
+  } else if(ratio>50){
+    msgs.push(L.insightMedio||'Gastos em torno de '+Math.round(ratio)+'% das entradas. Você ainda tem margem de economia.');
+  } else if(ratio<=30&&expenses>0){
+    msgs.push(L.insightBom||'Ótimo! Você está gastando apenas '+Math.round(ratio)+'% das entradas. Continue assim!');
+  } else if(expenses===0){
+    msgs.push(L.insightSemGastos||'Nenhum gasto registrado ainda. Adicione suas despesas para análise completa.');
+  }
+  // top category
+  if(expenseArr.length>0){
+    var catTotals={};
+    expenseArr.forEach(function(e){catTotals[e.cat]=(catTotals[e.cat]||0)+(parseInt(e.val)||0);});
+    var topCat='';var topVal=0;
+    Object.keys(catTotals).forEach(function(k){if(catTotals[k]>topVal){topVal=catTotals[k];topCat=k;}});
+    if(topCat){
+      var topLbl=getCatLabel(topCat,cats);
+      msgs.push((L.insightTopCat||'Maior gasto: ')+topLbl+' — ¥'+topVal.toLocaleString());
+    }
+  }
+  if(nenkin>0){
+    msgs.push((L.insightNenkin||'Pensão recebida este mês: ')+'¥'+nenkin.toLocaleString());
+  }
+  return msgs.length>0?msgs.join(' '):( L.insightOk||'Tudo certo! Seu balanço está equilibrado.');
 }
 
 function showView(v){
@@ -576,6 +1137,7 @@ function showView(v){
   document.getElementById('view-'+v).classList.add('active');
   document.getElementById('nav-'+v).classList.add('active');
   if(v==='resumo')renderResumo();
+  if(v==='financeiro'){finMonth=activeMonth;renderFinanceiro();}
 }
 
 function renderAll(){buildLangDropdown();applyI18n();renderTabs();renderKPIs();renderCalendar();renderPanel();}
@@ -584,6 +1146,11 @@ function renderAll(){buildLangDropdown();applyI18n();renderTabs();renderKPIs();r
 lang=ld('lang','pt-BR');
 currentTheme=ld('theme','default');
 document.getElementById('dp-wage2').innerHTML=buildWageOpts();
+document.getElementById('nk-val').innerHTML=buildNenkinValOpts();
+document.getElementById('nk-mes').innerHTML=buildNenkinMesOpts();
+document.getElementById('nk-dia').innerHTML=buildNenkinDiaOpts();
+// Load nenkin for current month
+setNenkinData(getNenkinMonth(0));
 loadCfg();
 buildLangDropdown();
 buildTimeSelects('','','00:00','','','00:00','');
