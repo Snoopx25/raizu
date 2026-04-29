@@ -460,6 +460,9 @@ body::after{width:250px;height:250px;bottom:80px;left:-60px;background:radial-gr
               <div class="t2-manual-field"><label id="lbl-t2m-s"></label><input class="t2-manual-input" type="text" id="t2m-s" inputmode="text" placeholder="17:00" oninput="onFieldChg()"></div>
               <div class="t2-manual-field"><label id="lbl-t2m-x"></label><input class="t2-manual-input" type="text" id="t2m-x" inputmode="text" placeholder="00:00" oninput="onFieldChg()"></div>
             </div>
+            <div class="t2-manual-row" style="grid-template-columns:1fr">
+              <div class="t2-manual-field"><label id="lbl-t2m-wage">¥ / hora</label><input class="t2-manual-input" type="number" id="t2m-wage" inputmode="numeric" placeholder="ex: 1500" oninput="onFieldChg()"></div>
+            </div>
           </div>
           <div class="t2-manual-val-wrap" style="display:block">
             <label id="lbl-t2m-val"></label>
@@ -793,10 +796,11 @@ function calc(data){
 function calc2(e2,s2,x2,wage2){
   if(!wage2||!e2||!s2)return 0;
   const em=t2m(e2),sm=t2m(s2);if(sm<=em)return 0;
-  const brutMin=sm-em,descA=brutMin>=360?cfg.almoco:0,descD=brutMin>=240?cfg.descanso:0;
-  const xm=t2m(x2||'00:00'),liqMin=Math.max(0,brutMin-descA-descD);
-  const normMin=Math.min(liqMin,cfg.horas*60),extMin=xm,w=+wage2;
-  return(normMin/60)*w+(extMin/60)*w*cfg.mult;
+  // T2 is fully independent: (saida-entrada) * wage2 + hextra * wage2
+  const workedMin=sm-em;
+  const xm=t2m(x2||'00:00');
+  const w=+wage2;
+  return(workedMin/60)*w+(xm/60)*w;
 }
 
 function statusOf(data,dow){
@@ -809,7 +813,7 @@ function statusOf(data,dow){
   if(!e&&!s)return'absent';return'inc';
 }
 
-const getDd=(mi,d)=>{const a=ld('d_'+mi,{});const r=a[d]||{};return Object.assign({e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:'',t2mode:'auto',t2mE:'',t2mS:'',t2mX:'',t2mVal:''},r);};
+const getDd=(mi,d)=>{const a=ld('d_'+mi,{});const r=a[d]||{};return Object.assign({e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:'',t2mode:'auto',t2mE:'',t2mS:'',t2mX:'',t2mVal:'',t2mWage:''},r);};
 const setDd=(mi,d,data)=>{const a=ld('d_'+mi,{});a[d]=data;sv('d_'+mi,a);};
 
 function getStats(mi){
@@ -818,7 +822,7 @@ function getStats(mi){
     const dow=new Date(m.yr,m.mo-1,d).getDay();if(dow===0)continue;
     const data=getDd(mi,d),st=statusOf(data,dow);
     if(st==='folga')continue;
-    if(st==='work'||st==='meio'){dias++;const c=calc(data);let t2val=0;if(data.t2mode==='manual'){if(data.t2mE&&data.t2mS){t2val=calc2(data.t2mE,data.t2mS,data.t2mX||'00:00',cfg.hora);}else{t2val=parseInt(data.t2mVal)||0;}}else{t2val=calc2(data.e2,data.s2,data.x2,data.wage2);}totalY+=c.total+t2val;normMin+=c.normMin;extMin+=c.extMin;}
+    if(st==='work'||st==='meio'){dias++;const c=calc(data);let t2val=0;if(data.t2mode==='manual'){const w2=parseFloat(data.t2mWage)||0;if(data.t2mE&&data.t2mS&&w2>0){t2val=calc2(data.t2mE,data.t2mS,data.t2mX||'00:00',w2);}else{t2val=parseInt(data.t2mVal)||0;}}else{t2val=calc2(data.e2,data.s2,data.x2,data.wage2);}totalY+=c.total+t2val;normMin+=c.normMin;extMin+=c.extMin;}
     else if(st==='absent')faltas++;
   }
   return{dias,totalY,normMin,extMin,faltas};
@@ -983,7 +987,7 @@ function renderCalendar(){
 
 function selectDay(d){selDay=d;renderCalendar();renderPanel();document.getElementById('day-panel').scrollIntoView({behavior:'smooth',block:'nearest'});}
 
-function buildTimeSelects(eVal,sVal,xVal,e2Val,s2Val,x2Val,wage2Val,t2mE,t2mS,t2mX,t2mVal){
+function buildTimeSelects(eVal,sVal,xVal,e2Val,s2Val,x2Val,wage2Val,t2mE,t2mS,t2mX,t2mVal,t2mWage){
   const mkT=sel=>'<option value="">--:--</option>'+TIME_OPTS.map(t=>`<option value="${t}"${t===sel?' selected':''  }>${t}</option>`).join('');
   const mkX=sel=>EXT_OPTS.map(t=>`<option value="${t}"${(sel||'00:00')===t?' selected':''  }>${t}</option>`).join('');
   document.getElementById('dp-e').innerHTML=mkT(eVal);
@@ -998,6 +1002,7 @@ function buildTimeSelects(eVal,sVal,xVal,e2Val,s2Val,x2Val,wage2Val,t2mE,t2mS,t2
   document.getElementById('t2m-s').value=t2mS||'';
   document.getElementById('t2m-x').value=t2mX||'';
   document.getElementById('t2m-val').value=t2mVal||'';
+  document.getElementById('t2m-wage').value=t2mWage||'';
 }
 
 function buildStSelect(stVal){
@@ -1025,7 +1030,7 @@ function renderPanel(){
   const m=MONTHS_DATA[activeMonth],dow=new Date(m.yr,m.mo-1,selDay).getDay();
   const data=getDd(activeMonth,selDay);
   t2Mode=data.t2mode||'auto';applyT2Mode();
-  buildTimeSelects(data.e||'',data.s||'',data.x||'00:00',data.e2||'',data.s2||'',data.x2||'00:00',data.wage2||'',data.t2mE||'',data.t2mS||'',data.t2mX||'',data.t2mVal||'');
+  buildTimeSelects(data.e||'',data.s||'',data.x||'00:00',data.e2||'',data.s2||'',data.x2||'00:00',data.wage2||'',data.t2mE||'',data.t2mS||'',data.t2mX||'',data.t2mVal||'',data.t2mWage||'');
   buildStSelect(data.st||'');
   document.getElementById('dp-date').textContent=`${selDay} ${monthFull(activeMonth)} — ${L.wdays[dow]}`;
   document.getElementById('dp-hint').textContent='';
@@ -1043,11 +1048,12 @@ function updatePanelCalc(){
     const t2mS=document.getElementById('t2m-s').value.trim();
     const t2mX=document.getElementById('t2m-x').value.trim();
     hasBlock2=t2mVal>0||(t2mE&&t2mS);
-    if(t2mE&&t2mS){
-      // Horários preenchidos: calcular automaticamente (ignora campo valor)
-      t2Total=calc2(t2mE,t2mS,t2mX,cfg.hora);
+    const t2mWage=parseFloat(document.getElementById('t2m-wage').value)||0;
+    if(t2mE&&t2mS&&t2mWage>0){
+      // Horários + salário próprio: calcular pelo T2
+      t2Total=calc2(t2mE,t2mS,t2mX,t2mWage);
     } else if(t2mVal>0){
-      // Sem horários: usar valor manual exato
+      // Só valor manual exato
       t2Total=t2mVal;
     }
   } else {
@@ -1182,7 +1188,7 @@ function setNenkinMonth(mi,d){try{localStorage.setItem(NENKIN_KEY+mi,JSON.string
 
 function saveSelected(){
   if(!selDay)return;
-  const data={e:document.getElementById('dp-e').value,s:document.getElementById('dp-s').value,x:document.getElementById('dp-x').value,st:document.getElementById('dp-st').value,e2:document.getElementById('dp-e2').value,s2:document.getElementById('dp-s2').value,x2:document.getElementById('dp-x2').value,wage2:document.getElementById('dp-wage2').value,t2mode:t2Mode,t2mE:document.getElementById('t2m-e').value,t2mS:document.getElementById('t2m-s').value,t2mX:document.getElementById('t2m-x').value,t2mVal:document.getElementById('t2m-val').value};
+  const data={e:document.getElementById('dp-e').value,s:document.getElementById('dp-s').value,x:document.getElementById('dp-x').value,st:document.getElementById('dp-st').value,e2:document.getElementById('dp-e2').value,s2:document.getElementById('dp-s2').value,x2:document.getElementById('dp-x2').value,wage2:document.getElementById('dp-wage2').value,t2mode:t2Mode,t2mE:document.getElementById('t2m-e').value,t2mS:document.getElementById('t2m-s').value,t2mX:document.getElementById('t2m-x').value,t2mVal:document.getElementById('t2m-val').value,t2mWage:document.getElementById('t2m-wage').value};
   setDd(activeMonth,selDay,data);
   // Save nenkin data for this month
   setNenkinMonth(activeMonth,getNenkinData());
@@ -1194,7 +1200,7 @@ function saveSelected(){
 
 function clearSelected(){
   if(!selDay)return;
-  setDd(activeMonth,selDay,{e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:'',t2mode:'auto',t2mE:'',t2mS:'',t2mX:'',t2mVal:''});
+  setDd(activeMonth,selDay,{e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:'',t2mode:'auto',t2mE:'',t2mS:'',t2mX:'',t2mVal:'',t2mWage:''});
   renderCalendar();renderKPIs();renderPanel();
 }
 
