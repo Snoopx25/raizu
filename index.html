@@ -187,6 +187,9 @@ body::after{width:250px;height:250px;bottom:80px;left:-60px;background:radial-gr
 .cfg-f label{font-size:11.5px;color:var(--text2);display:block;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .cfg-f input{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--glass-border);background:rgba(255,255,255,0.06);color:var(--text);font-size:16px;font-family:var(--font-display);font-weight:600;transition:all .2s;backdrop-filter:blur(8px)}
 .cfg-f input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);background:rgba(34,197,94,0.06)}
+.cfg-sel{width:100%;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--glass-border);background:rgba(255,255,255,0.06);color:var(--text);font-size:16px;font-family:var(--font-display);font-weight:600;transition:all .2s;backdrop-filter:blur(8px);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.cfg-sel:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);background-color:rgba(34,197,94,0.06)}
+.cfg-sel option{background:var(--bg);color:var(--text)}
 .btn-primary{width:100%;padding:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:all .2s;box-shadow:0 6px 24px var(--glow);position:relative;overflow:hidden}
 .btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:btnShimmer 2.5s infinite}
 .btn-primary:active{transform:scale(.98);opacity:.9}
@@ -453,9 +456,9 @@ body::after{width:250px;height:250px;bottom:80px;left:-60px;background:radial-gr
         <div id="t2-manual-wrap" style="display:none">
           <div class="t2-manual-fields" id="t2-manual-fields" style="display:flex">
             <div class="t2-manual-row">
-              <div class="t2-manual-field"><label id="lbl-t2m-e"></label><input class="t2-manual-input" type="text" id="t2m-e" inputmode="numeric" placeholder="08:00" oninput="onFieldChg()"></div>
-              <div class="t2-manual-field"><label id="lbl-t2m-s"></label><input class="t2-manual-input" type="text" id="t2m-s" inputmode="numeric" placeholder="17:00" oninput="onFieldChg()"></div>
-              <div class="t2-manual-field"><label id="lbl-t2m-x"></label><input class="t2-manual-input" type="text" id="t2m-x" inputmode="numeric" placeholder="00:00" oninput="onFieldChg()"></div>
+              <div class="t2-manual-field"><label id="lbl-t2m-e"></label><input class="t2-manual-input" type="text" id="t2m-e" inputmode="text" placeholder="08:00" oninput="onFieldChg()"></div>
+              <div class="t2-manual-field"><label id="lbl-t2m-s"></label><input class="t2-manual-input" type="text" id="t2m-s" inputmode="text" placeholder="17:00" oninput="onFieldChg()"></div>
+              <div class="t2-manual-field"><label id="lbl-t2m-x"></label><input class="t2-manual-input" type="text" id="t2m-x" inputmode="text" placeholder="00:00" oninput="onFieldChg()"></div>
             </div>
           </div>
           <div class="t2-manual-val-wrap" style="display:block">
@@ -540,10 +543,40 @@ body::after{width:250px;height:250px;bottom:80px;left:-60px;background:radial-gr
     <div class="cfg-card">
       <div class="cfg-hd" id="cfg-title"></div>
       <div class="cfg-f"><label id="lbl-hora"></label><input type="number" id="c-hora" inputmode="numeric"></div>
-      <div class="cfg-f"><label id="lbl-horas"></label><input type="number" id="c-horas" step="0.5" inputmode="decimal"></div>
-      <div class="cfg-f"><label id="lbl-mult"></label><input type="number" id="c-mult" step="0.05" inputmode="decimal"></div>
-      <div class="cfg-f"><label id="lbl-alm"></label><input type="number" id="c-almoco" inputmode="numeric"></div>
-      <div class="cfg-f"><label id="lbl-des"></label><input type="number" id="c-descanso" inputmode="numeric"></div>
+      <div class="cfg-f"><label id="lbl-horas"></label><select class="cfg-sel" id="c-horas">
+        <option value="1">1h</option><option value="2">2h</option><option value="3">3h</option>
+        <option value="4">4h</option><option value="5">5h</option><option value="6">6h</option>
+        <option value="7">7h</option><option value="8">8h</option><option value="9">9h</option>
+        <option value="10">10h</option><option value="11">11h</option><option value="12">12h</option>
+      </select></div>
+      <div class="cfg-f"><label id="lbl-mult"></label><select class="cfg-sel" id="c-mult">
+        <option value="1">+0% (×1.0)</option>
+        <option value="1.1">+10% (×1.1)</option>
+        <option value="1.15">+15% (×1.15)</option>
+        <option value="1.2">+20% (×1.2)</option>
+        <option value="1.25">+25% (×1.25)</option>
+        <option value="1.3">+30% (×1.3)</option>
+        <option value="1.35">+35% (×1.35)</option>
+        <option value="1.4">+40% (×1.4)</option>
+        <option value="1.45">+45% (×1.45)</option>
+        <option value="1.5">+50% (×1.5)</option>
+        <option value="1.6">+60% (×1.6)</option>
+        <option value="1.75">+75% (×1.75)</option>
+        <option value="2">+100% (×2.0)</option>
+      </select></div>
+      <div class="cfg-f"><label id="lbl-alm"></label><select class="cfg-sel" id="c-almoco">
+        <option value="0">— sem desconto —</option>
+        <option value="10">10 min</option><option value="15">15 min</option>
+        <option value="20">20 min</option><option value="30">30 min</option>
+        <option value="40">40 min</option><option value="45">45 min</option>
+        <option value="60">60 min</option><option value="90">90 min</option>
+      </select></div>
+      <div class="cfg-f"><label id="lbl-des"></label><select class="cfg-sel" id="c-descanso">
+        <option value="0">— sem desconto —</option>
+        <option value="5">5 min</option><option value="10">10 min</option>
+        <option value="15">15 min</option><option value="20">20 min</option>
+        <option value="25">25 min</option><option value="30">30 min</option>
+      </select></div>
       <button class="btn-primary" onclick="saveConfig()" id="btn-save-cfg"></button>
     </div>
     <p class="cfg-tip" id="cfg-tip"></p>
@@ -591,7 +624,7 @@ function buildWageOpts(){
   return opts.join('');
 }
 
-let lang='pt-BR',cfg={hora:1049,horas:4,mult:1.5,almoco:40,descanso:20};
+let lang='pt-BR',cfg={hora:1049,horas:6,mult:1.5,almoco:40,descanso:20};
 let activeMonth=0,selDay=null,currentTheme='default';
 
 // ===== FERIADOS JAPONESES REAIS =====
@@ -776,7 +809,7 @@ function statusOf(data,dow){
   if(!e&&!s)return'absent';return'inc';
 }
 
-const getDd=(mi,d)=>{const a=ld('d_'+mi,{});return a[d]||{e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:''};};
+const getDd=(mi,d)=>{const a=ld('d_'+mi,{});const r=a[d]||{};return Object.assign({e:'',s:'',x:'00:00',st:'',e2:'',s2:'',x2:'00:00',wage2:'',t2mode:'auto',t2mE:'',t2mS:'',t2mX:'',t2mVal:''},r);};
 const setDd=(mi,d,data)=>{const a=ld('d_'+mi,{});a[d]=data;sv('d_'+mi,a);};
 
 function getStats(mi){
@@ -785,22 +818,37 @@ function getStats(mi){
     const dow=new Date(m.yr,m.mo-1,d).getDay();if(dow===0)continue;
     const data=getDd(mi,d),st=statusOf(data,dow);
     if(st==='folga')continue;
-    if(st==='work'||st==='meio'){dias++;const c=calc(data);let t2val=0;if(data.t2mode==='manual'){t2val=parseInt(data.t2mVal)||0;}else{t2val=calc2(data.e2,data.s2,data.x2,data.wage2);}totalY+=c.total+t2val;normMin+=c.normMin;extMin+=c.extMin;}
+    if(st==='work'||st==='meio'){dias++;const c=calc(data);let t2val=0;if(data.t2mode==='manual'){if(data.t2mE&&data.t2mS){t2val=calc2(data.t2mE,data.t2mS,data.t2mX||'00:00',cfg.hora);}else{t2val=parseInt(data.t2mVal)||0;}}else{t2val=calc2(data.e2,data.s2,data.x2,data.wage2);}totalY+=c.total+t2val;normMin+=c.normMin;extMin+=c.extMin;}
     else if(st==='absent')faltas++;
   }
   return{dias,totalY,normMin,extMin,faltas};
 }
 
+function setSelectNearest(id, val){
+  const sel=document.getElementById(id);
+  if(!sel)return;
+  // try exact match first
+  for(let i=0;i<sel.options.length;i++){
+    if(parseFloat(sel.options[i].value)===parseFloat(val)){sel.selectedIndex=i;return;}
+  }
+  // find nearest
+  let best=0,bestDiff=Infinity;
+  for(let i=0;i<sel.options.length;i++){
+    const diff=Math.abs(parseFloat(sel.options[i].value)-parseFloat(val));
+    if(diff<bestDiff){bestDiff=diff;best=i;}
+  }
+  sel.selectedIndex=best;
+}
 function loadCfg(){
   const c=ld('cfg',null);if(c)cfg=c;
   document.getElementById('c-hora').value=cfg.hora;
-  document.getElementById('c-horas').value=cfg.horas;
-  document.getElementById('c-mult').value=cfg.mult;
-  document.getElementById('c-almoco').value=cfg.almoco;
-  document.getElementById('c-descanso').value=cfg.descanso;
+  setSelectNearest('c-horas', cfg.horas);
+  setSelectNearest('c-mult', cfg.mult);
+  setSelectNearest('c-almoco', cfg.almoco);
+  setSelectNearest('c-descanso', cfg.descanso);
 }
 function saveConfig(){
-  cfg={hora:+document.getElementById('c-hora').value||1049,horas:+document.getElementById('c-horas').value||4,mult:+document.getElementById('c-mult').value||1.5,almoco:+document.getElementById('c-almoco').value||40,descanso:+document.getElementById('c-descanso').value||20};
+  cfg={hora:+document.getElementById('c-hora').value||1049,horas:parseFloat(document.getElementById('c-horas').value)||6,mult:parseFloat(document.getElementById('c-mult').value)||1.5,almoco:parseInt(document.getElementById('c-almoco').value)||0,descanso:parseInt(document.getElementById('c-descanso').value)||0};
   sv('cfg',cfg);renderAll();alert(LANGS[lang].cfgSave+'!');
 }
 
@@ -989,10 +1037,19 @@ function updatePanelCalc(){
   const e=document.getElementById('dp-e').value,s=document.getElementById('dp-s').value,x=document.getElementById('dp-x').value,st=document.getElementById('dp-st').value;
   let t2Total=0,hasBlock2=false;
   if(t2Mode==='manual'){
-    const t2mVal=parseInt(document.getElementById('t2m-val').value)||0;
-    const t2mE=document.getElementById('t2m-e').value,t2mS=document.getElementById('t2m-s').value;
+    const t2mValRaw=document.getElementById('t2m-val').value;
+    const t2mVal=parseInt(t2mValRaw)||0;
+    const t2mE=document.getElementById('t2m-e').value.trim();
+    const t2mS=document.getElementById('t2m-s').value.trim();
+    const t2mX=document.getElementById('t2m-x').value.trim();
     hasBlock2=t2mVal>0||(t2mE&&t2mS);
-    t2Total=t2mVal;
+    if(t2mE&&t2mS){
+      // Horários preenchidos: calcular automaticamente (ignora campo valor)
+      t2Total=calc2(t2mE,t2mS,t2mX,cfg.hora);
+    } else if(t2mVal>0){
+      // Sem horários: usar valor manual exato
+      t2Total=t2mVal;
+    }
   } else {
     const e2=document.getElementById('dp-e2').value,s2=document.getElementById('dp-s2').value,x2=document.getElementById('dp-x2').value,wage2=document.getElementById('dp-wage2').value;
     t2Total=calc2(e2,s2,x2,wage2);
