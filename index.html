@@ -365,41 +365,39 @@
       font-weight: 500
     }
 
-    /* ── MONTH TABS ── */
-    .month-tabs {
-      display: flex;
-      gap: 6px;
-      padding: 14px 16px 8px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch
+    /* ── MONTH PICKER ── */
+    .month-picker { padding: 10px 16px 6px; }
+    .yr-strip { display: flex; gap: 6px; margin-bottom: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .yr-strip::-webkit-scrollbar { display: none }
+    .yrtab {
+      padding: 5px 18px; border-radius: 40px; border: 1px solid var(--glass-border);
+      font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+      color: var(--text2); background: var(--glass-bg); font-family: var(--font-display);
+      transition: all .2s; flex-shrink: 0;
     }
-
-    .month-tabs::-webkit-scrollbar {
-      display: none
+    .yrtab.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000; border-color: transparent; box-shadow: 0 3px 12px var(--glow);
     }
-
+    .mo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .mtab {
-      padding: 7px 16px;
-      border-radius: 40px;
-      border: 1px solid var(--glass-border);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      color: var(--text2);
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all .2s;
-      font-family: var(--font-display)
+      padding: 9px 4px 12px; border-radius: 12px; border: 1px solid var(--glass-border);
+      font-size: 12px; font-weight: 600; cursor: pointer; text-align: center;
+      color: var(--text2); background: var(--glass-bg); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); transition: all .2s; font-family: var(--font-display);
+      position: relative; line-height: 1.2;
     }
-
     .mtab.active {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #000;
-      border-color: transparent;
-      box-shadow: 0 4px 16px var(--glow)
+      color: #000; border-color: transparent; box-shadow: 0 4px 16px var(--glow); font-weight: 800;
     }
+    .mtab.has-data::after {
+      content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: .7;
+    }
+    .mtab.active.has-data::after { background: #000; opacity: .4; }
+    .mtab.is-today { border-color: var(--accent); color: var(--accent); }
+    .mtab.active.is-today { color: #000; border-color: transparent; }
 
     /* ── KPI STRIP ── */
     .kpi-strip {
@@ -2808,7 +2806,7 @@
     </div>
 
     <div class="view active" id="view-ponto">
-      <div class="month-tabs" id="mtabs"></div>
+      <div class="month-picker" id="mtabs"></div>
       <div class="kpi-strip" id="kpis"></div>
       <div class="cal-hd">
         <div class="cal-title" id="cal-title"></div>
@@ -3182,12 +3180,12 @@
       return HOLIDAY_CACHE[year][key] || null;
     }
 
-    // ===== GERAÇÃO DE MESES ATÉ 2050 =====
+    // ===== GERAÇÃO DE MESES ATÉ 2100 =====
     function genMonths() {
       const arr = [];
       // Sempre começa de Janeiro 2025 para não perder meses passados com dados salvos
       const startYear = 2025, startMonth = 0;
-      const endYear = 2050, endMonth = 11; // Dezembro 2050
+      const endYear = 2100, endMonth = 11; // Dezembro 2100
       let yr = startYear, mo = startMonth;
       while (yr < endYear || (yr === endYear && mo <= endMonth)) {
         const d = new Date(yr, mo, 1);
@@ -3240,6 +3238,19 @@
           var newNkKey = 'nk_' + targetYr + '_' + targetMo;
           if (!localStorage.getItem(newNkKey)) localStorage.setItem(newNkKey, nkRaw);
         }
+        // Migra dados financeiros também
+        var finExpRaw = localStorage.getItem('fin_exp_' + legacyIdx);
+        if (finExpRaw) {
+          var newFinExpKey = 'fin_exp_' + targetYr + '_' + targetMo;
+          if (!localStorage.getItem(newFinExpKey)) localStorage.setItem(newFinExpKey, finExpRaw);
+        }
+        ['transport','salary','nenkin_val','extra'].forEach(function(fkey) {
+          var fRaw = localStorage.getItem('fin_' + fkey + '_' + legacyIdx);
+          if (fRaw) {
+            var newFKey = 'fin_' + fkey + '_' + targetYr + '_' + targetMo;
+            if (!localStorage.getItem(newFKey)) localStorage.setItem(newFKey, fRaw);
+          }
+        });
       }
       localStorage.setItem('jk3_migrated_v3', '1');
     })();
@@ -3426,7 +3437,55 @@
     const monthLabel = mi => { const L = LANGS[lang], m = MONTHS_DATA[mi]; return L.months[m.mo - 1] + ' ' + m.yr; };
     const monthFull = mi => { const L = LANGS[lang], m = MONTHS_DATA[mi]; return L.monthsFull[m.mo - 1] + ' ' + m.yr; };
 
-    function renderTabs() { document.getElementById('mtabs').innerHTML = MONTHS_DATA.map((_, i) => `<div class="mtab${i === activeMonth ? ' active' : ''}" onclick="switchMonth(${i})">${monthLabel(i)}</div>`).join(''); }
+    function renderTabs() {
+      var now = new Date(), nowYr = now.getFullYear(), nowMo = now.getMonth() + 1;
+      // Collect years that have data or are current year
+      var years = [];
+      MONTHS_DATA.forEach(function(m) {
+        if (years.indexOf(m.yr) === -1) years.push(m.yr);
+      });
+      years.sort(function(a,b){ return a-b; });
+      // Active year = year of activeMonth
+      var activeYr = MONTHS_DATA[activeMonth].yr;
+      // Short month names (3 chars)
+      var L = LANGS[lang];
+      var yrHtml = years.map(function(yr) {
+        return '<div class="yrtab' + (yr === activeYr ? ' active' : '') + '" onclick="setPickerYear(' + yr + ')">' + yr + '</div>';
+      }).join('');
+      // Month grid for active year
+      var moHtml = '';
+      MONTHS_DATA.forEach(function(m, i) {
+        if (m.yr !== activeYr) return;
+        var s = getStats(i);
+        var nk = getNenkinMonth(i);
+        var nkVal = parseInt(nk.val) || 0;
+        var exp = getFinExpenses(i);
+        var hasData = s.dias > 0 || nkVal > 0 || exp.length > 0;
+        var isToday = m.yr === nowYr && m.mo === nowMo;
+        var isActive = i === activeMonth;
+        var cls = 'mtab' + (isActive ? ' active' : '') + (hasData ? ' has-data' : '') + (isToday ? ' is-today' : '');
+        moHtml += '<div class="' + cls + '" onclick="switchMonth(' + i + ')">' + L.months[m.mo - 1] + '</div>';
+      });
+      document.getElementById('mtabs').innerHTML =
+        '<div class="yr-strip" id="yr-strip">' + yrHtml + '</div>' +
+        '<div class="mo-grid">' + moHtml + '</div>';
+      // Scroll ano ativo para o centro
+      setTimeout(function() {
+        var activeYrEl = document.querySelector('.yrtab.active');
+        if (activeYrEl) activeYrEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }, 30);
+    }
+    function setPickerYear(yr) {
+      // Switch to first month of that year that exists, prefer current month
+      var now = new Date();
+      var target = -1;
+      MONTHS_DATA.forEach(function(m, i) {
+        if (m.yr === yr && target === -1) target = i;
+        // prefer same month number
+        if (m.yr === yr && m.mo === (MONTHS_DATA[activeMonth].mo)) target = i;
+      });
+      if (target >= 0) { activeMonth = target; selDay = null; renderTabs(); renderCalendar(); renderPanel(); renderKPIs(); setNenkinData(getNenkinMonth(activeMonth)); }
+    }
     function switchMonth(i) { activeMonth = i; selDay = null; renderTabs(); renderCalendar(); renderPanel(); renderKPIs(); setNenkinData(getNenkinMonth(activeMonth)); }
     function prevCal() { if (activeMonth > 0) { activeMonth--; selDay = null; renderTabs(); renderCalendar(); renderPanel(); renderKPIs(); setNenkinData(getNenkinMonth(activeMonth)); } }
     function nextCal() { if (activeMonth < MONTHS_DATA.length - 1) { activeMonth++; selDay = null; renderTabs(); renderCalendar(); renderPanel(); renderKPIs(); setNenkinData(getNenkinMonth(activeMonth)); } }
@@ -3696,41 +3755,85 @@
 
     function renderResumo() {
       var L = LANGS[lang]; var html = ''; var grand = 0; var grandSaldo = 0;
+      // Coleta apenas meses com dados preenchidos
+      var filledMonths = [];
       MONTHS_DATA.forEach(function (_, i) {
         var s = getStats(i);
         var nk = getNenkinMonth(i);
         var nkVal = parseInt(nk.val) || 0;
-        var nkTipo = nk.tipo;
-        var workTotal = Math.round(s.totalY);
-        var grandMonth = workTotal + nkVal;
-        grand += grandMonth;
-        // Gastos do mês (Finance tab)
         var expenses = getFinExpenses(i);
         var totalExp = expenses.reduce(function (acc, e) { return acc + (parseInt(e.val) || 0); }, 0);
-        var saldo = grandMonth - totalExp;
-        grandSaldo += saldo;
-        var nkLabel = nkTipo === 'nenkin' ? (L.sumNenkin || 'nenkin') : (nkTipo === 'shougai' ? (L.sumShougai || 'shougai nenkin') : '');
-        var nkMesStr = nk.mes ? (L.months[parseInt(nk.mes) - 1] || '') : '';
-        var nkDiaStr = nk.dia ? ' ' + nk.dia : '';
-        var nkDateStr = (nkMesStr || nkDiaStr) ? ' (' + nkMesStr + nkDiaStr + ')' : '';
-        var nkRow = nkVal > 0 && nkLabel ? '<div class="sum-row" style="color:#F472B6"><span>' + nkLabel + nkDateStr + '</span><span style="color:#F472B6;font-weight:700">¥' + nkVal.toLocaleString() + '</span></div>' : '';
-        // Gastos row (só mostra se houver gastos registrados)
-        var expRow = totalExp > 0 ? '<div class="sum-row sum-row-exp"><span>' + (L.sumGastos || '💸 Gastos') + '</span><span style="color:#F87171">−¥' + totalExp.toLocaleString() + '</span></div>' : '';
-        // Saldo row (só mostra se houver renda ou gastos)
-        var saldoColor = saldo >= 0 ? '#4ADE80' : '#F87171';
-        var saldoSign = saldo >= 0 ? '' : '-';
-        var saldoRow = (grandMonth > 0 || totalExp > 0) ? '<div class="sum-row sum-row-saldo" style="background:rgba(255,255,255,0.03)"><span style="font-weight:700;color:var(--text)">' + (L.sumSaldo || '💰 Sobrou') + '</span><span style="color:' + saldoColor + ';font-size:14px;font-weight:800">' + saldoSign + '¥' + Math.abs(saldo).toLocaleString() + '</span></div>' : '';
-        html += '<div class="sum-card">'
-          + '<div class="sum-mhd"><span>' + monthFull(i) + '</span><span class="sum-mhd-val">¥' + workTotal.toLocaleString() + '</span></div>'
-          + '<div class="sum-row"><span>' + L.sumRows[0] + '</span><span>' + s.dias + '</span></div>'
-          + '<div class="sum-row"><span>' + L.sumRows[1] + '</span><span>' + fmtH(s.normMin) + '</span></div>'
-          + '<div class="sum-row"><span>' + L.sumRows[2] + '</span><span style="color:var(--amber)">' + fmtH(s.extMin) + '</span></div>'
-          + nkRow
-          + '<div class="sum-row total"><span>' + L.sumRows[3] + '</span><span>¥' + grandMonth.toLocaleString() + '</span></div>'
-          + expRow
-          + saldoRow
-          + '</div>';
+        if (s.dias > 0 || nkVal > 0 || totalExp > 0) {
+          filledMonths.push({ i: i, s: s, nk: nk, nkVal: nkVal, totalExp: totalExp });
+        }
       });
+
+      if (filledMonths.length === 0) {
+        html = '<div style="text-align:center;padding:48px 16px;color:var(--text2);font-size:14px">Nenhum registro ainda.<br>Comece registrando seus dias na aba de ponto.</div>';
+        document.getElementById('resumo-list').innerHTML = html;
+        return;
+      }
+
+      // Agrupa por ano
+      var byYear = {};
+      filledMonths.forEach(function(item) {
+        var yr = MONTHS_DATA[item.i].yr;
+        if (!byYear[yr]) byYear[yr] = [];
+        byYear[yr].push(item);
+      });
+
+      var years = Object.keys(byYear).sort(function(a,b){ return b - a; }); // mais recente primeiro
+
+      years.forEach(function(yr) {
+        var months = byYear[yr];
+        var yrTotal = 0, yrSaldo = 0;
+        months.forEach(function(item) {
+          var workTotal = Math.round(item.s.totalY);
+          var grandMonth = workTotal + item.nkVal;
+          yrTotal += grandMonth;
+          yrSaldo += grandMonth - item.totalExp;
+        });
+        var yrSaldoColor = yrSaldo >= 0 ? 'var(--accent)' : '#F87171';
+
+        html += '<div style="margin:18px 16px 6px;display:flex;align-items:center;justify-content:space-between">'
+          + '<span style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text3);letter-spacing:1px">' + yr + '</span>'
+          + '<span style="font-size:11px;color:var(--text3)">Saldo: <span style="color:' + yrSaldoColor + ';font-weight:700">¥' + Math.abs(yrSaldo).toLocaleString() + '</span></span>'
+          + '</div>';
+
+        months.forEach(function(item) {
+          var i = item.i, s = item.s, nk = item.nk, nkVal = item.nkVal, totalExp = item.totalExp;
+          var workTotal = Math.round(s.totalY);
+          var grandMonth = workTotal + nkVal;
+          grand += grandMonth;
+          var saldo = grandMonth - totalExp;
+          grandSaldo += saldo;
+          var nkTipo = nk.tipo;
+          var nkLabel = nkTipo === 'nenkin' ? (L.sumNenkin || 'nenkin') : (nkTipo === 'shougai' ? (L.sumShougai || 'shougai nenkin') : '');
+          var nkMesStr = nk.mes ? (L.months[parseInt(nk.mes) - 1] || '') : '';
+          var nkDiaStr = nk.dia ? ' ' + nk.dia : '';
+          var nkDateStr = (nkMesStr || nkDiaStr) ? ' (' + nkMesStr + nkDiaStr + ')' : '';
+          var nkRow = nkVal > 0 && nkLabel ? '<div class="sum-row" style="color:#F472B6"><span>' + nkLabel + nkDateStr + '</span><span style="color:#F472B6;font-weight:700">¥' + nkVal.toLocaleString() + '</span></div>' : '';
+          var expRow = totalExp > 0 ? '<div class="sum-row sum-row-exp"><span>' + (L.sumGastos || '💸 Gastos') + '</span><span style="color:#F87171">−¥' + totalExp.toLocaleString() + '</span></div>' : '';
+          var saldoColor = saldo >= 0 ? '#4ADE80' : '#F87171';
+          var saldoSign = saldo >= 0 ? '' : '-';
+          var saldoRow = (grandMonth > 0 || totalExp > 0) ? '<div class="sum-row sum-row-saldo" style="background:rgba(255,255,255,0.03)"><span style="font-weight:700;color:var(--text)">' + (L.sumSaldo || '💰 Sobrou') + '</span><span style="color:' + saldoColor + ';font-size:14px;font-weight:800">' + saldoSign + '¥' + Math.abs(saldo).toLocaleString() + '</span></div>' : '';
+          // Badge mês atual
+          var now = new Date(), m = MONTHS_DATA[i];
+          var isCurrentMonth = m.yr === now.getFullYear() && m.mo === (now.getMonth() + 1);
+          var badge = isCurrentMonth ? '<span style="font-size:9px;background:var(--accent);color:#000;border-radius:20px;padding:2px 7px;font-weight:700;margin-left:8px;vertical-align:middle">ATUAL</span>' : '';
+          html += '<div class="sum-card" onclick="switchMonth(' + i + ');showView(\'ponto\')" style="cursor:pointer">'
+            + '<div class="sum-mhd"><span>' + (L.monthsFull[m.mo-1]) + badge + '</span><span class="sum-mhd-val">¥' + workTotal.toLocaleString() + '</span></div>'
+            + '<div class="sum-row"><span>' + L.sumRows[0] + '</span><span>' + s.dias + '</span></div>'
+            + '<div class="sum-row"><span>' + L.sumRows[1] + '</span><span>' + fmtH(s.normMin) + '</span></div>'
+            + '<div class="sum-row"><span>' + L.sumRows[2] + '</span><span style="color:var(--amber)">' + fmtH(s.extMin) + '</span></div>'
+            + nkRow
+            + '<div class="sum-row total"><span>' + L.sumRows[3] + '</span><span>¥' + grandMonth.toLocaleString() + '</span></div>'
+            + expRow
+            + saldoRow
+            + '</div>';
+        });
+      });
+
       var saldoTotalColor = grandSaldo >= 0 ? 'var(--accent)' : '#F87171';
       var saldoTotalSign = grandSaldo >= 0 ? '' : '-';
       html += '<div class="grand-card"><div class="grand-lbl">' + L.totalMonths + '</div><div class="grand-val">¥' + Math.round(grand).toLocaleString() + '</div>'
@@ -3830,14 +3933,14 @@
     }
 
     // ---- Finance helpers ----
-    var finMonth = 0;
+    var finMonth = activeMonth;
     function setFinMonth(i) { finMonth = i; renderFinanceiro(); }
 
     var FIN_STORAGE = 'fin_';
-    function getFinExpenses(mi) { try { var s = localStorage.getItem(FIN_STORAGE + 'exp_' + mi); return s ? JSON.parse(s) : [] } catch (e) { return [] } }
-    function setFinExpenses(mi, arr) { try { localStorage.setItem(FIN_STORAGE + 'exp_' + mi, JSON.stringify(arr)); } catch (e) { } }
-    function getFinExtra(mi, key) { try { var s = localStorage.getItem(FIN_STORAGE + key + '_' + mi); return s ? JSON.parse(s) : 0 } catch (e) { return 0 } }
-    function setFinExtra(mi, key, val) { try { localStorage.setItem(FIN_STORAGE + key + '_' + mi, JSON.stringify(val)); } catch (e) { } }
+    function getFinExpenses(mi) { try { var s = localStorage.getItem(FIN_STORAGE + 'exp_' + monthKey(mi)); return s ? JSON.parse(s) : [] } catch (e) { return [] } }
+    function setFinExpenses(mi, arr) { try { localStorage.setItem(FIN_STORAGE + 'exp_' + monthKey(mi), JSON.stringify(arr)); } catch (e) { } }
+    function getFinExtra(mi, key) { try { var s = localStorage.getItem(FIN_STORAGE + key + '_' + monthKey(mi)); return s ? JSON.parse(s) : 0 } catch (e) { return 0 } }
+    function setFinExtra(mi, key, val) { try { localStorage.setItem(FIN_STORAGE + key + '_' + monthKey(mi), JSON.stringify(val)); } catch (e) { } }
 
     function addFinExpense(mi) {
       var cat = document.getElementById('fin-exp-cat').value;
@@ -4275,6 +4378,11 @@
     buildStSelect('');
     setTheme(currentTheme);
     renderAll();
+    // Scroll da grade de meses para o mês atual ficar visível
+    setTimeout(function() {
+      var active = document.querySelector('.mtab.active');
+      if (active) active.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }, 50);
   </script>
 </body>
 
